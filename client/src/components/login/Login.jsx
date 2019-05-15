@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Button from '../button/Button';
 
 class Login extends Component {
@@ -19,6 +20,9 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const { username, password} = this.state;
+    axios.post("http://localhost:5000/api/login", 
+    { password, username })
   }
 
   render(){
