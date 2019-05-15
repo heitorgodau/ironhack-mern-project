@@ -10,7 +10,7 @@ const Home = () => {
       <Link to='/login'>
         <Button className='btn-primary btn-round btn-lg uppercase' btnTitle='Login' />
       </Link>
-      <Link to='/sigunp'>
+      <Link to='/signup'>
         <Button className='btn-primary btn-round btn-lg uppercase' btnTitle='Signup' />
       </Link>
     </div>

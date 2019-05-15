@@ -32,3 +32,22 @@ a{
   text-decoration: none;
   color: inherit;
 }
+
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+form > input {
+  width: 240px;
+  height: 40px;
+  margin: 20px;
+  border-radius: 30px;
+  border: none;
+  padding: 7px;
+}
+
+form > input:focus {
+  outline: none;
+}
