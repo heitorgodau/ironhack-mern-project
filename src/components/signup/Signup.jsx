@@ -22,9 +22,9 @@ class Login extends Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state)
-    const { username, password} = this.state;
+    const { username, password, name} = this.state;
     axios.post("http://localhost:5000/api/signup", 
-    { password, username })
+    { password, username, name })
   }
 
   render(){
