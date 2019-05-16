@@ -1,0 +1,28 @@
+.btn {
+  color: #fff;
+  border: none;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.btn-md {
+  width: 180px;
+  height: 60px;
+}
+
+.btn-round {
+  border-radius: 50px;
+}
+
+.btn-primary {
+  background-color: #FF4A74;
+}
+
+.btn-lg {
+  width: 90vw;
+  height: 50px;
+}
+
+.btn:hover {
+  filter: brightness(150%);
+}
