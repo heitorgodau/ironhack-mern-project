@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBCollapse, MDBContainer, MDBHamburgerToggler } from 'mdbreact';
 
 class NavbarPage extends Component {
   constructor() {
