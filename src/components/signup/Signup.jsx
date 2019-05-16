@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import axios from 'axios';
 import Button from '../button/Button';
 import AuthService from './../auth/auth-service';
 
