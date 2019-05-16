@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../button/Button';
 
-class Login extends Component {
+class Signup extends Component {
   constructor(){
     super();
     this.state = {
@@ -29,7 +29,7 @@ class Login extends Component {
     { password, username, name })
     .then(() => {
       console.log('entrou no then')
-      return <Redirect to="/login" />
+      return <Redirect to="/" />
     })
   }
 
@@ -47,4 +47,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Signup;
