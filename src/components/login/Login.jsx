@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Button from '../button/Button';
+import AuthService from './../auth/auth-service';
 
 class Login extends Component {
   constructor(){
@@ -9,6 +10,7 @@ class Login extends Component {
       username: '',
       password: '',
     }
+    this.service = new AuthService();
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
@@ -18,11 +20,16 @@ class Login extends Component {
     })
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
-    const { username, password} = this.state;
-    axios.post("http://localhost:5000/api/login", 
-    { password, username })
+    const username = this.state.username;
+    const password = this.state.password;    
+    this.service.login(username, password)
+    .then( response => {
+      this.setState({ username: "", password: "" });
+      console.log(response)
+    })
+    .catch( error => console.log(error) )
   }
 
   render(){
@@ -30,7 +37,7 @@ class Login extends Component {
       <section className="login">
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input type="text" name="username" placeholder="Your username here" onChange={(e) => this.handleChange(e)}/>
-          <input type="password" name="password" placeholder="**********"/>
+          <input type="password" name="password" placeholder="**********"onChange={(e) => this.handleChange(e)}/>
           <Button btnTitle="Login" className="btn-primary btn-md btn-round" linkTo="/profile" type="submit" />
         </form>
       </section>
