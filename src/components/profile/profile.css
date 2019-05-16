@@ -1,0 +1,30 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile form {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.profile form i {
+  position: absolute;
+  right: 40px;
+  color: #8492A6;
+}
+
+.profile .patients-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.profile .patients-list .btn-white {
+  height: 30px;
+  margin-bottom: 15px;
+}

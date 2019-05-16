@@ -31,7 +31,7 @@ class App extends Component {
     const styles= 
       {
         container:{
-          position: 'absolute',
+          position: 'fixed',
           top: 0,
           left: 0,
           zIndex: '99',
