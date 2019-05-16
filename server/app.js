@@ -4,22 +4,19 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
-const hbs = require('hbs');
+
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
+const cors = require('cors');
 
-// ################################# DEPENDECIAS AQUI
-/* const session = require('express-session');
-const bcrypt = require('bcrypt');
+const session = require('express-session');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const Patient = require('./models/Paciente'); */
-// ################################# passport
 
+require('./configs/passport');
 
 mongoose
-  .connect('mongodb://localhost/medical-manager-server', { useNewUrlParser: true })
+  .connect('mongodb://localhost/project-wireheart', { useNewUrlParser: true })
   .then((x) => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
   })
@@ -32,13 +29,11 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
-// Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Express View engine setup
 
 app.use(require('node-sass-middleware')({
   src: path.join(__dirname, 'public'),
@@ -53,28 +48,31 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
-// default value for title local
+app.use(session({
+  secret: 'some secret goes here',
+  resave: true,
+  saveUninitialized: true,
+}));
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 app.locals.title = 'Express - Generated with IronGenerator';
 
-// Routes
+app.use(cors({
+  credentials: true,
+  origin: ['http://localhost:3000'],
+}));
+
+const authRoutes = require('./routes/auth-routes');
 const index = require('./routes/index');
 
 app.use('/', index);
+app.use('/api', authRoutes);
 
-const patients = require('./routes/patients');
-
-app.use('/', patients);
-
-const doctors = require('./routes/doctors');
-
-app.use('/', doctors);
-
-const consultations = require('./routes/consultations');
-
-app.use('/', consultations);
-
-const schedulings = require('./routes/schedulings');
-
-app.use('/', schedulings);
+app.use('/api', require('./routes/photo-routes-upload'));
+app.use('/api', require('./routes/photo-exams'));
 
 module.exports = app;
