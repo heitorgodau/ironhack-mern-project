@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../button/Button';
+import AuthService from './../auth/auth-service';
 
 class Signup extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       username: '',
       password: '',
       name: ''
-    }
+    };
+    this.service = new AuthService();
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -25,12 +27,16 @@ class Signup extends Component {
     event.preventDefault();
     console.log(this.state)
     const { username, password, name} = this.state;
-    axios.post("http://localhost:5000/api/signup", 
-    { password, username, name })
-    .then(() => {
-      console.log('entrou no then')
-      return <Redirect to="/" />
+    this.service.signup(username, password, name)
+    .then( response => {
+        this.setState({
+            username: '', 
+            password: '',
+            name: '',
+        });
+        this.props.getUser(response)
     })
+    .catch( error => console.log(error) )
   }
 
   render(){

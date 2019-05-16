@@ -13,6 +13,12 @@ class App extends Component {
     }
   }
 
+  getTheUser= (userObj) => {
+    this.setState({
+      loggedInUser: userObj
+    })
+  }
+
   handleMenuClick() {
     this.setState({menuOpen:!this.state.menuOpen});
   }
