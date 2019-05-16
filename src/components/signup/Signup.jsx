@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../button/Button';
 
@@ -11,6 +12,7 @@ class Login extends Component {
       name: ''
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {
     const { name, value } = event.target
@@ -25,6 +27,10 @@ class Login extends Component {
     const { username, password, name} = this.state;
     axios.post("http://localhost:5000/api/signup", 
     { password, username, name })
+    .then(() => {
+      console.log('entrou no then')
+      return <Redirect to="/login" />
+    })
   }
 
   render(){
