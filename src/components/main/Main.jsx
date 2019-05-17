@@ -8,8 +8,8 @@ import Profile from '../profile/Profile';
 import AuthService from './../auth/auth-service';
 
 class Main extends React.Component {
-  constructor(props){
-    super(props)
+  constructor(){
+    super()
     this.state = { loggedInUser: null };
     this.service = new AuthService();
   }
@@ -18,6 +18,7 @@ class Main extends React.Component {
     if( this.state.loggedInUser === null ){
       this.service.loggedin()
       .then(response =>{
+        console.log(response)
         this.setState({
           loggedInUser:  response
         }) 
@@ -36,12 +37,13 @@ class Main extends React.Component {
     })
   }
 
-  render(){ 
-    this.fetchUser()  
+  render(){     
+    this.fetchUser() 
+    console.log(this.state)    
     if(this.state.loggedInUser){ 
       return (
         <div className="main">
-          <App />
+          <App userInSession={this.state.loggedInUser} getUser= {this.getTheUser}/>
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/login' component={Login} />
@@ -52,13 +54,13 @@ class Main extends React.Component {
       );
     } else{
       return (
-        <div className="main">
-          <App />
+        <div className="main">  
+          {/* <App userInSession={this.state.loggedInUser}/>      */}
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/login' component={Login} />
+            <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>}/>
             <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
-            <Route exact path='/profile' component={Profile} />
+            {/* <Route exact path='/profile' component={Profile} /> */}
           </Switch>
         </div>
       );
