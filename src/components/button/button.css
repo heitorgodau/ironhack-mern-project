@@ -7,7 +7,7 @@
 
 .btn-md {
   width: 180px;
-  height: 60px;
+  height: 40px;
 }
 
 .btn-round {
@@ -18,11 +18,16 @@
   background-color: #FF4A74;
 }
 
+.btn-white {
+  background-color: #fff;
+  color: #333;
+}
+
 .btn-lg {
   width: 90vw;
   height: 50px;
 }
 
 .btn:hover {
-  filter: brightness(150%);
+  filter: brightness(120%);
 }
