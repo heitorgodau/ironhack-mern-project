@@ -7,6 +7,7 @@ import Signup from '../signup/Signup';
 import Profile from '../profile/Profile';
 import Patient from '../patient/Patient';
 import AuthService from '../auth/auth-service';
+import ProtectedRoute from './../auth/protected-route'
 
 class App extends React.Component {
   constructor(){
@@ -14,12 +15,11 @@ class App extends React.Component {
     this.state = { loggedInUser: null };
     this.service = new AuthService();
   }
-
-  fetchUser(){
+ 
+  fetchUser(){    
     if( this.state.loggedInUser === null ){
       this.service.loggedin()
-      .then(response =>{
-        console.log(response)
+      .then(response =>{        
         this.setState({
           loggedInUser:  response
         }) 
@@ -39,18 +39,17 @@ class App extends React.Component {
   }
 
   render(){     
-    this.fetchUser() 
-    console.log(this.state)    
+    this.fetchUser()       
     if(this.state.loggedInUser){ 
       return (
         <div className="app">
           <Navbar userInSession={this.state.loggedInUser} getUser= {this.getTheUser}/>
           <Switch>
-            <Route exact path='/' component={Profile} />
+            {/* <Route exact path='/' component={Profile} />
             <Route exact path='/login' component={Login} />
-            <Route exact path='/signup' component={Signup} />
-            <Route exact path='/profile' component={Profile} />
-            <Route exact path='/patient/:id' component={Patient} />
+            <Route exact path='/signup' component={Signup} />  */}
+            <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
+            <ProtectedRoute user={this.state.loggedInUser} path='/patient/:id' component={Patient} />
           </Switch>
         </div>
       );
@@ -59,8 +58,10 @@ class App extends React.Component {
         <div className="app">            
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>}/>
+            <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />}/>
             <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/> 
+            <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
+            <ProtectedRoute user={this.state.loggedInUser} path='/patient/:id' component={Patient} />
           </Switch>
         </div>
       );
