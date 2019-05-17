@@ -1,6 +1,8 @@
 import React from 'react';
-import Navbar from '../navbar/Navbar';
 import { Route, Switch} from 'react-router-dom';
+import axios from 'axios';
+
+import Navbar from '../navbar/Navbar';
 import Home from '../home/Home';
 import Login from '../login/Login';
 import Signup from '../signup/Signup';
@@ -12,14 +14,18 @@ import ProtectedRoute from './../auth/protected-route'
 class App extends React.Component {
   constructor(){
     super()
-    this.state = { loggedInUser: null };
+    this.state = { 
+      loggedInUser: null,
+      allPatients: [],
+    };
     this.service = new AuthService();
+    this.getAllPatients = this.getAllPatients.bind(this);
   }
  
   fetchUser(){    
     if( this.state.loggedInUser === null ){
       this.service.loggedin()
-      .then(response =>{        
+      .then(response =>{
         this.setState({
           loggedInUser:  response
         }) 
@@ -38,18 +44,32 @@ class App extends React.Component {
     })
   }
 
+  getAllPatients(callback) {
+    axios.get('http://localhost:5000/api/patients')
+    .then((response => {
+      this.setState({
+        allPatients: response.data,
+      })
+      callback(response.data);
+    }))
+    .catch((err) => {
+      throw new Error(err);
+    });
+  }
+  
+  // this.getAllPatients()
   render(){     
-    this.fetchUser()       
+    this.fetchUser() 
     if(this.state.loggedInUser){ 
       return (
         <div className="app">
           <Navbar userInSession={this.state.loggedInUser} getUser= {this.getTheUser}/>
           <Switch>
-            {/* <Route exact path='/' component={Profile} />
+             {/* <Route exact path='/' render={(props) => <Profile {...props} getAllPatients={this.getAllPatients} allPatients={this.state.allPatients} />} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />  */}
-            <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
-            <ProtectedRoute user={this.state.loggedInUser} path='/patient/:id' component={Patient} />
+            <ProtectedRoute user={this.state.loggedInUser} exact path='/profile' render={(props) => <Profile {...props} getAllPatients={this.getAllPatients} allPatients={this.state.allPatients} />} />
+            <ProtectedRoute user={this.state.loggedInUser} exact path='/patient/:id' component={Patient} />
           </Switch>
         </div>
       );
