@@ -54,13 +54,11 @@ class Main extends React.Component {
       );
     } else{
       return (
-        <div className="main">  
-          {/* <App userInSession={this.state.loggedInUser}/>      */}
+        <div className="main">            
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>}/>
-            <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
-            {/* <Route exact path='/profile' component={Profile} /> */}
+            <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>           
           </Switch>
         </div>
       );
