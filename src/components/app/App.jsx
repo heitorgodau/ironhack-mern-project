@@ -10,6 +10,7 @@ import Profile from '../profile/Profile';
 import Patient from '../patient/Patient';
 import AuthService from '../auth/auth-service';
 import ProtectedRoute from './../auth/protected-route'
+import Schedulings from "./../scheduling/Schedulings";
 
 class App extends React.Component {
   constructor(){
@@ -68,8 +69,8 @@ class App extends React.Component {
              {/* <Route exact path='/' render={(props) => <Profile {...props} getAllPatients={this.getAllPatients} allPatients={this.state.allPatients} />} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />  */}
-            <Route path='/profile' render={(props) => <Profile {...props} getAllPatients={this.getAllPatients} allPatients={this.state.allPatients} />} />
-            <ProtectedRoute user={this.state.loggedInUser} path='/patient/:id' component={Patient} />
+            <Route exact path='/profile' render={(props) => <Profile {...props} getAllPatients={this.getAllPatients} allPatients={this.state.allPatients} />} />
+            <ProtectedRoute user={this.state.loggedInUser} exact path='/patient/:id' component={Patient} />
           </Switch>
         </div>
       );
@@ -80,6 +81,7 @@ class App extends React.Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />}/>
             <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/> 
+            <ProtectedRoute user={this.state.loggedInUser} path='/schedulings' component={Schedulings} />
             <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
             <ProtectedRoute user={this.state.loggedInUser} path='/patient/:id' component={Patient} />
           </Switch>

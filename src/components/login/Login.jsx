@@ -23,7 +23,7 @@ class Login extends Component {
   handleSubmit(event) {
     console.log(this.props)
     event.preventDefault();
-    const {username , password} = this.state;
+    const { username, password } = this.state;    
     this.service.login(username, password)
     .then((response) => {
       this.setState({ username: "", password: "" });
