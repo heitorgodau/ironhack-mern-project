@@ -3,8 +3,8 @@ import Button from '../button/Button';
 import AuthService from './../auth/auth-service';
 
 class Login extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       username: '',
       password: '',
@@ -13,7 +13,7 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(event) {
+  handleChange(event) {    
     const { name, value } = event.target
     this.setState({
       [name]: value,
@@ -26,7 +26,8 @@ class Login extends Component {
     this.service.login(username, password)
     .then((response) => {
       this.setState({ username: "", password: "" });
-      
+      console.log("confirmed user")
+      this.props.getUser(response)
     })
     .catch( error => console.log(error) )
   }

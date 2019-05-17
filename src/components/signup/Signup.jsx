@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import Button from '../button/Button';
 import AuthService from './../auth/auth-service';
 
@@ -22,8 +23,7 @@ class Signup extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    console.log(this.state)
+    event.preventDefault();    
     const { username, password, name} = this.state;
     this.service.signup(username, password, name)
     .then( response => {

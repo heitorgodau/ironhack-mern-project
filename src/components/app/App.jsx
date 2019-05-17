@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Menu from '../navbar/Menu';
 import MenuItem from '../navbar/MenuItem';
 import MenuButton from '../navbar/MenuButton';
+import AuthService from './../auth/auth-service';
 import './App.css';
 
 class App extends Component {
@@ -11,6 +12,12 @@ class App extends Component {
     this.state={
       menuOpen:false,
     }
+    this.service = new AuthService();
+    console.log("propssssssssss",props)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({...this.state, loggedInUser: nextProps["userInSession"]})
   }
 
   getTheUser= (userObj) => {
@@ -27,7 +34,16 @@ class App extends Component {
     this.setState({menuOpen: false});
   }
 
-  render(){
+  logoutUser = () =>{
+    this.service.logout()
+    .then(() => {
+      this.setState({ loggedInUser: null });
+      this.props.getUser(null);  
+      console.log("Success logout!!!")
+    })
+  }
+
+  render(){   
     const styles= 
       {
         container:{
@@ -67,8 +83,8 @@ class App extends Component {
         <Menu open={this.state.menuOpen}>
           <Link to='/'><MenuItem delay='0s' onClick={()=>{this.handleLinkClick();}}>Home</MenuItem></Link>
           <Link to='/'><MenuItem delay='0.1s' onClick={()=>{this.handleLinkClick();}}>Minha Conta</MenuItem></Link>
-          <Link to='/profile'><MenuItem delay='0.2s' onClick={()=>{this.handleLinkClick();}}>Pacientes</MenuItem></Link>
-          <Link to='/'><MenuItem delay='0.3s' onClick={()=>{this.handleLinkClick();}}>Logout</MenuItem></Link>
+          <Link to='/'><MenuItem delay='0.2s' onClick={()=>{this.handleLinkClick();}}>Pacientes</MenuItem></Link>
+          <Link to='/'><MenuItem delay='0.3s' onClick={() => this.logoutUser()}>Logout</MenuItem></Link>
         </Menu>
       </div>
     );
