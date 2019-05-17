@@ -1,15 +1,40 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Menu from '../navbar/Menu';
-import MenuItem from '../navbar/MenuItem';
-import MenuButton from '../navbar/MenuButton';
-import './App.css';
+import React from 'react';
+import { Route, Switch} from 'react-router-dom';
+import axios from 'axios';
 
-class App extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      menuOpen:false,
+import Navbar from '../navbar/Navbar';
+import Home from '../home/Home';
+import Login from '../login/Login';
+import Signup from '../signup/Signup';
+import Profile from '../profile/Profile';
+import Patient from '../patient/Patient';
+import AuthService from '../auth/auth-service';
+import ProtectedRoute from './../auth/protected-route'
+
+class App extends React.Component {
+  constructor(){
+    super()
+    this.state = { 
+      loggedInUser: null,
+      allPatients: [],
+    };
+    this.service = new AuthService();
+    this.getAllPatients = this.getAllPatients.bind(this);
+  }
+ 
+  fetchUser(){    
+    if( this.state.loggedInUser === null ){
+      this.service.loggedin()
+      .then(response =>{
+        this.setState({
+          loggedInUser:  response
+        }) 
+      })
+      .catch( err =>{
+        this.setState({
+          loggedInUser:  false
+        }) 
+      })
     }
   }
 
@@ -19,59 +44,48 @@ class App extends Component {
     })
   }
 
-  handleMenuClick() {
-    this.setState({menuOpen:!this.state.menuOpen});
+  getAllPatients(callback) {
+    axios.get('http://localhost:5000/api/patients')
+    .then((response => {
+      this.setState({
+        allPatients: response.data,
+      })
+      callback(response.data);
+    }))
+    .catch((err) => {
+      throw new Error(err);
+    });
   }
   
-  handleLinkClick() {
-    this.setState({menuOpen: false});
-  }
-
-  render(){
-    const styles= 
-      {
-        container:{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          zIndex: '99',
-          opacity: 0.9,
-          display:'flex',
-          alignItems:'center',
-          background: 'black',
-          width: '100%',
-          color: 'white',
-          fontFamily:'Lobster',
-        },
-        logo: {
-          margin: '0 auto',
-        },
-        body: {
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          width: '100vw',
-          height: '100vh',
-          filter: this.state.menuOpen ? 'blur(2px)':null,
-          transition: 'filter 0.5s ease',
-        },
-      }
-
-    return (
-     
-      <div className="App">
-        <div style={styles.container}>
-          <MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='white'/>
-          <div style={styles.logo}>WireHeart</div>
+  // this.getAllPatients()
+  render(){     
+    this.fetchUser() 
+    if(this.state.loggedInUser){ 
+      return (
+        <div className="app">
+          <Navbar userInSession={this.state.loggedInUser} getUser= {this.getTheUser}/>
+          <Switch>
+             {/* <Route exact path='/' render={(props) => <Profile {...props} getAllPatients={this.getAllPatients} allPatients={this.state.allPatients} />} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/signup' component={Signup} />  */}
+            <ProtectedRoute user={this.state.loggedInUser} exact path='/profile' render={(props) => <Profile {...props} getAllPatients={this.getAllPatients} allPatients={this.state.allPatients} />} />
+            <ProtectedRoute user={this.state.loggedInUser} exact path='/patient/:id' component={Patient} />
+          </Switch>
         </div>
-        <Menu open={this.state.menuOpen}>
-          <Link to='/'><MenuItem delay='0s' onClick={()=>{this.handleLinkClick();}}>Home</MenuItem></Link>
-          <Link to='/'><MenuItem delay='0.1s' onClick={()=>{this.handleLinkClick();}}>Minha Conta</MenuItem></Link>
-          <Link to='/'><MenuItem delay='0.2s' onClick={()=>{this.handleLinkClick();}}>Pacientes</MenuItem></Link>
-          <Link to='/'><MenuItem delay='0.3s' onClick={()=>{this.handleLinkClick();}}>Logout</MenuItem></Link>
-        </Menu>
-      </div>
-    );
+      );
+    } else{
+      return (
+        <div className="app">            
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />}/>
+            <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/> 
+            <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
+            <ProtectedRoute user={this.state.loggedInUser} path='/patient/:id' component={Patient} />
+          </Switch>
+        </div>
+      );
+    }  
   }
 }
 

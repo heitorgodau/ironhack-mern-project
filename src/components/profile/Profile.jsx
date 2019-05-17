@@ -4,24 +4,29 @@ import Button from '../button/Button'
 import './profile.css';
 
 class Profile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       patients: [],
       search: '',
     }
-    this.allPatients = ['Suzane Aldemir', 'Steve Rogers', 'Jon Snow', 'Thanos Titan', 'Christian Louza', 'Bob Kane']
     this.handleSearch = this.handleSearch.bind(this);
+    this.updateState = this.updateState.bind(this);
   }
-  componentDidMount() {
+
+  updateState(arr) {
     this.setState({
-      patients: this.allPatients, 
+      patients: arr,
     })
   }
 
+  componentDidMount() {
+    this.props.getAllPatients(this.updateState)
+  }
+  
   handleSearch(event) {
     const { value } = event.target;
-    const foundedPatients = this.allPatients.filter(patient => patient.toLowerCase().includes(value.toLowerCase()))
+    const foundedPatients = this.props.allPatients.filter(patient => patient.name.toLowerCase().includes(value.toLowerCase()))
     this.setState({
       patients: foundedPatients,
     })
@@ -39,7 +44,7 @@ class Profile extends Component {
           {
             this.state.patients.map((patient, idx) => {
               return(
-                <Link key={idx} to={`/patient/${idx}`}><Button btnTitle={patient} className="btn-white btn-md btn-round" /></Link>
+                <Link key={idx} to={`/patient/${patient._id}`}><Button btnTitle={patient.name} className="btn-white btn-md btn-round" /></Link>
               )
             })
           }

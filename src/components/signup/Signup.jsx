@@ -22,8 +22,7 @@ class Signup extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    console.log(this.state)
+    event.preventDefault();    
     const { username, password, name} = this.state;
     this.service.signup(username, password, name)
     .then( response => {
