@@ -67,7 +67,7 @@ class App extends Component {
         <Menu open={this.state.menuOpen}>
           <Link to='/'><MenuItem delay='0s' onClick={()=>{this.handleLinkClick();}}>Home</MenuItem></Link>
           <Link to='/'><MenuItem delay='0.1s' onClick={()=>{this.handleLinkClick();}}>Minha Conta</MenuItem></Link>
-          <Link to='/'><MenuItem delay='0.2s' onClick={()=>{this.handleLinkClick();}}>Pacientes</MenuItem></Link>
+          <Link to='/profile'><MenuItem delay='0.2s' onClick={()=>{this.handleLinkClick();}}>Pacientes</MenuItem></Link>
           <Link to='/'><MenuItem delay='0.3s' onClick={()=>{this.handleLinkClick();}}>Logout</MenuItem></Link>
         </Menu>
       </div>
