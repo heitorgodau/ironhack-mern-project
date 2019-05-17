@@ -13,7 +13,6 @@ class Navbar extends Component {
       menuOpen:false,
     }
     this.service = new AuthService();
-    console.log("propssssssssss",props)
   }
 
   componentWillReceiveProps(nextProps) {

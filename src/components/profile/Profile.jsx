@@ -44,7 +44,7 @@ class Profile extends Component {
           {
             this.state.patients.map((patient, idx) => {
               return(
-                <Link key={idx} to={`/patient/${idx}`}><Button btnTitle={patient.name} className="btn-white btn-md btn-round" /></Link>
+                <Link key={idx} to={`/patient/${patient._id}`}><Button btnTitle={patient.name} className="btn-white btn-md btn-round" /></Link>
               )
             })
           }

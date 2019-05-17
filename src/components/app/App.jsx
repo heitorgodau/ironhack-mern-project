@@ -25,7 +25,6 @@ class App extends React.Component {
     if( this.state.loggedInUser === null ){
       this.service.loggedin()
       .then(response =>{
-        console.log(response)
         this.setState({
           loggedInUser:  response
         }) 
@@ -60,7 +59,6 @@ class App extends React.Component {
   // this.getAllPatients()
   render(){     
     this.fetchUser() 
-    console.log('##################',this.state)    
     if(this.state.loggedInUser){ 
       return (
         <div className="app">
