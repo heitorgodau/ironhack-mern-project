@@ -7,7 +7,7 @@ import Signup from '../signup/Signup';
 import Profile from '../profile/Profile';
 import AuthService from './../auth/auth-service';
 
-import Scheduling from "./../scheduling/Scheduling";
+import Schedulings from "./../scheduling/Schedulings";
 
 class Main extends React.Component {
   constructor(props){
@@ -49,7 +49,7 @@ class Main extends React.Component {
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/profile' component={Profile} />
-            <Route exact path='/scheduling' component={Scheduling} />
+            <Route exact path='/schedulings' component={Schedulings} />
           </Switch>
         </div>
       );
@@ -62,7 +62,7 @@ class Main extends React.Component {
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
             <Route exact path='/profile' component={Profile} />
-            <Route exact path='/scheduling' component={Scheduling} />
+            <Route exact path='/schedulings' component={Schedulings} />
           </Switch>
         </div>
       );

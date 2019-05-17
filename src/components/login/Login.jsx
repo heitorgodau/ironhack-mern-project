@@ -11,6 +11,7 @@ class Login extends Component {
     }
     this.service = new AuthService();
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -26,9 +27,8 @@ class Login extends Component {
     event.preventDefault();
     const { username, password } = this.state;    
     this.service.login(username, password)
-    .then( response => {
-     // console.log(response) password ok - chegando certo
-      this.setState({ username: "", password: "" });     
+    .then( response => {    
+       this.setState({ username: "", password: "" });     
     })
     .catch( error => console.log(error) )
   }
