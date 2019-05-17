@@ -10,6 +10,7 @@ import Profile from '../profile/Profile';
 import Patient from '../patient/Patient';
 import AuthService from '../auth/auth-service';
 import ProtectedRoute from './../auth/protected-route'
+import Schedulings from "./../scheduling/Schedulings";
 
 class App extends React.Component {
   constructor(){
@@ -80,6 +81,7 @@ class App extends React.Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />}/>
             <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/> 
+            <ProtectedRoute user={this.state.loggedInUser} exact path='/schedulings' component={Schedulings} />
             <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
             <ProtectedRoute user={this.state.loggedInUser} path='/patient/:id' component={Patient} />
           </Switch>
