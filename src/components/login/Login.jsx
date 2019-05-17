@@ -9,7 +9,7 @@ class Login extends Component {
       username: '',
       password: '',
     }
-    this.service = new AuthService();
+    this.service = new AuthService();    
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,13 +21,15 @@ class Login extends Component {
   }
 
   handleSubmit(event) {
+    console.log(this.props)
     event.preventDefault();
     const {username , password} = this.state;
     this.service.login(username, password)
     .then((response) => {
       this.setState({ username: "", password: "" });
-      console.log("confirmed user")
-      this.props.getUser(response)
+      console.log("user confirmed")      
+      this.props.getUser(response)  
+         
     })
     .catch( error => console.log(error) )
   }
