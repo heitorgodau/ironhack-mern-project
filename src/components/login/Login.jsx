@@ -13,14 +13,7 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-<<<<<<< HEAD
-
-  handleChange(event) {
-    console.log(event);
-    
-=======
   handleChange(event) {    
->>>>>>> development
     const { name, value } = event.target
     this.setState({
       [name]: value,
@@ -32,16 +25,11 @@ class Login extends Component {
     event.preventDefault();
     const { username, password } = this.state;    
     this.service.login(username, password)
-<<<<<<< HEAD
-    .then( response => {    
-       this.setState({ username: "", password: "" });     
-=======
     .then((response) => {
       this.setState({ username: "", password: "" });
       console.log("user confirmed")      
       this.props.getUser(response)  
          
->>>>>>> development
     })
     .catch( error => console.log(error) )
   }
