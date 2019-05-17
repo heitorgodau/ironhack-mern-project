@@ -11,7 +11,7 @@ class Login extends Component {
     }
     this.service = new AuthService();
     this.handleChange = this.handleChange.bind(this);
-    console.log(props)
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {    
     const { name, value } = event.target
@@ -20,12 +20,11 @@ class Login extends Component {
     })
   }
 
-  handleSubmit = (event) => {
+  handleSubmit(event) {
     event.preventDefault();
-    const username = this.state.username;
-    const password = this.state.password;    
+    const {username , password} = this.state;
     this.service.login(username, password)
-    .then( response => {
+    .then((response) => {
       this.setState({ username: "", password: "" });
       console.log("confirmed user")
       this.props.getUser(response)
@@ -38,7 +37,7 @@ class Login extends Component {
       <section className="login">
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input type="text" name="username" placeholder="Your username here" onChange={(e) => this.handleChange(e)}/>
-          <input type="password" name="password" placeholder="**********"onChange={(e) => this.handleChange(e)}/>
+          <input type="password" name="password" placeholder="**********" onChange={(e) => this.handleChange(e)}/>
           <Button btnTitle="Login" className="btn-primary btn-md btn-round" linkTo="/profile" type="submit" />
         </form>
       </section>

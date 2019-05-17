@@ -5,6 +5,7 @@ import Home from '../home/Home';
 import Login from '../login/Login';
 import Signup from '../signup/Signup';
 import Profile from '../profile/Profile';
+import Patient from '../patient/Patient';
 import AuthService from './../auth/auth-service';
 
 class Main extends React.Component {
@@ -49,6 +50,7 @@ class Main extends React.Component {
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/profile' component={Profile} />
+            <Route exact path='/patient/:id' component={Patient} />
           </Switch>
         </div>
       );
@@ -58,7 +60,7 @@ class Main extends React.Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>}/>
-            <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>           
+            <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/> 
           </Switch>
         </div>
       );
