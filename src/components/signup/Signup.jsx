@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import axios from 'axios';
+// import { Redirect } from 'react-router-dom';
 import Button from '../button/Button';
 import AuthService from './../auth/auth-service';
 
@@ -14,7 +13,7 @@ class Signup extends Component {
     };
     this.service = new AuthService();
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this); 
   }
   handleChange(event) {
     const { name, value } = event.target
