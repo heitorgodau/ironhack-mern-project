@@ -1,64 +1,79 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import Button from '../button/Button';
 export default class Patient extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       patient: [],
-      consultations: [
-        {date: '2019-03-23', dr: 'Moira McTaggert'},
-        {date: '2019-02-11', dr: 'Moira McTaggert'},
-        {date: '2018-07-02', dr: 'Stephen Strange'},
-        {date: '2016-10-04', dr: 'Who'}
-      ]
+      patientAge: 0,
+      consultations: []
     }
-    this.patient = {
-      name: 'Jon Snow',
-      gender: 'Masculino',
-      birthdate: '1997-10-04',
-      address: 'Castle Black, The Wall',
-      maritalStatus: 'Solteiro',
-      affiliation: 'Eddard Stark',
-      telResidential: '(81) 3780-1011',
-      cellphone: '(81) 98928-9486',
-      healthInsurance: 'ReavenHealth',
-      email: 'jon.snow@nightswatch.com.ws',
-      bloodType: 'B-',
-      familyHistory: 'Não se aplica',
-      surgicalHistory: 'Não se aplica',
-      allergies: 'Outros',
-      id_doctor: '5cdd6fd0120a696940f52be1',
-    }
+
     this.getAge = this.getAge.bind(this);
+    this.getOnePatient = this.getOnePatient.bind(this);
+    this.getAllConsultations = this.getAllConsultations.bind(this);
   }
 
-  getAge() {
-    const todayYear = new Date().getFullYear();
-    const birthYear = this.patient.birthdate.split('-')[0];
-    const age = todayYear - birthYear;
-    return age;
+  getOnePatient() {
+    axios.get(`http://localhost:5000/api/patient/${this.props.match.params.id}`)
+      .then((result) => {
+        this.setState({
+          patient: result.data,
+        }, () => this.getAge())
+      });
+    }
+
+    getAllConsultations() {
+      axios.get(`http://localhost:5000/api/consultations`)
+      .then((result) => {
+        console.log('#######', result.data)
+        this.setState({
+          consultations: result.data,
+        })
+      });
+    }
+    
+    componentDidMount() {
+      this.getOnePatient();
+      this.getAllConsultations();
+    }
+    
+    getAge() {
+      const todayYear = new Date().getFullYear();
+      const birthYear = this.state.patient.birthdate.split('-')[0];
+      const age = todayYear - birthYear;
+      console.log(this.state.patient)
+      this.setState({
+        patientAge: age,
+    })
   }
+
+
 
   render() {
     return(
       <section className="patient-view">
         <div className="patient-data">
-          <h2>Prontuário: #3878767</h2>
+          <h2>Prontuário: {this.state.patient._id}</h2>
           <div className="basic-info">
-            <h3>{this.patient.name}</h3>
+            <h3>{this.state.patient.name}</h3>
             <div className="age-gender">
-              <h4>{this.patient.gender}/</h4>
-              <h4>{this.getAge()} anos</h4>
+              <h4>{this.state.patient.gender}/</h4>
+              <h4>{this.state.patientAge} anos</h4>
             </div>
           </div>
           <div className="blood-type">
             <h3>Tipo sanguíneo:</h3>
-            <h4>{this.patient.bloodType}</h4>
+            <h4>{this.state.patient.bloodType}</h4>
           </div>
           <div className="creation-date">
             <h3>Data de criação:</h3>
-            <h4>2019-05-17</h4>
+            {
+              this.state.patient.created_at ? <h4>{this.state.patient.created_at.slice(1,10).split('-').reverse().join('-')}</h4> : null
+            }
+            
           </div>
           <Link to="/patient/:id/info">Mais informações</Link>
         </div>
