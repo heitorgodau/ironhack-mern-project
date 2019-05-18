@@ -53,7 +53,7 @@ class Navbar extends Component {
           opacity: 0.9,
           display:'flex',
           alignItems:'center',
-          background: 'black',
+          background: '#52897B',
           width: '100%',
           color: 'white',
           fontFamily:'Lobster',
@@ -74,7 +74,7 @@ class Navbar extends Component {
 
     return (
      
-      <div className="App">
+      <div className="navbar">
         <div style={styles.container}>
           <MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='white'/>
           <div style={styles.logo}>WireHeart</div>

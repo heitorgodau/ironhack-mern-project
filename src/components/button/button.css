@@ -1,13 +1,17 @@
 .btn {
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 3px;
   color: #fff;
   border: none;
-  margin-bottom: 24px;
   cursor: pointer;
 }
 
 .btn-md {
-  width: 180px;
+  width: fit-content;
   height: 40px;
+  padding: 0 40px;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .btn-round {
@@ -15,7 +19,7 @@
 }
 
 .btn-primary {
-  background-color: #FF4A74;
+  background-color: #FF686B;
 }
 
 .btn-white {
@@ -26,8 +30,9 @@
 .btn-lg {
   width: 90vw;
   height: 50px;
+  margin-top: 24px;
 }
 
 .btn:hover {
-  filter: brightness(120%);
+  background-color: #FF686B;
 }
