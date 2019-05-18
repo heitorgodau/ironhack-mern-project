@@ -57,3 +57,22 @@
   width: 100%;
   padding: 0 30px
 }
+
+.add-patient form input {
+  background-color: transparent;
+  border-bottom: 1px solid gray;
+  border-radius: 0;
+  padding: 0;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.add-patient textarea {
+  width: 245px;
+  height: 80px;
+  background-color: transparent;
+  border: 1px solid gray;
+  margin-bottom: 20px;
+  font-size: 12px;
+  padding: 5px;
+}

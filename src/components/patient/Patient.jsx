@@ -71,14 +71,14 @@ export default class Patient extends Component {
           <div className="creation-date">
             <h3>Data de criação:</h3>
             {
-              this.state.patient.created_at ? <h4>{this.state.patient.created_at.slice(1,10).split('-').reverse().join('-')}</h4> : null
+              this.state.patient.created_at ? <h4>{this.state.patient.created_at.slice(0,10).split('-').reverse().join('-')}</h4> : null
             }
             
           </div>
           <Link className="more-info" to="/patient/:id/info">Mais informações</Link>
         </div>
         <Link to="/add-consult">
-          <Button btnTitle="Nova Consulta" className="btn-primary btn-md btn-round" />
+          <Button btnTitle="Adicionar nova consulta" className="btn-primary btn-md btn-round" />
         </Link>
         <div className="consultation-list">
           {
