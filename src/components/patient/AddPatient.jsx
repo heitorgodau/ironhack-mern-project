@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Button from '../button/Button';
+import { timingSafeEqual } from 'crypto';
 
 class AddPatient extends Component {
   constructor(props){
@@ -34,9 +35,7 @@ class AddPatient extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { name, email, gender, birthdate, address, maritalStatus, affiliation, telResidential, cellphone, healthInsurance, bloodType, surgicalHistory, familyHistory, allergies} = this.state;
-
-    axios.post('http://localhost:5000/api/patient/new', { name, email, gender, birthdate, address, maritalStatus, affiliation, telResidential, cellphone, healthInsurance, bloodType, surgicalHistory, familyHistory, allergies })
+    axios.post('http://localhost:5000/api/patient/new', {...this.state})
       .then((result) => {
         console.log('Paciente adicionado', result)
       })

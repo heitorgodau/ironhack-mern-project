@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../button/Button';
 import './patient.css'
+
+import Consultations from './consultation/Consultations'
 
 export default class Patient extends Component {
   constructor(props) {
@@ -10,14 +11,12 @@ export default class Patient extends Component {
     this.state = {
       patient: {},
       patientAge: 0,
-      consultations: [],
       moreInfo: false,
       edit: false,
     }
 
     this.getAge = this.getAge.bind(this);
     this.getOnePatient = this.getOnePatient.bind(this);
-    this.getAllConsultations = this.getAllConsultations.bind(this);
     this.editPatient = this.editPatient.bind(this);
     this.toggleInfo = this.toggleInfo.bind(this);
   }
@@ -51,15 +50,6 @@ export default class Patient extends Component {
       moreInfo: !this.state.moreInfo,
     })
   }
-  
-  getAllConsultations() {
-    axios.get(`http://localhost:5000/api/consultations`)
-    .then((result) => {
-      this.setState({
-        consultations: result.data,
-      })
-    });
-  }
 
   handleSubmit(event) {
     event.preventDefault();
@@ -81,7 +71,6 @@ export default class Patient extends Component {
   
   componentDidMount() {
     this.getOnePatient();
-    this.getAllConsultations();
   }
 
   render() {
@@ -184,20 +173,7 @@ export default class Patient extends Component {
             <Button btnTitle="Editar Informações" className="btn-center btn-primary btn-md btn-round" onClick={this.editPatient} />
 
           </div>
-          <Link to="/add-consult">
-            <Button btnTitle="Adicionar nova consulta" className="btn-primary btn-md btn-round" />
-          </Link>
-          <div className="consultation-list">
-            {
-              this.state.consultations.map((consult, idx) => {
-                return(
-                  <Link key={idx} to={`/consult/${idx}`}>
-                    <Button btnTitle={`${consult.date} Dr.${consult.dr}`} className="btn-white btn-md btn-round" />
-                  </Link>
-                )
-              })
-            }
-          </div>
+          <Consultations userInSession={this.state.loggedInUser}/>
         </section>
       )
     
@@ -225,20 +201,7 @@ export default class Patient extends Component {
             </div>
             <Button btnTitle="Mais informações" className="btn-transparent" onClick={this.toggleInfo} />
           </div>
-          <Link to="/add-consult">
-            <Button btnTitle="Adicionar nova consulta" className="btn-primary btn-md btn-round" />
-          </Link>
-          <div className="consultation-list">
-            {
-              this.state.consultations.map((consult, idx) => {
-                return(
-                  <Link key={idx} to={`/consult/${idx}`}>
-                    <Button btnTitle={`${consult.date} Dr.${consult.dr}`} className="btn-white btn-md btn-round" />
-                  </Link>
-                )
-              })
-            }
-          </div>
+         <Consultations patientId={this.props.match.params.id} userInSession={this.state.loggedInUser} />
         </section>
       )
     }
