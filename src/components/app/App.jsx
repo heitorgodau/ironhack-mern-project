@@ -72,8 +72,8 @@ class App extends React.Component {
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />  */}
             <Route exact path='/profile' render={(props) => <Profile {...props} getAllPatients={this.getAllPatients} allPatients={this.state.allPatients} />} />
-            <ProtectedRoute user={this.state.loggedInUser} path='/patient/add-patient' component={AddPatient} />
-            <ProtectedRoute user={this.state.loggedInUser} exact path='/patient/:id' component={Patient} />
+            <Route user={this.state.loggedInUser} path='/patient/add-patient' render={(props) => <AddPatient {...props} userInSession={this.state.loggedInUser} />} />
+            <Route user={this.state.loggedInUser} exact path='/patient/:id' render={(props) => <Patient {...props} userInSession={this.state.loggedInUser} />} />
             
             <Route exact path='/schedulings' component={Schedulings} />
             

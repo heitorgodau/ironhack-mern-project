@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Button from '../button/Button';
-// import { Link } from 'react-router-dom';
 
 class AddPatient extends Component {
   constructor(props){
@@ -11,7 +11,7 @@ class AddPatient extends Component {
       gender: '',
       birthdate: '',
       address: '',
-      matrialStatus: '',
+      maritalStatus: '',
       affiliation: '',
       telResidential: '',
       cellphone: '',
@@ -20,7 +20,7 @@ class AddPatient extends Component {
       surgicalHistory: '',
       familyHistory: '',
       allergies: '',
-      id_doctor: '',
+      id_doctor: this.props.userInSession._id,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this); 
@@ -33,9 +33,14 @@ class AddPatient extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();    
-    // const { name, email, gender, birthdate, address, matrialStatus, affiliation, telResidential, cellphone, healthInsurance, bloodType, surgicalHistory, familyHistory, allergies} = this.state;
-    console.log(this.state);
+    event.preventDefault();
+    const { name, email, gender, birthdate, address, maritalStatus, affiliation, telResidential, cellphone, healthInsurance, bloodType, surgicalHistory, familyHistory, allergies} = this.state;
+
+    axios.post('http://localhost:5000/api/patient/new', { name, email, gender, birthdate, address, maritalStatus, affiliation, telResidential, cellphone, healthInsurance, bloodType, surgicalHistory, familyHistory, allergies })
+      .then((result) => {
+        console.log('Paciente adicionado', result)
+      })
+      
     this.setState({
       name: '',
       email: '',
@@ -64,7 +69,7 @@ class AddPatient extends Component {
           <input type="text" name="gender" placeholder="Sexo do paciente" value={this.state.gender} onChange={(e) => this.handleChange(e)}/>
           <input type="date" name="birthdate" placeholder="Data de nascimento" value={this.state.birthdate} onChange={(e) => this.handleChange(e)}/>
           <input type="text" name="address" placeholder="endereço" value={this.state.address} onChange={(e) => this.handleChange(e)}/>
-          <input type="text" name="matrialStatus" placeholder="Estado civil" value={this.state.maritalStatus} onChange={(e) => this.handleChange(e)}/>
+          <input type="text" name="maritalStatus" placeholder="Estado civil" value={this.state.maritalStatus} onChange={(e) => this.handleChange(e)}/>
           <input type="text" name="affiliation" placeholder="Filiação" value={this.state.affiliation} onChange={(e) => this.handleChange(e)}/>
           <input type="text" name="telResidential" placeholder="Tel residencial" value={this.state.telResidential} onChange={(e) => this.handleChange(e)}/>
           <input type="text" name="cellphone" placeholder="Celular" value={this.state.cellphone} onChange={(e) => this.handleChange(e)}/>
