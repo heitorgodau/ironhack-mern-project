@@ -22,6 +22,10 @@
   font-weight: 400;
 }
 
+.patient-view h4 {
+  color: #52897B
+}
+
 .patient-data .basic-info {
   display: flex;
   justify-content: space-between;
@@ -33,8 +37,7 @@
   display: flex;
 }
 
-.patient-view .blood-type,
-.patient-view .creation-date {
+.patient-view .patient-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
@@ -58,7 +61,8 @@
   padding: 0 30px
 }
 
-.add-patient form input {
+.add-patient form input,
+.edit-patient form input {
   background-color: transparent;
   border-bottom: 1px solid gray;
   border-radius: 0;
@@ -67,7 +71,8 @@
   margin-bottom: 20px;
 }
 
-.add-patient textarea {
+.add-patient textarea,
+.edit-patient textarea {
   width: 245px;
   height: 80px;
   background-color: transparent;
