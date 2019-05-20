@@ -67,6 +67,9 @@ class Signup extends Component {
     const { errors } = this.state;
     return(      
       <section className="login">
+        <figure className="logo">
+          <img src="../../images/wireheart-logo-02.png" alt=""/>
+        </figure>
         <form onSubmit={(e) => this.handleSubmit(e)}>
           {errors.map(error => (<p key={error} >{error}</p>))}
           <input type="text" name="username" placeholder="Your username here" onChange={(e) => this.handleChange(e)}/>
@@ -78,6 +81,7 @@ class Signup extends Component {
             <Button btnTitle="Login" className="btn-primary btn-md btn-round"/>
           </Link>
         </form>
+        <Link to='/' className='back'>Voltar</Link>
       </section>
     )
   }

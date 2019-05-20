@@ -1,7 +1,22 @@
 .app {
-  display:"flex";
-  flex-direction:"column";
-  align-items: "center";
-  justify-content: center;
-  height: "100vh";
+  text-align: center;
+} 
+
+.logo {
+  width: 80%;
+  margin: 30px auto;
+}
+
+.logo img {
+  width: 100%;
+}
+
+.back {
+  text-align: center;
+  color: #333;
+}
+
+.back::before {
+  content: '\2190';
+  margin-right: 3px; 
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Button from '../button/Button';
 import { Link } from 'react-router-dom';
+import Button from '../button/Button';
 import AuthService from './../auth/auth-service';
 import './login.css';
 
@@ -40,6 +40,9 @@ class Login extends Component {
   render(){
     return(
       <section className="login">
+        <figure className="logo">
+          <img src="../../images/wireheart-logo-02.png" alt=""/>
+        </figure>
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input type="text" name="username" placeholder="Your username here" onChange={(e) => this.handleChange(e)}/>
           <input type="password" name="password" placeholder="**********" onChange={(e) => this.handleChange(e)}/>
@@ -49,6 +52,7 @@ class Login extends Component {
             <Button btnTitle="Signup" className="btn-primary btn-md btn-round"/>
           </Link>
         </form>
+        <Link to='/' className="back">Voltar</Link>
       </section>
     )
   }

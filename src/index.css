@@ -1,8 +1,13 @@
 /* Colors:
-  pink: #FF4D7A
-  green: #85FFC6
+  white: #fff
+  Pearl acqua(darker): #52897B
+  Magic mint(lighter): #A5FFD6
+  light salmon pink: #FFA69E
+  Pastel red: #FF686B
   grey: #8492A6
 */
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+
 *{
   margin: 0;
   padding: 0;
@@ -10,22 +15,18 @@
 }
 
 body {
-  margin: 50px 0 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Oswald', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #85FFC6;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  background-color: #A5FFD6;
 }
 
 .uppercase {
   text-transform: uppercase;
+}
+
+section {
+  margin-top: 50px;
 }
 
 a{
@@ -42,12 +43,25 @@ form {
 form > input {
   width: 240px;
   height: 40px;
-  margin: 20px;
+  margin: 5px 20px;
   border-radius: 30px;
   border: none;
   padding: 7px;
 }
 
 form > input:focus {
+  outline: none;
+}
+
+form > select {
+  width: 240px;
+  height: 40px;
+  margin: 20px;
+  border-radius: 30px;
+  border: none;
+  padding: 7px;
+}
+
+form > select:focus {
   outline: none;
 }

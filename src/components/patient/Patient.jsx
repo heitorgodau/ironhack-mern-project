@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../button/Button';
+import './patient.css'
+
 export default class Patient extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +30,7 @@ export default class Patient extends Component {
     getAllConsultations() {
       axios.get(`http://localhost:5000/api/consultations`)
       .then((result) => {
-        console.log('#######', result.data)
+        console.log('result consultation!!!',result)       
         this.setState({
           consultations: result.data,
         })
@@ -44,7 +46,6 @@ export default class Patient extends Component {
       const todayYear = new Date().getFullYear();
       const birthYear = this.state.patient.birthdate.split('-')[0];
       const age = todayYear - birthYear;
-      console.log(this.state.patient)
       this.setState({
         patientAge: age,
     })
@@ -71,14 +72,14 @@ export default class Patient extends Component {
           <div className="creation-date">
             <h3>Data de criação:</h3>
             {
-              this.state.patient.created_at ? <h4>{this.state.patient.created_at.slice(1,10).split('-').reverse().join('-')}</h4> : null
+              this.state.patient.created_at ? <h4>{this.state.patient.created_at.slice(0,10).split('-').reverse().join('-')}</h4> : null
             }
             
           </div>
-          <Link to="/patient/:id/info">Mais informações</Link>
+          <Link className="more-info" to="/patient/:id/info">Mais informações</Link>
         </div>
         <Link to="/add-consult">
-          <Button btnTitle="Nova Consulta" className="btn-primary btn-md btn-round" />
+          <Button btnTitle="Adicionar nova consulta" className="btn-primary btn-md btn-round" />
         </Link>
         <div className="consultation-list">
           {
