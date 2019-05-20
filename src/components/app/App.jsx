@@ -10,6 +10,7 @@ import Signup from '../signup/Signup';
 import Navbar from '../navbar/Navbar';
 import Profile from '../profile/Profile';
 import Patient from '../patient/Patient';
+import PatientInfo from '../patient/PatientInfo';
 import AddPatient from '../patient/add-patient';
 import ProtectedRoute from './../auth/protected-route'
 import Schedulings from "./../scheduling/Schedulings";
@@ -74,7 +75,7 @@ class App extends React.Component {
             <Route exact path='/profile' render={(props) => <Profile {...props} getAllPatients={this.getAllPatients} allPatients={this.state.allPatients} />} />
             <Route user={this.state.loggedInUser} path='/patient/add-patient' render={(props) => <AddPatient {...props} userInSession={this.state.loggedInUser} />} />
             <Route user={this.state.loggedInUser} exact path='/patient/:id' render={(props) => <Patient {...props} userInSession={this.state.loggedInUser} />} />
-            
+            <Route exact path='/patient/:id/info' component={PatientInfo} />            
             <Route exact path='/schedulings' component={Schedulings} />
             
           </Switch>
