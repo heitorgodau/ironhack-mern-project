@@ -65,7 +65,7 @@ class Signup extends Component {
 
   render(){
     const { errors } = this.state;
-    return(      
+    return(
       <section className="login">
         <figure className="logo">
           <img src="../../images/wireheart-logo-02.png" alt=""/>
@@ -74,12 +74,8 @@ class Signup extends Component {
           {errors.map(error => (<p key={error} >{error}</p>))}
           <input type="text" name="username" placeholder="Your username here" onChange={(e) => this.handleChange(e)}/>
           <input type="password" name="password" placeholder="**********" onChange={(e) => this.handleChange(e)}/>
-          <input type="text" name="name" placeholder="Your name here" onChange={(e) => this.handleChange(e)}/>          
+          <input type="text" name="name" placeholder="Your name here" onChange={(e) => this.handleChange(e)}/>
           <Button btnTitle="Signup" className="btn-primary btn-md btn-round" linkTo="/profile" type="submit" />
-          <p>Do you have an account?</p>
-          <Link to='/login'>
-            <Button btnTitle="Login" className="btn-primary btn-md btn-round"/>
-          </Link>
         </form>
         <Link to='/' className='back'>Voltar</Link>
       </section>

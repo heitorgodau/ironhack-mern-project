@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../button/Button';
 import AuthService from './../auth/auth-service';
-import './login.css';
 
 class Login extends Component {
   constructor(props){
@@ -47,10 +46,6 @@ class Login extends Component {
           <input type="text" name="username" placeholder="Your username here" onChange={(e) => this.handleChange(e)}/>
           <input type="password" name="password" placeholder="**********" onChange={(e) => this.handleChange(e)}/>
           <Button btnTitle="Login" className="btn-primary btn-md btn-round" linkTo="/profile" type="submit" />
-          <p>You don't have an account?</p>
-          <Link to='/signup'>
-            <Button btnTitle="Signup" className="btn-primary btn-md btn-round"/>
-          </Link>
         </form>
         <Link to='/' className="back">Voltar</Link>
       </section>
