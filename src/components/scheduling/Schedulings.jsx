@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import "./schedulings.css";
 import axios from "axios";
-import { Link } from 'react-router-dom';
 import DateToday from './DateToday';
-import AddScheduling from './AddScheduling'
-// import EditScheduling from './EditScheduling'
-
+import AddScheduling from './AddScheduling';
+ import EditScheduling from './EditScheduling';
 
 class Schedulings extends Component {
   constructor() {
@@ -13,13 +11,18 @@ class Schedulings extends Component {
     this.state = {
       schedulings: []
     };
-    this.getAllShedulings = this.getAllShedulings.bind(this);
-  //  this.renderAddSchedulingForm = this.renderAddSchedulingForm.bind(this);
-
+    this.getAllSchedulings = this.getAllSchedulings.bind(this);
+    this.getSingleScheduling = this.getSingleScheduling.bind(this);
+    this.deleteScheduling = this.deleteScheduling.bind(this);
+    this.renderEditForm = this.renderEditForm.bind(this);
+  }
+  
+  componentDidMount() {
+    this.getAllSchedulings();
   }
 
-  
-  getAllShedulings() {
+  // Get all schedulings
+  getAllSchedulings() {
     axios.get(" http://localhost:5000/api/schedulings").then(response => {
       this.setState({
         schedulings: response.data
@@ -27,38 +30,41 @@ class Schedulings extends Component {
     });
   }
 
-  componentDidMount() {
-    this.getAllShedulings();
+  // Get a single scheduling
+  getSingleScheduling() {
+    const { params } = this.props.match;
+    axios.get(`http://localhost:5000/api/scheduling/${params._id}`) 
+    .then( response => {     
+      const theScheduling = response.data;
+      this.setState(theScheduling);       
+    })
+    .catch((error) => {
+      console.log(error);      
+    })
+  }  
+
+  // EDIT form scheduling render
+  renderEditForm = () => {
+    if(!this.state.patientName){
+      this.getSingleProject();
+    } else {
+      return <EditScheduling theScheduling={this.state} getAllSchedulings={this.getAllSchedulings} {...this.props} />
+    }
   }
-  
-
-  // EDIT scheduling
-
 
   // DELETE scheduling
   deleteScheduling(scheduleId) {
     axios
      .delete(`http://localhost:5000/api/scheduling/${scheduleId}`)
       .then(() => {
-        this.getAllShedulings();
+        this.getAllSchedulings();
       })
       .catch(err => {
         console.log(err);
       });
   }
 
-/*   renderAddSchedulingForm() {
-    if(!this.state.title){
-        this.getSingleProject();
-      } else {     
-                // pass the project and method getSingleProject() as a props down to AddTask component
-        return <AddScheduling theProject={this.state} getTheProject={this.getSingleProject} />
-      }
-  } */
-
-  
-
-  render() {
+  render() {    
     return (
       <section className="scheduling">
         <div className="scheduling">  
@@ -66,33 +72,28 @@ class Schedulings extends Component {
             <DateToday />
             <br />
           </header>  
-         {/*  <div>{this.renderEditForm()}</div> */}
-         {/* <div>{this.renderAddSchedulingForm()} </div> */}  
-         <AddScheduling getData={() => this.getAllShedulings()}/> 
-            {/* <Button
-             onClick={() => this.toggleForm()} className="btn-primary btn-round btn-lg uppercase" btnTitle="Novo agendamento" /> */}
-          <table>
+         <AddScheduling getAllSchedulings={ () => this.getAllSchedulings() }/>        
+         <table>
             <thead>
               <tr>
-                <th>NOME </th>
-                <th>CID </th>
+                <th>NOME </th>               
                 <th>MOTIVO </th>
                 <th>DATA </th>
                 <th>HORA </th>
               </tr>
             </thead>
-            {this.state.schedulings.map(schedules => (
-              <tbody>
-                <tr>
-                  <td>{ schedules.id_patient.name } </td>
-                  <td>{ schedules.reason }</td>
-                  <td>{ schedules.reason }</td> {/* CHAMAR A API DE CIDS */}
+            {this.state.schedulings.map((schedules, idx) => (                          
+              <tbody key = {idx}>
+                <tr> 
+                  <td>{ schedules.patientName }</td>
+                  <td>{ schedules.reason }</td>                 
                   <td>
                   { schedules.date.slice(0, 10).split("-").reverse().join("-") }                 
                   </td>
-                  <td>{ schedules.hour }</td>
-                  <td> <button >Editar</button></td>
-                 <td><button onClick={() => this.deleteScheduling(schedules._id)}>Delete</button></td> 
+                  <td>{ schedules.hour }</td>                  
+                  <td><button onClick={() => this.deleteScheduling(schedules._id)}>Delete</button></td> 
+                  {/* <td> <button onClick={() => this.getSingleScheduling(schedules._id)}>Editar</button></td>  */}                
+                 <td><EditScheduling theScheduling={this.state.schedulings[idx]} getAllSchedulings={ () => this.getAllSchedulings() } {...this.props} /></td>
                 </tr>
               </tbody>
             ))}

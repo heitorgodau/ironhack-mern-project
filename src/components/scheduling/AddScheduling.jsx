@@ -6,13 +6,10 @@ class AddScheduling extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      cid: "",
-      reason: "",
-      date: "",
-      hour: "",
-      id_patient: "",
-      id_doctor: "",
+      patientName: '',
+      reason: '',
+      date: '',
+      hour: '',    
       isShowing: false
     };
     this.showAddSchedulingForm = this.showAddSchedulingForm.bind(this);
@@ -22,34 +19,21 @@ class AddScheduling extends Component {
   }
 
   handleFormSubmit(event) {
-    event.preventDefault();
-    const cid = this.state.cid;
-    const reason = this.state.reason;
-    const date = this.state.date;
-    const hour = this.state.hour;
-    const id_patient = this.state.id_patient.name;
-    const id_doctor = this.state.id_doctor;
-    // const projectID = this.props.theProject._id; // <== we need to know to which project the created task belong, so we need to get its 'id'
-
-    axios
-      .post("http://localhost:5000/api/scheduling/new", {
-        cid,
+    event.preventDefault();   
+    const { patientName, reason, date, hour } = this.state;
+    axios.post("http://localhost:5000/api/scheduling/new", {   
+        patientName,    
         reason,
         date,
         hour,
-        id_patient,
-        id_doctor
       })
       .then(response => {
-        console.log(response);
-        this.props.getData();
+        this.props.getAllSchedulings();
         this.setState({
-          cid: "",
-          reason: "",
-          date: "",
-          hour: "",
-          id_patient: "",
-          id_doctor: ""
+          patientName: '',         
+          reason: '',
+          date: '',
+          hour: ''
         });
       })
       .catch(error => console.log(error));
@@ -60,7 +44,7 @@ class AddScheduling extends Component {
     this.setState({ [name]: value });
   }
 
-  // PARA MOSTRAR O FORMULLARIO QDO CLICAR NO BOTAO
+  // Show form new scheduling
   toggleForm() {
     if (!this.state.isShowing) {
       this.setState({ isShowing: true });
@@ -69,30 +53,23 @@ class AddScheduling extends Component {
     }
   }
 
-  //  PARA MOSTRAR O FORMULLARIO QDO CLICAR NO BOTAO
+  // Show form new scheduling
   showAddSchedulingForm() {
     if (this.state.isShowing) {
       return (
-        <div>
-          <h3>Novo agendamento</h3>
-
+        <section className='add-scheduling'>
+           <br/>
+          <h3>Criar agendamento</h3>
+                 
           {/* Form add scheduling */}
           <form onSubmit={this.handleFormSubmit}>
             <label>Nome do paciente:</label>
-            <input
-              type="text"
-              name="name"
-              value={this.state.id_patient.name}
+            <input type="text" name="patientName"             
+             value={this.state.patientName}
               onChange={e => this.handleChange(e)}
             />
-            <label>CID:</label>
-            <input
-              type="text"
-              name="cid"
-              value={this.state.cid}
-              onChange={e => this.handleChange(e)}
-            />
-            <label>Motivo da consulta médica:</label>
+           
+            <label>Motivo da consulta médica: </label>
             <input
               type="text"
               name="reason"
@@ -106,36 +83,25 @@ class AddScheduling extends Component {
               value={this.state.date}
               onChange={e => this.handleChange(e)}
             />
-            <label>Hora:</label>
-              <select name="hour" required>
-            <option value="" disabled selected>Escolha seu horário</option>
-            <option value={this.state.hour}>8:00</option>
-            <option value={this.state.hour}>12:00</option>
-            <option value={this.state.hour}>14:00</option>
-            <option value={this.state.hour}>17:00</option>
-          </select> 
-
-            {/* <label>Data:</label>
-          <textarea name="description" value={this.state.description} onChange={ e => this.handleChange(e)} />
-           */}
+            <label>Hora: </label>
+            <select  onChange={e => this.handleChange(e)} name="hour" required>
+              <option value="" disabled selected>Escolha seu horário</option>
+              <option value='8:00'>8:00</option>
+              <option value='12:00'>12:00</option>
+              <option value='14:00'>14:00</option>
+              <option value='17:00'>17:00</option>
+            </select>
             <input type="submit" value="Submit" />
           </form>
-        </div>
+        </section>
       );
     }
   }
 
   render() {
-    console.log(this.state);
-
     return (
-      <section className="AddScheduling">
-        <Button
-          onClick={() => this.toggleForm()}
-          className="btn-primary btn-round btn-lg uppercase"
-          btnTitle="Novo agendamento"
-        />
-        <button onClick={() => this.toggleForm()}> Novo adendamento </button>
+      <section className="add-scheduling">
+        <Button onClick={() => this.toggleForm()} className="btn-primary btn-round btn-lg uppercase" btnTitle="Novo agendamento" />
          {this.showAddSchedulingForm()} 
       </section>
     );
