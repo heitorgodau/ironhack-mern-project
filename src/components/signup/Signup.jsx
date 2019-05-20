@@ -38,8 +38,9 @@ class Signup extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();    
-    const { username, password, name} = this.state;    
+    event.preventDefault();       
+    const { username, password, name} = this.state;  
+    console.log(username, password, name)  
     const errors = validate(username, password, name);    
     if (errors.length > 0) {
       this.setState({ errors });

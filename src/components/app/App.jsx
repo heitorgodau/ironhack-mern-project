@@ -86,8 +86,8 @@ class App extends React.Component {
         <div className="app">            
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />}/>
-            <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
+            <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />}/>
+            <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser}/>}/>
             <ProtectedRoute user={this.state.loggedInUser} path='/schedulings' component={Schedulings} />
             <ProtectedRoute user={this.state.loggedInUser} path='/patient/add-patient' component={AddPatient} />
             <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
