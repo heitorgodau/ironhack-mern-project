@@ -71,6 +71,9 @@ class App extends React.Component {
             <Route exact path='/signup' component={Signup} />  */}
             <Route exact path='/profile' render={(props) => <Profile {...props} getAllPatients={this.getAllPatients} allPatients={this.state.allPatients} />} />
             <ProtectedRoute user={this.state.loggedInUser} exact path='/patient/:id' component={Patient} />
+            
+            <Route exact path='/schedulings' component={Schedulings} />
+            
           </Switch>
         </div>
       );
@@ -81,7 +84,10 @@ class App extends React.Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />}/>
             <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/> 
-            <ProtectedRoute user={this.state.loggedInUser} path='/schedulings' component={Schedulings} />
+            
+            {/* <ProtectedRoute user={this.state.loggedInUser} path='/schedulings' component={Schedulings} /> */}
+            <Route exact path='/schedulings' component={Schedulings} />
+            
             <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
             <ProtectedRoute user={this.state.loggedInUser} path='/patient/:id' component={Patient} />
           </Switch>
