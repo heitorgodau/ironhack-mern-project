@@ -18,6 +18,10 @@
   border-radius: 50px;
 }
 
+.btn-center {
+  align-self: center;
+}
+
 .btn-primary {
   background-color: #FF686B;
 }
@@ -25,6 +29,12 @@
 .btn-white {
   background-color: #fff;
   color: #333;
+}
+
+
+.btn-transparent {
+  background-color: transparent;
+  color:#FF686B;
 }
 
 .btn-lg {
