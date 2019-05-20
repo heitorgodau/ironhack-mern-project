@@ -132,8 +132,8 @@ export default class Patient extends Component {
               <h4>{this.state.patient.familyHistory}</h4>
             </div>
             <div className="allergies">
-              <h3>Tipo sanguíneo:</h3>
-              <h4>{this.state.patient.bloodType}</h4>
+              <h3>Alergias:</h3>
+              <h4>{this.state.patient.allergies}</h4>
             </div>
             <div className="creation-date">
               <h3>Data de criação:</h3>
