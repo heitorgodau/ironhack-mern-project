@@ -53,7 +53,7 @@ class Navbar extends Component {
           opacity: 0.9,
           display:'flex',
           alignItems:'center',
-          background: 'black',
+          background: '#52897B',
           width: '100%',
           color: 'white',
           fontFamily:'Lobster',
@@ -74,15 +74,15 @@ class Navbar extends Component {
 
     return (
      
-      <div className="App">
+      <div className="navbar">
         <div style={styles.container}>
           <MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='white'/>
           <div style={styles.logo}>WireHeart</div>
         </div>
         <Menu open={this.state.menuOpen}>
-          <Link to='/profile'><MenuItem delay='0s' onClick={()=>{this.handleLinkClick();}}>Home</MenuItem></Link>
+          <Link to='/profile'><MenuItem delay='0s' onClick={()=>{this.handleLinkClick();}}>Pacientes</MenuItem></Link>
           <Link to='/account'><MenuItem delay='0.1s' onClick={()=>{this.handleLinkClick();}}>Minha Conta</MenuItem></Link>
-          <Link to='/schedule'><MenuItem delay='0.2s' onClick={()=>{this.handleLinkClick();}}>Agenda</MenuItem></Link>
+          <Link to='/schedulings'><MenuItem delay='0.2s' onClick={()=>{this.handleLinkClick();}}>Agenda</MenuItem></Link>
           <Link to='/'><MenuItem delay='0.3s' onClick={() => this.logoutUser()}>Logout</MenuItem></Link>
         </Menu>
       </div>
