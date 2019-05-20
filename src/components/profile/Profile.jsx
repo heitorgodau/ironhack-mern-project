@@ -39,7 +39,7 @@ class Profile extends Component {
         <i className="fas fa-search"></i>
         <input type="search" name="search" placeholder="Busque pelo nome do paciente" onChange={(e) => this.handleSearch(e)}/>
       </form>
-        <Link to="/add-patient" ><Button btnTitle="+ Adicionar Paciente" className="btn-primary btn-md btn-round" /></Link>
+        <Link to="/patient/add-patient" ><Button btnTitle="Adicionar novo paciente" className="btn-primary btn-md btn-round" /></Link>
         <div className="patients-list">
           {
             this.state.patients.map((patient, idx) => {
