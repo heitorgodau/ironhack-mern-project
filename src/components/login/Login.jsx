@@ -21,18 +21,19 @@ class Login extends Component {
     })
   }
 
-  handleSubmit(event) {
-    console.log(this.props)
+  handleSubmit(event) {    
     event.preventDefault();
     const { username, password } = this.state;    
     this.service.login(username, password)
     .then((response) => {
-      this.setState({ username: "", password: "" });
-      console.log("user confirmed")      
-      this.props.getUser(response)
-         
+      this.setState({ username: "", password: "" });      
+      this.props.getUser(response);
+      this.props.history.push('/profile')           
     })
-    .catch( error => console.log(error) )
+    .catch( error => {
+      alert("Invalid user name or password");   
+      console.log(error); 
+    })
   }
 
   render(){

@@ -3,13 +3,28 @@ import Button from '../button/Button';
 import { Link } from 'react-router-dom';
 import AuthService from './../auth/auth-service';
 
+function validate(username, password, name) {  
+  const errors = [];
+  if (username.length === 0) {
+    errors.push("Please insert username");
+  }
+  if (password.length === 0) {
+    errors.push("Please insert password");
+  }
+  if (name.length === 0) {
+    errors.push("Please insert name");
+  }
+  return errors;
+}
+
 class Signup extends Component {
   constructor(props){
     super(props);
     this.state = {
       username: '',
       password: '',
-      name: ''
+      name: '',
+      errors: []
     };
     this.service = new AuthService();
     this.handleChange = this.handleChange.bind(this);
@@ -23,27 +38,41 @@ class Signup extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();    
-    const { username, password, name} = this.state;
+    event.preventDefault();       
+    const { username, password, name} = this.state;  
+    console.log(username, password, name)  
+    const errors = validate(username, password, name);    
+    if (errors.length > 0) {
+      this.setState({ errors });
+      return;
+    }
     this.service.signup(username, password, name)
     .then( response => {
         this.setState({
             username: '', 
             password: '',
             name: '',
+            errors: []
         });
         this.props.getUser(response)
+        this.props.history.push('/profile')  
     })
-    .catch( error => console.log(error) )
+    .catch( error => {
+      if(username.lenght !==0 && name.length !==0){
+        alert("Username allready taken!");    
+      }       
+      console.log("error sign up",error)} )    
   }
 
   render(){
+    const { errors } = this.state;
     return(
       <section className="login">
         <figure className="logo">
           <img src="../../images/wireheart-logo-02.png" alt=""/>
         </figure>
         <form onSubmit={(e) => this.handleSubmit(e)}>
+          {errors.map(error => (<p key={error} >{error}</p>))}
           <input type="text" name="username" placeholder="Your username here" onChange={(e) => this.handleChange(e)}/>
           <input type="password" name="password" placeholder="**********" onChange={(e) => this.handleChange(e)}/>
           <input type="text" name="name" placeholder="Your name here" onChange={(e) => this.handleChange(e)}/>

@@ -10,6 +10,7 @@ import Signup from '../signup/Signup';
 import Navbar from '../navbar/Navbar';
 import Profile from '../profile/Profile';
 import Patient from '../patient/Patient';
+// import PatientInfo from '../patient/PatientInfo';
 import AddPatient from '../patient/add-patient';
 import ProtectedRoute from './../auth/protected-route'
 import Schedulings from "./../scheduling/Schedulings";
@@ -48,6 +49,7 @@ class App extends React.Component {
   }
 
   getAllPatients(callback) {
+    console.log(this.state.loggedInUser)
     axios.get('http://localhost:5000/api/patients')
     .then((response => {
       this.setState({
@@ -72,9 +74,9 @@ class App extends React.Component {
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />  */}
             <Route exact path='/profile' render={(props) => <Profile {...props} getAllPatients={this.getAllPatients} allPatients={this.state.allPatients} />} />
-            <ProtectedRoute user={this.state.loggedInUser} path='/patient/add-patient' component={AddPatient} />
-            <ProtectedRoute user={this.state.loggedInUser} exact path='/patient/:id' component={Patient} />
-            
+            <Route user={this.state.loggedInUser} path='/patient/add-patient' render={(props) => <AddPatient {...props} userInSession={this.state.loggedInUser} />} />
+            <Route user={this.state.loggedInUser} exact path='/patient/:id' render={(props) => <Patient {...props} userInSession={this.state.loggedInUser} />} />
+            {/* <Route exact path='/patient/:id/info' component={PatientInfo} />             */}
             <Route exact path='/schedulings' component={Schedulings} />
             
           </Switch>
@@ -85,8 +87,8 @@ class App extends React.Component {
         <div className="app">            
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />}/>
-            <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
+            <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />}/>
+            <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser}/>}/>
             <ProtectedRoute user={this.state.loggedInUser} path='/schedulings' component={Schedulings} />
             <ProtectedRoute user={this.state.loggedInUser} path='/patient/add-patient' component={AddPatient} />
             <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
