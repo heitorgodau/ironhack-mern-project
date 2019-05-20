@@ -6,11 +6,10 @@ class AddScheduling extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      patientName: '',
       reason: '',
       date: '',
-      hour: '',
-      id_patient: '',
-      id_doctor: '',
+      hour: '',    
       isShowing: false
     };
     this.showAddSchedulingForm = this.showAddSchedulingForm.bind(this);
@@ -21,27 +20,20 @@ class AddScheduling extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();   
-    const reason = this.state.reason;
-    const date = this.state.date;
-    const hour = this.state.hour;
-    const id_patient = this.state.id_patient.name;
-    const id_doctor = this.state.id_doctor;
-
-    axios.post("http://localhost:5000/api/scheduling/new", {       
+    const { patientName, reason, date, hour } = this.state;
+    axios.post("http://localhost:5000/api/scheduling/new", {   
+        patientName,    
         reason,
         date,
         hour,
-        id_patient,
-        id_doctor
       })
-      .then(response => {       
-        this.props.getData();
-        this.setState({         
-          reason: "",
-          date: "",
-          hour: "",
-          id_patient: "",
-          id_doctor: ""
+      .then(response => {
+        this.props.getAllSchedulings();
+        this.setState({
+          patientName: '',         
+          reason: '',
+          date: '',
+          hour: ''
         });
       })
       .catch(error => console.log(error));
@@ -65,26 +57,19 @@ class AddScheduling extends Component {
   showAddSchedulingForm() {
     if (this.state.isShowing) {
       return (
-        <div>
-          <h3>Novo agendamento</h3>
-
+        <section className='add-scheduling'>
+           <br/>
+          <h3>Criar agendamento</h3>
+                 
           {/* Form add scheduling */}
           <form onSubmit={this.handleFormSubmit}>
             <label>Nome do paciente:</label>
-            <input
-              type="text"
-              name="name"
-              value={this.state.id_patient.name}
+            <input type="text" name="patientName"             
+             value={this.state.patientName}
               onChange={e => this.handleChange(e)}
             />
-            <label>CID:</label>
-            <input
-              type="text"
-              name="cid"
-              value={this.state.cid}
-              onChange={e => this.handleChange(e)}
-            />
-            <label>Motivo da consulta médica:</label>
+           
+            <label>Motivo da consulta médica: </label>
             <input
               type="text"
               name="reason"
@@ -98,26 +83,25 @@ class AddScheduling extends Component {
               value={this.state.date}
               onChange={e => this.handleChange(e)}
             />
-            <label>Hora:</label>
-              <select name="hour" required>
-            <option value="" disabled selected>Escolha seu horário</option>
-            <option value='8:00'>8:00</option>
-            <option value='12:00'>12:00</option>
-            <option value='14:00'>14:00</option>
-            <option value='17:00'>17:00</option>
-          </select>
+            <label>Hora: </label>
+            <select  onChange={e => this.handleChange(e)} name="hour" required>
+              <option value="" disabled selected>Escolha seu horário</option>
+              <option value='8:00'>8:00</option>
+              <option value='12:00'>12:00</option>
+              <option value='14:00'>14:00</option>
+              <option value='17:00'>17:00</option>
+            </select>
             <input type="submit" value="Submit" />
           </form>
-        </div>
+        </section>
       );
     }
   }
 
   render() {
     return (
-      <section className="AddScheduling">
+      <section className="add-scheduling">
         <Button onClick={() => this.toggleForm()} className="btn-primary btn-round btn-lg uppercase" btnTitle="Novo agendamento" />
-        <button onClick={() => this.toggleForm()}> Novo adendamento </button>
          {this.showAddSchedulingForm()} 
       </section>
     );
