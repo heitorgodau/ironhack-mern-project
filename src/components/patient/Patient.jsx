@@ -14,7 +14,7 @@ export default class Patient extends Component {
       moreInfo: false,
       edit: false,
     }
-
+    
     this.getAge = this.getAge.bind(this);
     this.getOnePatient = this.getOnePatient.bind(this);
     this.getAllConsultations = this.getAllConsultations.bind(this);
@@ -54,10 +54,10 @@ export default class Patient extends Component {
   
   getAllConsultations() {
     axios.get(`http://localhost:5000/api/consultations`)
-    .then((result) => {
+    .then((result) => {        
       this.setState({
         consultations: result.data,
-      })
+      })      
     });
   }
   
@@ -151,7 +151,7 @@ export default class Patient extends Component {
               this.state.consultations.map((consult, idx) => {
                 return(
                   <Link key={idx} to={`/consult/${idx}`}>
-                    <Button btnTitle={`${consult.date} Dr.${consult.dr}`} className="btn-white btn-md btn-round" />
+                    <Button btnTitle={`${consult.date} Dr.${consult.id_doctor.name}`} className="btn-white btn-md btn-round" />
                   </Link>
                 )
               })
@@ -189,10 +189,10 @@ export default class Patient extends Component {
           </Link>
           <div className="consultation-list">
             {
-              this.state.consultations.map((consult, idx) => {
+              this.state.consultations.map((consult, idx) => {                
                 return(
                   <Link key={idx} to={`/consult/${idx}`}>
-                    <Button btnTitle={`${consult.date} Dr.${consult.dr}`} className="btn-white btn-md btn-round" />
+                    <Button btnTitle={`${consult.date} Dr.${consult.id_doctor.name}`} className="btn-white btn-md btn-round" />
                   </Link>
                 )
               })

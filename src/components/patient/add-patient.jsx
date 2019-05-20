@@ -26,7 +26,7 @@ class AddPatient extends Component {
     this.handleSubmit = this.handleSubmit.bind(this); 
   }
   handleChange(event) {
-    const { name, value } = event.target
+    const { name, value } = event.target    
     this.setState({
       [name]: value,
     })
@@ -34,10 +34,11 @@ class AddPatient extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { name, email, gender, birthdate, address, maritalStatus, affiliation, telResidential, cellphone, healthInsurance, bloodType, surgicalHistory, familyHistory, allergies} = this.state;
+    const { name, email, gender, birthdate, address, maritalStatus, affiliation, telResidential, cellphone, healthInsurance, bloodType, surgicalHistory, familyHistory, allergies, id_doctor} = this.state;
 
-    axios.post('http://localhost:5000/api/patient/new', { name, email, gender, birthdate, address, maritalStatus, affiliation, telResidential, cellphone, healthInsurance, bloodType, surgicalHistory, familyHistory, allergies })
+    axios.post('http://localhost:5000/api/patient/new', { name, email, gender, birthdate, address, maritalStatus, affiliation, telResidential, cellphone, healthInsurance, bloodType, surgicalHistory, familyHistory, allergies, id_doctor })
       .then((result) => {
+        this.props.history.push('/profile')
         console.log('Paciente adicionado', result)
       })
       
