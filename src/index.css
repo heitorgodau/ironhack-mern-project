@@ -52,3 +52,16 @@ form > input {
 form > input:focus {
   outline: none;
 }
+
+form > select {
+  width: 240px;
+  height: 40px;
+  margin: 20px;
+  border-radius: 30px;
+  border: none;
+  padding: 7px;
+}
+
+form > select:focus {
+  outline: none;
+}

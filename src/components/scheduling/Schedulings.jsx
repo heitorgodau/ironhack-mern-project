@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./schedulings.css";
 import axios from "axios";
-import Button from "../button/Button";
 import { Link } from 'react-router-dom';
 import DateToday from './DateToday';
+import AddScheduling from './AddScheduling'
 // import EditScheduling from './EditScheduling'
 
 
@@ -14,15 +14,23 @@ class Schedulings extends Component {
       schedulings: []
     };
     this.getAllShedulings = this.getAllShedulings.bind(this);
+  //  this.renderAddSchedulingForm = this.renderAddSchedulingForm.bind(this);
+
   }
 
+  
   getAllShedulings() {
     axios.get(" http://localhost:5000/api/schedulings").then(response => {
       this.setState({
         schedulings: response.data
-      });
+      });           
     });
   }
+
+  componentDidMount() {
+    this.getAllShedulings();
+  }
+  
 
   // EDIT scheduling
 
@@ -39,26 +47,35 @@ class Schedulings extends Component {
       });
   }
 
-  componentDidMount() {
-    this.getAllShedulings();
-  }
+/*   renderAddSchedulingForm() {
+    if(!this.state.title){
+        this.getSingleProject();
+      } else {     
+                // pass the project and method getSingleProject() as a props down to AddTask component
+        return <AddScheduling theProject={this.state} getTheProject={this.getSingleProject} />
+      }
+  } */
+
+  
 
   render() {
     return (
       <section className="scheduling">
-        <div className="scheduling">        
+        <div className="scheduling">  
           <header>
             <DateToday />
             <br />
-          </header>
-          <Link to="/">
-            <Button
-              className="btn-primary btn-round btn-lg uppercase" btnTitle="Novo agendamento" />
-          </Link>
+          </header>  
+         {/*  <div>{this.renderEditForm()}</div> */}
+         {/* <div>{this.renderAddSchedulingForm()} </div> */}  
+         <AddScheduling getData={() => this.getAllShedulings()}/> 
+            {/* <Button
+             onClick={() => this.toggleForm()} className="btn-primary btn-round btn-lg uppercase" btnTitle="Novo agendamento" /> */}
           <table>
             <thead>
               <tr>
                 <th>NOME </th>
+                <th>CID </th>
                 <th>MOTIVO </th>
                 <th>DATA </th>
                 <th>HORA </th>
@@ -69,8 +86,9 @@ class Schedulings extends Component {
                 <tr>
                   <td>{ schedules.id_patient.name } </td>
                   <td>{ schedules.reason }</td>
+                  <td>{ schedules.reason }</td> {/* CHAMAR A API DE CIDS */}
                   <td>
-                    { schedules.date.slice(0, 10).split("-").reverse().join("-") }
+                  { schedules.date.slice(0, 10).split("-").reverse().join("-") }                 
                   </td>
                   <td>{ schedules.hour }</td>
                   <td> <button >Editar</button></td>
@@ -80,6 +98,9 @@ class Schedulings extends Component {
             ))}
           </table>
           <br/>
+          <div>  
+           <a target='_blanck' href="https://doutorarebeca.mybluemix.net/"><button >CHATBOT</button></a>                        
+          </div>
         </div>
       </section>
     );
