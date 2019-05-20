@@ -6,13 +6,11 @@ class AddScheduling extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      cid: "",
-      reason: "",
-      date: "",
-      hour: "",
-      id_patient: "",
-      id_doctor: "",
+      reason: '',
+      date: '',
+      hour: '',
+      id_patient: '',
+      id_doctor: '',
       isShowing: false
     };
     this.showAddSchedulingForm = this.showAddSchedulingForm.bind(this);
@@ -22,29 +20,23 @@ class AddScheduling extends Component {
   }
 
   handleFormSubmit(event) {
-    event.preventDefault();
-    const cid = this.state.cid;
+    event.preventDefault();   
     const reason = this.state.reason;
     const date = this.state.date;
     const hour = this.state.hour;
     const id_patient = this.state.id_patient.name;
     const id_doctor = this.state.id_doctor;
-    // const projectID = this.props.theProject._id; // <== we need to know to which project the created task belong, so we need to get its 'id'
 
-    axios
-      .post("http://localhost:5000/api/scheduling/new", {
-        cid,
+    axios.post("http://localhost:5000/api/scheduling/new", {       
         reason,
         date,
         hour,
         id_patient,
         id_doctor
       })
-      .then(response => {
-        console.log(response);
+      .then(response => {       
         this.props.getData();
-        this.setState({
-          cid: "",
+        this.setState({         
           reason: "",
           date: "",
           hour: "",
@@ -60,7 +52,7 @@ class AddScheduling extends Component {
     this.setState({ [name]: value });
   }
 
-  // PARA MOSTRAR O FORMULLARIO QDO CLICAR NO BOTAO
+  // Show form new scheduling
   toggleForm() {
     if (!this.state.isShowing) {
       this.setState({ isShowing: true });
@@ -69,7 +61,7 @@ class AddScheduling extends Component {
     }
   }
 
-  //  PARA MOSTRAR O FORMULLARIO QDO CLICAR NO BOTAO
+  // Show form new scheduling
   showAddSchedulingForm() {
     if (this.state.isShowing) {
       return (
@@ -109,15 +101,11 @@ class AddScheduling extends Component {
             <label>Hora:</label>
               <select name="hour" required>
             <option value="" disabled selected>Escolha seu horário</option>
-            <option value={this.state.hour}>8:00</option>
-            <option value={this.state.hour}>12:00</option>
-            <option value={this.state.hour}>14:00</option>
-            <option value={this.state.hour}>17:00</option>
-          </select> 
-
-            {/* <label>Data:</label>
-          <textarea name="description" value={this.state.description} onChange={ e => this.handleChange(e)} />
-           */}
+            <option value='8:00'>8:00</option>
+            <option value='12:00'>12:00</option>
+            <option value='14:00'>14:00</option>
+            <option value='17:00'>17:00</option>
+          </select>
             <input type="submit" value="Submit" />
           </form>
         </div>
@@ -126,15 +114,9 @@ class AddScheduling extends Component {
   }
 
   render() {
-    console.log(this.state);
-
     return (
       <section className="AddScheduling">
-        <Button
-          onClick={() => this.toggleForm()}
-          className="btn-primary btn-round btn-lg uppercase"
-          btnTitle="Novo agendamento"
-        />
+        <Button onClick={() => this.toggleForm()} className="btn-primary btn-round btn-lg uppercase" btnTitle="Novo agendamento" />
         <button onClick={() => this.toggleForm()}> Novo adendamento </button>
          {this.showAddSchedulingForm()} 
       </section>
