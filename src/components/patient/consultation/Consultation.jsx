@@ -144,10 +144,8 @@ export default class Consultation extends Component {
               <Button btnTitle="Editar" className="btn-primary btn-round btn-md" onClick={this.edit} />
             </div>
             <div>
-              <img src={this.state.consultation.imageUrl}  alt="photo" />
+              <img src={this.state.consultation.imageUrl}  alt="Exams" />
             </div>
-            <Button btnTitle="Editar" className="btn-primary btn-round btn-md" onClick={this.edit} />
-            <p>*Só é possível editar o campo de conduta médica</p>
           </section>
         )
       }
