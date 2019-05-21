@@ -13,6 +13,7 @@ import Profile from '../profile/Profile';
 import Patient from '../patient/Patient';
 import AddPatient from '../patient/AddPatient';
 import AddConsultation from '../patient/consultation/AddConsultation'
+import Consultation from '../patient/consultation/Consultation'
 import Schedulings from "./../scheduling/Schedulings";
 
 class App extends React.Component {
@@ -77,6 +78,7 @@ class App extends React.Component {
             <Route user={this.state.loggedInUser} exact path='/patient/:id' render={(props) => <Patient {...props} userInSession={this.state.loggedInUser} />} />
             <Route user={this.state.loggedInUser} exact path='/consultation/:patientId/new' render={(props) => <AddConsultation {...props} userInSession={this.state.loggedInUser} />} />
             <Route exact path='/schedulings' component={Schedulings} />
+            <Route exact path='/consultation/:id' component={Consultation} />
             
           </Switch>
         </div>
