@@ -94,7 +94,7 @@ export default class AddConsultation extends Component {
       axios.get(`https://cid-api.herokuapp.com/cid10/${this.state.cid.toUpperCase()}`)
       .then((result) => {        
         this.setState({
-          nameCid: result.data.nome,         
+          nameCid: result.data.nome,    
         })       
       })
     }    
@@ -184,7 +184,7 @@ export default class AddConsultation extends Component {
           <textarea name="conduct" placeholder="Conduta médica" value={this.state.conduct} onChange={(e) => this.handleChange(e)}/>
           <input type="text" name="cid" placeholder="CID" value={this.state.cid} onChange={(e) => this.handleChange(e)}/>
           <textarea type="text" name="cidName" placeholder="nome CID" value={this.state.nameCid}/>
-          <input type="file" name="exam" onChange={(e) => this.handleFileUpload(e)}/>
+          <input type="file" name="exam" onChange={(e) => this.handleFileUpload(e)} multiple/>
           <Button btnTitle="Adicionar" className="btn-primary btn-md btn-round" linkTo="/profile" type="submit" />
         </form>
       </section>
