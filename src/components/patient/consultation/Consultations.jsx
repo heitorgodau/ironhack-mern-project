@@ -22,11 +22,9 @@ export default class Consultations extends Component {
       })
     });
   }
-
   componentDidMount() {
-    this.getAllConsultations();
-  }
-
+    this.getAllConsultations();    
+  }  
   render() {
     return(
       <div className="consultations">
