@@ -17,7 +17,6 @@ export default class Consultations extends Component {
   getAllConsultations() {
     axios.get(`http://localhost:5000/api/consultations`)
     .then((result) => {
-      console.log(result.data)
       this.setState({
         consultations: result.data,
       })
@@ -37,7 +36,6 @@ export default class Consultations extends Component {
         <div className="consultation-list">
           {
             this.state.consultations.map((consult, idx) => {
-              console.log('CONSULTTTT', consult)
               return(
                 <Link key={idx} to={`/consult/${idx}`}>
                   <Button btnTitle={`${consult.date} Dr.${consult.id_doctor.username}`} className="btn-white  btn-md btn-round" />

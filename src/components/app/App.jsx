@@ -49,7 +49,6 @@ class App extends React.Component {
   }
 
   getAllPatients(callback) {
-    console.log(this.state.loggedInUser)
     axios.get('http://localhost:5000/api/patients')
     .then((response => {
       this.setState({
