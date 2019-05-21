@@ -21,7 +21,7 @@ export default class Consultation extends Component {
   getOneConsultation() {
     axios.get(`http://localhost:5000/api/consultation/${this.props.match.params.id}`)
     .then((result) => {
-      console.log(result.data)
+      console.log(typeof(result.data.imageUrl))
       this.setState({
         consultation: result.data
       })
@@ -130,6 +130,9 @@ export default class Consultation extends Component {
             <div className="consult-row conduct">
               <h3>Conduta:</h3>
               <h4>{this.state.consultation.conduct}</h4>
+            </div>
+            <div>
+              <img src={this.state.consultation.imageUrl}  alt="photo" />
             </div>
             <Button btnTitle="Editar" className="btn-primary btn-round btn-md" onClick={this.edit} />
             <p>*Só é possível editar o campo de conduta médica</p>

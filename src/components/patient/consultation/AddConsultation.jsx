@@ -40,8 +40,7 @@ export default class AddConsultation extends Component {
     const { name, value } = event.target
     this.setState({
       [name]: value,      
-    })   
-    console.log(this.state)
+    })     
   }
 
   handleFileUpload = e => {
@@ -63,21 +62,34 @@ export default class AddConsultation extends Component {
     axios.post('http://localhost:5000/api/consultation/new', {...this.state})
       .then((result) => {
         console.log('Paciente adicionado', result)
+        this.setState({
+          reason: '',
+          fisico: '',
+          orofaringe:'',
+          otoscopia:'',
+          SNC:'',
+          rigidez_da_nuca:'', 
+          cardiovascular:'',  
+          RCR_2T_BNF_S_S:'',  
+          pele_e_faneros:'', 
+          ap_respiratorio:'',
+          R_Adv:'',
+          abdome:'',
+          osteo_articular:'',
+          PA:'',
+          cid: '',
+          nameCid: '',
+          exam: '',
+          symptoms: '',
+          conduct: '',
+          imageUrl:'',
+        })    
+        this.props.history.push(`/patient/${this.state.id_patient}`) 
       })
       
-    this.setState({
-      reason: '',
-      cid: '',
-      nameCid:'',
-      exam: '',
-      symptoms: '',
-      conduct: '',
-    })
-    this.props.history.push(`/patient/${this.state.id_patient}`) 
   }
 
-  render() {    
-    // console.log(this.state);    
+  render() {      
     if(this.state.cid.length !== 0){
       axios.get(`https://cid-api.herokuapp.com/cid10/${this.state.cid.toUpperCase()}`)
       .then((result) => {        
@@ -151,7 +163,7 @@ export default class AddConsultation extends Component {
             <label>Normal<input type="radio" name="R_Adv" onChange={(e) => this.handleChange(e)} value='Anormal'/></label>                        
           </div> 
 
-          <div>
+          <div> 
             <p>Abdome</p>
             <label>Normal<input type="radio" name="abdome" onChange={(e) => this.handleChange(e)} value='Normal'/></label>     
             <label>Anormal<input type="radio" name="abdome" onChange={(e) => this.handleChange(e)} value='Anormal'/></label>                    
@@ -166,9 +178,7 @@ export default class AddConsultation extends Component {
           <div>
             <p>PA</p>
             <label>Gasglow<input type="radio" name="PA" onChange={(e) => this.handleChange(e)} value='Glasglow'/></label>                        
-          </div> 
-      
-      
+          </div>       
 
           <textarea name="symptoms" placeholder="Sintomas do paciente" value={this.state.symptoms} onChange={(e) => this.handleChange(e)}/>
           <textarea name="conduct" placeholder="Conduta médica" value={this.state.conduct} onChange={(e) => this.handleChange(e)}/>
