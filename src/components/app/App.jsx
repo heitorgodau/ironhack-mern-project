@@ -16,6 +16,7 @@ import AddConsultation from '../patient/consultation/AddConsultation'
 import Schedulings from './../scheduling/Schedulings';
 import Account from './../account/Account'
 import EditAccount from './../account/EditAccount'
+import Consultation from '../patient/consultation/Consultation'
 
 class App extends React.Component {
   constructor(){
@@ -49,8 +50,8 @@ class App extends React.Component {
       loggedInUser: userObj
     })
   }
-
-  getAllPatients(callback) {    
+  
+  getAllPatients(callback) {
     axios.get('http://localhost:5000/api/patients')
     .then((response => {
       this.setState({
@@ -80,6 +81,7 @@ class App extends React.Component {
             <Route user={this.state.loggedInUser} exact path='/Schedulings' component={Schedulings} />
             <Route user={this.state.loggedInUser} exact path='/account' render={(props) => <Account {...props} userInSession={this.state.loggedInUser} />} />
             <Route user={this.state.loggedInUser} exact path='/account/:id' render={(props) => <EditAccount {...props} userInSession={this.state.loggedInUser} />} />
+            <Route exact path='/consultation/:id' component={Consultation} />
           </Switch>
         </div>
       );
