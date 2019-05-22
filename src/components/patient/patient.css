@@ -150,6 +150,42 @@
   margin-top: 0;
 
 }
+.exams {
+  display: flex;
+  flex-direction: column;
+}
+.exams .title {
+  display: flex;
+  flex-direction: column;
+}
+
+.exams .title h3 {
+  text-align: left;
+}
+
+.exams .title .exams-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.exams .title .exams-form input {
+ margin: 10px 0;
+}
+
+.exams .exams-form .btn-add-exam {
+  margin: 10px 0;
+  padding: 7px;
+  height: fit-content; 
+}
+
+.exams .exam-img {
+  width: 150px;
+}
+
+.exams .exam-img img {
+  width: 100%;
+}
 
 /*******ADD CONSULTATIONS*********/
 .add-consultation {
