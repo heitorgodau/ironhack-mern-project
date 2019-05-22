@@ -43,7 +43,6 @@ export default class AddConsultation extends Component {
   }
 
   render() {
-    console.log(this.state);
     return(
       <section className="add-consultation">
         <form onSubmit={(e) => this.handleSubmit(e)}>
