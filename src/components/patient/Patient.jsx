@@ -14,7 +14,7 @@ export default class Patient extends Component {
       moreInfo: false,
       edit: false,
     }
-    
+        
     this.getAge = this.getAge.bind(this);
     this.getOnePatient = this.getOnePatient.bind(this);
     this.editPatient = this.editPatient.bind(this);

@@ -16,6 +16,8 @@ class EditScheduling extends Component {
     this.handleChangeReason = this.handleChangeReason.bind(this);
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleChangeHour = this.handleChangeHour.bind(this);
+    this.toggleForm = this.toggleForm.bind(this);
+    this.showEditForm = this.showEditForm.bind(this);
   }
 
   handleFormSubmit(event){
@@ -23,7 +25,7 @@ class EditScheduling extends Component {
     const id = this.props.theScheduling._id;    
     const { patientName, reason, date, hour, } = this.state;
     axios.put(`http://localhost:5000/api/scheduling/${id}`, { patientName, reason, date, hour})
-    .then( (response) => {       
+    .then( () => {       
       this.props.getAllSchedulings()
     })
     .catch( error => console.log(error) );
@@ -56,7 +58,7 @@ class EditScheduling extends Component {
   // Show form edit fields
   toggleForm() {
     if ( !this.state.isShowing ){
-      this.setState( {isShowing: true} );
+      this.setState( { isShowing: true } );
     } else {
       this.setState( { isShowing: false } );
     }
@@ -85,7 +87,7 @@ class EditScheduling extends Component {
               <option value='12:00'>12:00</option>
               <option value='14:00'>14:00</option>
               <option value='17:00'>17:00</option>
-            </select>
+            </select>             
             <input type="submit" value="Submit" />
           </form>
         </section>
@@ -96,8 +98,8 @@ class EditScheduling extends Component {
   render() {
     return (
       <section className='edit-scheduling'>
+       {this.showEditForm()}
        <button onClick={() => this.toggleForm()}>Editar</button>
-       {this.showEditForm()} 
       </section>
     )
   }

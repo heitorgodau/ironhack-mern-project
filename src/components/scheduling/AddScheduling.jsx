@@ -27,7 +27,7 @@ class AddScheduling extends Component {
         date,
         hour,
       })
-      .then(response => {
+      .then(() => {
         this.props.getAllSchedulings();
         this.setState({
           patientName: '',         

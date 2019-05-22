@@ -10,6 +10,7 @@ class Profile extends Component {
       patients: [],
       search: '',
     }
+    
     this.handleSearch = this.handleSearch.bind(this);
     this.updateState = this.updateState.bind(this);
   }
