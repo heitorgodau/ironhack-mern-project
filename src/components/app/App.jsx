@@ -13,9 +13,14 @@ import Profile from '../profile/Profile';
 import Patient from '../patient/Patient';
 import AddPatient from '../patient/AddPatient';
 import AddConsultation from '../patient/consultation/AddConsultation'
+<<<<<<< HEAD
 import Schedulings from './../scheduling/Schedulings';
 import Account from './../account/Account'
 import EditAccount from './../account/EditAccount'
+=======
+import Consultation from '../patient/consultation/Consultation'
+import Schedulings from "./../scheduling/Schedulings";
+>>>>>>> development
 
 class App extends React.Component {
   constructor(){
@@ -50,7 +55,11 @@ class App extends React.Component {
     })
   }
 
+<<<<<<< HEAD
   getAllPatients(callback) {    
+=======
+  getAllPatients(callback) {
+>>>>>>> development
     axios.get('http://localhost:5000/api/patients')
     .then((response => {
       this.setState({
@@ -77,9 +86,15 @@ class App extends React.Component {
             <Route user={this.state.loggedInUser} path='/patient/add-patient' render={(props) => <AddPatient {...props} userInSession={this.state.loggedInUser} />} />
             <Route user={this.state.loggedInUser} exact path='/patient/:id' render={(props) => <Patient {...props} userInSession={this.state.loggedInUser} />} />
             <Route user={this.state.loggedInUser} exact path='/consultation/:patientId/new' render={(props) => <AddConsultation {...props} userInSession={this.state.loggedInUser} />} />
+<<<<<<< HEAD
             <Route user={this.state.loggedInUser} exact path='/Schedulings' component={Schedulings} />
             <Route user={this.state.loggedInUser} exact path='/account' render={(props) => <Account {...props} userInSession={this.state.loggedInUser} />} />
             <Route user={this.state.loggedInUser} exact path='/account/:id' render={(props) => <EditAccount {...props} userInSession={this.state.loggedInUser} />} />
+=======
+            <Route exact path='/schedulings' component={Schedulings} />
+            <Route exact path='/consultation/:id' component={Consultation} />
+            
+>>>>>>> development
           </Switch>
         </div>
       );

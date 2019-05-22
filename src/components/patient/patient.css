@@ -81,3 +81,125 @@
   font-size: 12px;
   padding: 5px;
 }
+
+/*******CONSULTATIONS*********/
+.consultation-view {
+  padding: 0 10px 20px;
+}
+
+.consultation-view .consult-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #8492A6;
+  color: #333;
+  background-color: #fff;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+
+.consult-row h4 {
+  color: #52897B;
+}
+
+.consult-row.conduct {
+  flex-direction: column;
+}
+
+.consult-row.conduct .text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.consult-row.conduct .btn-md {
+  margin: 25px 0 10px;
+  height: 30px;
+  width: 80px;
+  padding: 0;
+}
+
+.consult-row.conduct h4 {
+ text-align: right;
+}
+
+.consult-form{
+  background-color: #52897B;
+  padding: 20px 0;
+  color: #fff;
+}
+
+.consult-form textarea {
+  background-color: transparent;
+  border: #ccc solid 1px;
+  width: 80%;
+  color: #fff;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.consult-form .btn {
+  margin-top: 20px;
+  height: 30px;
+}
+
+.consult-form .btn-primary {
+  margin-top: 0;
+
+}
+
+/*******ADD CONSULTATIONS*********/
+.add-consultation {
+  display: flex;
+  margin: 40px auto;
+  width: 90%;
+}
+
+.add-consultation .radio {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: rgba(255, 255, 255, .4);
+  border-radius: 10px;
+  padding: 20px 4px;
+}
+
+.add-consultation .radio p {
+  align-self: center;
+}
+
+.add-consultation .radio label {
+  color: #FF686B;
+  font-weight: 600;
+}
+
+.add-consultation .radio input {
+  margin-bottom: 5px;
+}
+
+.add-consultation input {
+  background-color: transparent;
+  border-bottom: 1px solid gray;
+  border-radius: 0;
+  padding: 0;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.add-consultation textarea {
+  width: 245px;
+  height: 80px;
+  background-color: transparent;
+  border: 1px solid gray;
+  margin-bottom: 20px;
+  font-size: 12px;
+  padding: 5px; 
+}
+
+.add-consultation textarea.cid-name {
+  height: 40px;
+}

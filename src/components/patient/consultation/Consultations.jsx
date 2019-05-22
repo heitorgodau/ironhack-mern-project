@@ -22,11 +22,9 @@ export default class Consultations extends Component {
       })
     });
   }
-
   componentDidMount() {
-    this.getAllConsultations();
-  }
-
+    this.getAllConsultations();    
+  }  
   render() {
     return(
       <div className="consultations">
@@ -36,11 +34,16 @@ export default class Consultations extends Component {
         <div className="consultation-list">
           {
             this.state.consultations.map((consult, idx) => {
-              return(
-                <Link key={idx} to={`/consult/${idx}`}>
-                  <Button btnTitle={`${consult.date} Dr.${consult.id_doctor.name}`} className="btn-white  btn-md btn-round" />
-                </Link>
-              )
+              if (consult.id_patient === this.props.patientId) {
+                const date = consult.created_at.slice(0,10).split('-').reverse().join('/');
+                const prefix = consult.id_doctor.prefix || 'Dr(a).'
+                const name = consult.id_doctor.name || consult.id_doctor.username
+                return(
+                  <Link key={idx} to={`/consultation/${consult._id}`}>
+                    <Button btnTitle={`${date} | ${prefix}${name}`} className="btn-white  btn-md btn-round" />
+                  </Link>
+                )
+              }
             })
           }
         </div>
