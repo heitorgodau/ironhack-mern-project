@@ -87,7 +87,6 @@ export default class AddConsultation extends Component {
   }
 
   render() {
-
     if(this.state.cid.length !== 0){
       axios.get(`https://cid-api.herokuapp.com/cid10/${this.state.cid.toUpperCase()}`)
       .then((result) => {        
