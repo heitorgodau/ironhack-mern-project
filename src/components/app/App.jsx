@@ -13,8 +13,10 @@ import Profile from '../profile/Profile';
 import Patient from '../patient/Patient';
 import AddPatient from '../patient/AddPatient';
 import AddConsultation from '../patient/consultation/AddConsultation'
+import Schedulings from './../scheduling/Schedulings';
+import Account from './../account/Account'
+import EditAccount from './../account/EditAccount'
 import Consultation from '../patient/consultation/Consultation'
-import Schedulings from "./../scheduling/Schedulings";
 
 class App extends React.Component {
   constructor(){
@@ -48,7 +50,7 @@ class App extends React.Component {
       loggedInUser: userObj
     })
   }
-
+  
   getAllPatients(callback) {
     axios.get('http://localhost:5000/api/patients')
     .then((response => {
@@ -62,7 +64,6 @@ class App extends React.Component {
     });
   }
   
-  // this.getAllPatients()
   render(){     
     this.fetchUser() 
     if(this.state.loggedInUser){ 
@@ -77,9 +78,10 @@ class App extends React.Component {
             <Route user={this.state.loggedInUser} path='/patient/add-patient' render={(props) => <AddPatient {...props} userInSession={this.state.loggedInUser} />} />
             <Route user={this.state.loggedInUser} exact path='/patient/:id' render={(props) => <Patient {...props} userInSession={this.state.loggedInUser} />} />
             <Route user={this.state.loggedInUser} exact path='/consultation/:patientId/new' render={(props) => <AddConsultation {...props} userInSession={this.state.loggedInUser} />} />
-            <Route exact path='/schedulings' component={Schedulings} />
+            <Route user={this.state.loggedInUser} exact path='/Schedulings' component={Schedulings} />
+            <Route user={this.state.loggedInUser} exact path='/account' render={(props) => <Account {...props} userInSession={this.state.loggedInUser} />} />
+            <Route user={this.state.loggedInUser} exact path='/account/:id' render={(props) => <EditAccount {...props} userInSession={this.state.loggedInUser} />} />
             <Route exact path='/consultation/:id' component={Consultation} />
-            
           </Switch>
         </div>
       );
@@ -94,6 +96,8 @@ class App extends React.Component {
             <ProtectedRoute user={this.state.loggedInUser} path='/patient/add-patient' component={AddPatient} />
             <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
             <ProtectedRoute user={this.state.loggedInUser} path='/patient/:id' component={Patient} />
+            <ProtectedRoute user={this.state.loggedInUser} path='/account/:id' component={EditAccount} />
+            <ProtectedRoute user={this.state.loggedInUser} path='/account' component={Account} />
           </Switch>
         </div>
       );

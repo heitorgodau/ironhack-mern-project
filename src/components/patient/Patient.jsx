@@ -14,7 +14,7 @@ export default class Patient extends Component {
       moreInfo: false,
       edit: false,
     }
-    
+        
     this.getAge = this.getAge.bind(this);
     this.getOnePatient = this.getOnePatient.bind(this);
     this.editPatient = this.editPatient.bind(this);
@@ -107,7 +107,8 @@ export default class Patient extends Component {
       return(
         <section className="patient-view">
           <div className="patient-data">
-            <h2>Prontuário: {this.state.patient._id}</h2>
+            <h2>Prontuário: {this.state.patient._id}</h2>    
+            <h2>Plano de Saude: {this.state.patient.healthInsurance}</h2>        
             <div className="basic-info">
               <h3>{this.state.patient.name}</h3>
               <div className="age-gender">
@@ -142,11 +143,7 @@ export default class Patient extends Component {
             <div className="patient-row affiliation">
               <h3>Filiação:</h3>
               <h4>{this.state.patient.affiliation}</h4>
-            </div>
-            <div className="patient-row health-insurance">
-              <h3>Convênio médico:</h3>
-              <h4>{this.state.patient.healthInsurance}</h4>
-            </div>
+            </div>           
             <div className="patient-row blood-type">
               <h3>Tipo sanguíneo:</h3>
               <h4>{this.state.patient.bloodType}</h4>
@@ -182,6 +179,7 @@ export default class Patient extends Component {
         <section className="patient-view">
           <div className="patient-data">
             <h2>Prontuário: {this.state.patient._id}</h2>
+            <h2>Plano de Saude: {this.state.patient.healthInsurance}</h2>
             <div className="basic-info">
               <h3>{this.state.patient.name}</h3>
               <div className="age-gender">
