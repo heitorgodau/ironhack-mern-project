@@ -104,21 +104,20 @@ export default class Consultation extends Component {
             </div>
           </div>
           <ConsultationRow className="patient" title="Paciente" display={this.state.consultation.id_patient.name} />
-          <ConsultationRow className="reason" title="Motivo" display={this.state.consultation.reason} />
-          <ConsultationRow className="fisico" title="Fisico" display={this.state.consultation.fisico} />
-          <ConsultationRow className="orofaringe" title="Orofaringe" display={this.state.consultation.orofaringe} />
-          <ConsultationRow className="otoscopia" title="Otoscopia" display={this.state.consultation.otoscopia} />
-          <ConsultationRow className="SNC" title="SNC" display={this.state.consultation.SNC} />
-          <ConsultationRow className="rigidez-da-nuca" title="Rigidez da nuca" display={this.state.consultation.rigidez_da_nuca} />
-          <ConsultationRow className="cardiovascular" title="Cardiovascular" display={this.state.consultation.cardiovascular} />
-          <ConsultationRow className="rcr-2t-bnf-s-s" title="RCR 2T BNF S S" display={this.state.consultation.RCR_2T_BNF_S_S} />
-          <ConsultationRow className="pele-e-faneros" title="Pele e faneros" display={this.state.consultation.pele_e_faneros} />
-          <ConsultationRow className="ap-respiratorio" title="Aparato respiratório" display={this.state.consultation.ap_respiratorio} />
-          <ConsultationRow className="r-adv" title="R Adv" display={this.state.consultation.R_Adv} />
-          <ConsultationRow className="abdome" title="Abdome" display={this.state.consultation.abdome} />
-          <ConsultationRow className="osteo-articular" title="Osteo articular" display={this.state.consultation.osteo_articular} />
-          <ConsultationRow className="pa" title="PA" display={this.state.consultation.PA} />
-          <ConsultationRow className="symptoms" title="Anaminesi" display={this.state.consultation.symptoms} />
+            <ConsultationRow className="reason" title="Motivo" display={this.state.consultation.reason} />
+            <ConsultationRow className="symptoms" title="Anaminesi" display={this.state.consultation.symptoms} />          
+            <ConsultationRow className="fisico" title="Exame Fisico" display={this.state.consultation.fisico} />
+            <ConsultationRow className="orofaringe" title="Orofaringe" display={this.state.consultation.orofaringe} />
+            <ConsultationRow className="otoscopia" title="Otoscopia" display={this.state.consultation.otoscopia} />
+            <ConsultationRow className="SNC" title="SNC" display={this.state.consultation.SNC} />
+            <ConsultationRow className="rigidez-da-nuca" title="Rigidez da nuca" display={this.state.consultation.rigidez_da_nuca} />
+            <ConsultationRow className="pupilas" title="Pupilas" display={this.state.consultation.pupilas} />
+            <ConsultationRow className="glasgow" title="Glasgow" display={this.state.consultation.glasgow} />
+            <ConsultationRow className="cardiovascular" title="Cardiovascular" display={this.state.consultation.cardiovascular} />            
+            <ConsultationRow className="pele-e-faneros" title="Pele e faneros" display={this.state.consultation.pele_e_faneros} />
+            <ConsultationRow className="ap-respiratorio" title="Aparato respiratório" display={this.state.consultation.ap_respiratorio} />            
+            <ConsultationRow className="abdome" title="Abdome" display={this.state.consultation.abdome} />
+            <ConsultationRow className="osteo-articular" title="Osteo articular" display={this.state.consultation.osteo_articular} />  
           <div className="consult-row cid">
             <h3>CID:</h3>
             <div>
@@ -171,7 +170,7 @@ export default class Consultation extends Component {
             </div>
             <ConsultationRow className="patient" title="Paciente" display={this.state.consultation.id_patient.name} />
             <ConsultationRow className="reason" title="Motivo" display={this.state.consultation.reason} />
-            <ConsultationRow className="symptoms" title="Anaminesi" display={this.state.consultation.symptoms} />            
+            <ConsultationRow className="symptoms" title="Anaminesi" display={this.state.consultation.symptoms} />          
             <ConsultationRow className="fisico" title="Exame Fisico" display={this.state.consultation.fisico} />
             <ConsultationRow className="orofaringe" title="Orofaringe" display={this.state.consultation.orofaringe} />
             <ConsultationRow className="otoscopia" title="Otoscopia" display={this.state.consultation.otoscopia} />
@@ -183,8 +182,7 @@ export default class Consultation extends Component {
             <ConsultationRow className="pele-e-faneros" title="Pele e faneros" display={this.state.consultation.pele_e_faneros} />
             <ConsultationRow className="ap-respiratorio" title="Aparato respiratório" display={this.state.consultation.ap_respiratorio} />            
             <ConsultationRow className="abdome" title="Abdome" display={this.state.consultation.abdome} />
-            <ConsultationRow className="osteo-articular" title="Osteo articular" display={this.state.consultation.osteo_articular} />
-                       
+            <ConsultationRow className="osteo-articular" title="Osteo articular" display={this.state.consultation.osteo_articular} />                       
             <div className="consult-row cid">
               <h3>CID:</h3>
               <div>

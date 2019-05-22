@@ -208,8 +208,10 @@ export default class AddConsultation extends Component {
             </div> 
 
             <div className="radio">
-              <p>Glasgow</p>              
-                <input type="number" name="glasgow" value={this.state.glasgow} placeholder="Escala de glasgow" onChange={(e) => this.handleChange(e)}/>        
+              <p>Glasgow</p>
+              <div className="textinput">                
+                <input min ="3" max="15" type="number" name="glasgow" value={this.state.glasgow} placeholder="Escala de glasgow" onChange={(e) => this.handleChange(e)}/>        
+              </div>              
             </div> 
 
             <div className="radio">
