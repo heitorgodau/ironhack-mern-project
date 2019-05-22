@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import '../patient.css';
+import '../consultation/consultation.css'
 
 import service from './service'
 import Button from '../../button/Button'
@@ -15,17 +16,15 @@ export default class AddConsultation extends Component {
       otoscopia:'',
       SNC:'',
       rigidez_da_nuca:'', 
-      cardiovascular:'',  
-      RCR_2T_BNF_S_S:'',  
+      pupilas:'',
+      glasgow:'',
+      cardiovascular:'',         
       pele_e_faneros:'', 
-      ap_respiratorio:'',
-      R_Adv:'',
+      ap_respiratorio:'',      
       abdome:'',
-      osteo_articular:'',
-      PA:'',
+      osteo_articular:'',      
       cid: '',
-      nameCid: '',
-      exam: '',
+      nameCid: '',      
       symptoms: '',
       conduct: '',
       imageUrl:'',
@@ -66,6 +65,7 @@ export default class AddConsultation extends Component {
           otoscopia:'',
           SNC:'',
           rigidez_da_nuca:'', 
+          pupilas:'',
           cardiovascular:'',  
           RCR_2T_BNF_S_S:'',  
           pele_e_faneros:'', 
@@ -73,7 +73,7 @@ export default class AddConsultation extends Component {
           R_Adv:'',
           abdome:'',
           osteo_articular:'',
-          PA:'',
+          glasgow:'',
           cid: '',
           nameCid: '',
           exam: '',
@@ -100,16 +100,22 @@ export default class AddConsultation extends Component {
       <section className="add-consultation">
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <div className="fisic-exam">
+
+          <input type="text" name="reason" value={this.state.reason} placeholder="Motivo da consulta" onChange={(e) => this.handleChange(e)}/>     
+        
+          <textarea name="symptoms" placeholder="anaminesi" value={this.state.symptoms} onChange={(e) => this.handleChange(e)}/>
+
             <h3>Exame Fisico</h3>
+            
             <div className="radio">
               <label>
                 <input type="radio" name="fisico" onChange={(e) => this.handleChange(e)} value='Normal corado, Hidratado, Acian, Afeb, Eupneico'/>
-                Normal corado, Hidratado, Acian, Afeb, Eupneico
+                Normal
               </label> 
               <br/>
               <label>
-                <input type="radio" name="fisico" onChange={(e) => this.handleChange(e)} value='Anormal'/>
-                Anormal
+                <input type="radio" name="fisico" onChange={(e) => this.handleChange(e)} value='Alterado'/>
+                Alterado
               </label> 
             </div> 
 
@@ -147,15 +153,20 @@ export default class AddConsultation extends Component {
                 <input type="radio" name="otoscopia" onChange={(e) => this.handleChange(e)} value='Purulenta'/>
                 Purulenta
               </label> 
-            </div> 
+            </div>           
 
             <div className="radio">
               <p>SNC</p>
               <label>
                 <input type="radio" name="SNC" onChange={(e) => this.handleChange(e)} value='Normal Reflexos Positivos'/>
                 Normal Reflexos Positivos
-              </label>             
-            </div> 
+              </label>   
+              <br/> 
+              <label>
+                <input type="radio" name="SNC" onChange={(e) => this.handleChange(e)} value='Alterado'/>
+                Alterado
+              </label>          
+            </div>           
 
             <div className="radio">
               <p>Rigidez da nuca</p>
@@ -176,30 +187,47 @@ export default class AddConsultation extends Component {
             </div> 
 
             <div className="radio">
-              <p>Cardiovascular</p>
+              <p>Pupilas</p>
               <label>
-                <input type="radio" name="cardiovascular" onChange={(e) => this.handleChange(e)} value='Normal'/>
-                Normal
+                <input type="radio" name="pupilas" onChange={(e) => this.handleChange(e)} value='Isocoricas - Normal'/>
+                Isocoricas / Normal
               </label>
               <br/> 
               <label>
-                <input type="radio" name="otoscopia" onChange={(e) => this.handleChange(e)} value='Anormal'/>
-                Anormal
-              </label>    
+                <input type="radio" name="pupilas" onChange={(e) => this.handleChange(e)} value='Mióticas'/>
+                Mióticas
+              </label>
+              <br/> 
+              <label>
+                <input type="radio" name="pupilas" onChange={(e) => this.handleChange(e)} value='Midriáticas'/>
+                Midriáticas
+              </label> 
+              <label>
+                <input type="radio" name="pupilas" onChange={(e) => this.handleChange(e)} value='Anisocónicas'/>
+                Anisocónicas
+              </label> 
             </div> 
 
             <div className="radio">
-              <p>RCR em 2T BNF S S</p>
+              <p>Glasgow</p>              
+                <input type="number" name="glasgow" value={this.state.glasgow} placeholder="Escala de glasgow" onChange={(e) => this.handleChange(e)}/>        
+            </div> 
+
+            <div className="radio">
+              <p>Cardiovascular</p>
               <label>
-                <input type="radio" name="RCR_2T_BNF_S_S" onChange={(e) => this.handleChange(e)} value='Normal'/>
+                <input type="radio" name="cardiovascular" onChange={(e) => this.handleChange(e)} value='Normal- RCR em 2T BNF S S'/>
                 Normal
               </label>
               <br/> 
-              <label>
-                <input type="radio" name="RCR_2T_BNF_S_S" onChange={(e) => this.handleChange(e)} value='Anormal'/>
-                Anormal
-              </label>             
-            </div> 
+              <div className="block">  
+                <label>
+                  <input type="radio" name="cardiovascular" onChange={(e) => this.handleChange(e)} value=''/>
+                  Alterado:
+                </label>   
+                <input type="text" name="cardiovascular" placeholder="" onChange={(e) => this.handleChange(e)}/> 
+              </div>     
+            </div>          
 
             <div className="radio">
               <p>Pele e Fâneros</p>
@@ -207,45 +235,58 @@ export default class AddConsultation extends Component {
                 <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Normal'/>
                 Normal
               </label>
-              <br/> 
-              <label>
-                <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Anormal'/>
-                Anormal
-              </label>
-              <br/> 
+              <br/>               
               <label>
                 <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Petequias'/>
                 Petequias
+              </label>   
+              <br/>             
+              <label>
+                <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Pústulas'/>
+                Pústulas
+              </label>              
+              <br/> 
+              <label>
+                <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Placas hiperémicas'/>
+                Placas hiperémicas
+              </label> 
+              <br/> 
+              <label>
+                <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Vesículas'/>
+                Vesículas
               </label> 
             </div> 
 
             <div className="radio">
               <p>Aparato Respiratorio</p>
               <label>
-                <input type="radio" name="ap_respiratorio" onChange={(e) => this.handleChange(e)} value='Normal MV + S'/>
-                Normal MV + S
-              </label>                    
-            </div> 
-
-            <div className="radio">
-              <p>R.Adv</p>
-              <label>
-                <input type="radio" name="R_Adv" onChange={(e) => this.handleChange(e)} value='Anormal'/>
-                Normal
-              </label>           
-            </div> 
+                <input type="radio" name="ap_respiratorio" onChange={(e) => this.handleChange(e)} value='Normal / MV + S R.Adv'/>
+                Normal / MV + S R.Adv
+              </label>   
+              <br/> 
+              <div className="block">  
+                <label>
+                  <input type="radio" name="ap_respiratorio" onChange={(e) => this.handleChange(e)} value=''/>
+                  Alterado
+                </label> 
+                <input type="text" name="ap_respiratorio" placeholder="" onChange={(e) => this.handleChange(e)}/>
+              </div>                   
+            </div>
 
             <div className="radio">
               <p>Abdome</p>
               <label>
-                <input type="radio" name="abdome" onChange={(e) => this.handleChange(e)} value='Normal'/>
+                <input type="radio" name="abdome" onChange={(e) => this.handleChange(e)} value='Normal / Ruidos hidroaereos positivos sem dor a palpitação'/>
                 Normal
               </label>
               <br/>
-              <label>
-                <input type="radio" name="abdome" onChange={(e) => this.handleChange(e)} value='Anormal'/>
-                Anormal
-              </label>        
+              <div className="block">  
+                <label>
+                  <input type="radio" name="abdome" onChange={(e) => this.handleChange(e)} value=''/>
+                  Alterado
+                </label>   
+                <input type="text" name="abdome" placeholder="" onChange={(e) => this.handleChange(e)}/> 
+              </div>     
             </div> 
 
             <div className="radio">
@@ -254,103 +295,16 @@ export default class AddConsultation extends Component {
                 <input type="radio" name="osteo_articular" onChange={(e) => this.handleChange(e)} value='Normal'/>
                 Normal
               </label>
-              <br/>     
-              <label>
-                <input type="radio" name="osteo_articular" onChange={(e) => this.handleChange(e)} value='Anormal'/>
-                Anormal
-              </label>                    
+              <br/>   
+              <div className="block">  
+                <label>
+                  <input type="radio" name="osteo_articular" onChange={(e) => this.handleChange(e)} value=''/>
+                  Alterado
+                </label> 
+                <input type="text" name="osteo_articular" placeholder="" onChange={(e) => this.handleChange(e)}/>                         
+              </div>  
             </div> 
-
-            <div className="radio">
-              <p>PA</p>
-              <label>
-                <input type="radio" name="PA" onChange={(e) => this.handleChange(e)} value='Glasglow'/>
-                Gasglow
-              </label>         
-            </div> 
-          </div>
-
-          <input type="text" name="reason" value={this.state.reason} placeholder="Motivo da consulta" onChange={(e) => this.handleChange(e)}/>
-
-          <h3>Exame Fisico</h3>
-          <div>
-            <label>Normal corado, Hidratado, Acian, Afeb, Eupneico<input type="radio" name="fisico" onChange={(e) => this.handleChange(e)} value='Normal corado, Hidratado, Acian, Afeb, Eupneico'/></label> 
-            <label>Anormal<input type="radio" name="fisico" onChange={(e) => this.handleChange(e)} value='Anormal'/></label> 
-          </div> 
-
-          <div>
-            <p>Orofaringe</p>
-            <label>Normal<input type="radio" name="orofaringe" onChange={(e) => this.handleChange(e)} value='Normal'/></label> 
-            <label>Hiperemia<input type="radio" name="orofaringe" onChange={(e) => this.handleChange(e)} value='Hiperemia'/></label> 
-            <label>Purulenta<input type="radio" name="orofaringe" onChange={(e) => this.handleChange(e)} value='Purulenta'/></label> 
-          </div> 
-
-          <div>
-            <p>Otoscopia</p>
-            <label>Normal<input type="radio" name="otoscopia" onChange={(e) => this.handleChange(e)} value='Normal'/></label> 
-            <label>Hiperemia<input type="radio" name="otoscopia" onChange={(e) => this.handleChange(e)} value='Hiperemia'/></label> 
-            <label>Purulenta<input type="radio" name="otoscopia" onChange={(e) => this.handleChange(e)} value='Purulenta'/></label> 
-          </div> 
-
-          <div>
-            <p>SNC</p>
-            <label>Normal Reflexos Positivos<input type="radio" name="SNC" onChange={(e) => this.handleChange(e)} value='Normal Reflexos Positivos'/></label>             
-          </div> 
-
-          <div>
-            <p>Rigidez da nuca</p>
-            <label>Negativo<input type="radio" name="rigidez_da_nuca" onChange={(e) => this.handleChange(e)} value='Negativo'/></label> 
-            <label>Positivo<input type="radio" name="rigidez_da_nuca" onChange={(e) => this.handleChange(e)} value='Positivo'/></label> 
-            <label>Duvidoso<input type="radio" name="rigidez_da_nuca" onChange={(e) => this.handleChange(e)} value='Duvidoso'/></label> 
-          </div> 
-
-          <div>
-            <p>Cardiovascular</p>
-            <label>Normal<input type="radio" name="cardiovascular" onChange={(e) => this.handleChange(e)} value='Normal'/></label> 
-            <label>Anormal<input type="radio" name="otoscopia" onChange={(e) => this.handleChange(e)} value='Anormal'/></label>             
-          </div> 
-
-          <div>
-            <p>RCR em 2T BNF S S</p>
-            <label>Normal<input type="radio" name="RCR_2T_BNF_S_S" onChange={(e) => this.handleChange(e)} value='Normal'/></label> 
-            <label>Anormal<input type="radio" name="RCR_2T_BNF_S_S" onChange={(e) => this.handleChange(e)} value='Anormal'/></label>             
-          </div> 
-
-          <div>
-            <p>Pele e Fâneros</p>
-            <label>Normal<input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Normal'/></label> 
-            <label>Anormal<input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Anormal'/></label> 
-            <label>Petequias<input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Petequias'/></label> 
-          </div> 
-
-          <div>
-            <p>Aparato Respiratorio</p>
-            <label>Normal MV + S<input type="radio" name="ap_respiratorio" onChange={(e) => this.handleChange(e)} value='Normal MV + S'/></label>                    
-          </div> 
-
-          <div>
-            <p>R.Adv</p>
-            <label>Normal<input type="radio" name="R_Adv" onChange={(e) => this.handleChange(e)} value='Anormal'/></label>                        
-          </div> 
-
-          <div> 
-            <p>Abdome</p>
-            <label>Normal<input type="radio" name="abdome" onChange={(e) => this.handleChange(e)} value='Normal'/></label>     
-            <label>Anormal<input type="radio" name="abdome" onChange={(e) => this.handleChange(e)} value='Anormal'/></label>                    
-          </div> 
-
-          <div>
-            <p>Osteo Articular</p>
-            <label>Normal<input type="radio" name="osteo_articular" onChange={(e) => this.handleChange(e)} value='Normal'/></label>     
-            <label>Anormal<input type="radio" name="osteo_articular" onChange={(e) => this.handleChange(e)} value='Anormal'/></label>                    
-          </div> 
-
-          <div>
-            <p>PA</p>
-            <label>Gasglow<input type="radio" name="PA" onChange={(e) => this.handleChange(e)} value='Glasglow'/></label>                        
-          </div>
-        
-          <textarea name="symptoms" placeholder="Sintomas do paciente" value={this.state.symptoms} onChange={(e) => this.handleChange(e)}/>
+          </div>          
           
           <textarea name="conduct" placeholder="Conduta médica" value={this.state.conduct} onChange={(e) => this.handleChange(e)}/>
           
