@@ -8,7 +8,7 @@ class EditAccount extends Component {
       name: this.props.userInSession.name,
       crm: this.props.userInSession.crm,
       specialty: this.props.userInSession.specialty,
-      prefixo: this.props.userInSession.prefixo,
+      prefix: this.props.userInSession.prefix,
       email: this.props.userInSession.email,
       birthdate: this.props.userInSession.birthdate,
       telResidencial: this.props.userInSession.telResidencial,
@@ -19,6 +19,7 @@ class EditAccount extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeCrm = this.handleChangeCrm.bind(this);
+    this.handleChangePrefix = this.handleChangePrefix.bind(this);
     this.handleChangeSpecialty = this.handleChangeSpecialty.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangeBirthDate = this.handleChangeBirthDate.bind(this);
@@ -34,7 +35,7 @@ class EditAccount extends Component {
       name,
       crm,
       specialty,
-      prefixo,
+      prefix,
       email,
       birthdate,
       telResidencial,
@@ -44,7 +45,7 @@ class EditAccount extends Component {
     } = this.state;
     axios
       .put(
-        `http://localhost:5000/api/doctor/${this.props.userInSession._id}`, { name, crm, specialty, prefixo, email, birthdate, telResidencial, cellphone, username, password })
+        `http://localhost:5000/api/doctor/${this.props.userInSession._id}`, { name, crm, specialty, prefix, email, birthdate, telResidencial, cellphone, username, password })
       .then(() => {
         this.props.history.push("/account");
       })
@@ -63,9 +64,9 @@ class EditAccount extends Component {
     })
   }
 
-  handleChangePrefixo(event){
+  handleChangePrefix(event){
     this.setState({
-      prefixo: event.target.value
+      prefix: event.target.value
     })
   }
 
@@ -123,7 +124,7 @@ class EditAccount extends Component {
           <label>CRM: </label>
           <input name="crm" value={this.state.crm} onChange={e => this.handleChangeCrm(e)} required/>
           <label>Prefixo: </label>
-          <input name="crm" value={this.state.prefixo} onChange={e => this.handleChangePrefixo(e)}/>
+          <input name="prefix" value={this.state.prefix} onChange={e => this.handleChangePrefix(e)}/>
           <label>Especialidade: </label>
           <input type="text" name="specialty" value={this.state.specialty} onChange={e => this.handleChangeSpecialty(e)}/>
           <label>E-mail: </label>

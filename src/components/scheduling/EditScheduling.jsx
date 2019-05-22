@@ -82,7 +82,7 @@ class EditScheduling extends Component {
             <input type="date" name="date" value={ this.state.date } onChange={ event => this.handleChangeDate( event ) }/>
             <label>Hora: </label>
             <select name="hour" onChange={ event => this.handleChangeHour( event ) } required >
-              <option value="" disabled selected>Escolha seu horário</option>
+              <option disabled>Escolha seu horário</option>
               <option value='8:00'>8:00</option>
               <option value='12:00'>12:00</option>
               <option value='14:00'>14:00</option>

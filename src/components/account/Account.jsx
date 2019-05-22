@@ -32,7 +32,7 @@ class Account extends Component {
         <h2>Nome: {this.state.doctor.name}</h2>
         <h2>Username: {this.state.doctor.username}</h2>
         <h2>CRM: {this.state.doctor.crm}</h2>
-        <h2>Prefixo: {this.state.doctor.prefixo}</h2>
+        <h2>Prefixo: {this.state.doctor.prefix}</h2>
         <h2>Especialidade: {this.state.doctor.specialty}</h2>
         <h2>Email: {this.state.doctor.email}</h2>
         <h2>Data de nascimento: {this.state.doctor.birthdate}</h2>
