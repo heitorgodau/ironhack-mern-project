@@ -10,7 +10,7 @@ class Navbar extends Component {
   constructor(props){
     super(props);
     this.state={
-      menuOpen:false,
+      menuOpen:false      
     }
     this.service = new AuthService();
   }
@@ -73,9 +73,8 @@ class Navbar extends Component {
         },
       }
 
-    return (
-     
-      <div className="navbar">
+    return (     
+      <div className="navbar">       
         <div style={styles.container}>
           <MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='#333'/>
           <figure className="logo" style={styles.logo}>
@@ -89,6 +88,7 @@ class Navbar extends Component {
           <Link to='/profile'><MenuItem delay='0s' onClick={()=>{this.handleLinkClick();}}>Pacientes</MenuItem></Link>
           <Link to='/account'><MenuItem delay='0.1s' onClick={()=>{this.handleLinkClick();}}>Minha Conta</MenuItem></Link>
           <Link to='/schedulings'><MenuItem delay='0.2s' onClick={()=>{this.handleLinkClick();}}>Agenda</MenuItem></Link>
+          <a rel='noopener noreferrer' target="_blank" href="https://doutorarebeca.mybluemix.net/"><MenuItem delay='0.2s'>Chatbot</MenuItem></a>
           <Link to='/'><MenuItem delay='0.3s' onClick={() => this.logoutUser()}>Logout</MenuItem></Link>
         </Menu>
       </div>
