@@ -5,18 +5,25 @@
   border: none;
   cursor: pointer;
 }
+
+.btn.mt-0 {
+  margin-top: 0;
+}
+
 .btn:focus{
   outline: none;
 }
+
 .btn-md {
   width: fit-content;
   height: 40px;
   padding: 0 40px;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .btn-lg {
+  max-width: 500px;
   width: 90vw;
   height: 50px;
   margin-top: 24px;
@@ -37,7 +44,7 @@
 }
 
 .btn-primary:hover {
-  background-color: #fff;
+  background-color: #00A779;
   color: #333;
 }
 
@@ -50,6 +57,17 @@
 .btn-white:hover { 
   background-color: #FF8540;
   color: #fff;
+}
+
+.btn-cancel {
+  background-color: #04346C;
+  color: #fff;
+  transition: .2s ease-in-out;
+}
+
+.btn-cancel:hover {
+  background-color: #6899D3;
+  color: #333;
 }
 
 .btn-transparent {

@@ -1,0 +1,63 @@
+.account {
+  margin-top: 80px;
+}
+
+.account .user-data {
+  width: fit-content;
+  text-align: left;
+  margin: 0 auto;
+}
+
+.account h2 {
+  font-size: 2em;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.account .user-data h3 {
+  font-weight: 400;
+}
+
+.account .user-data h3 span {
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #52897B;
+  margin-left: 5px;
+}
+
+/**********EDIT ACCOUNT***********/
+.edit-account {
+  margin-top: 80px;
+}
+
+.edit-account form input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #00A779;
+  border-radius: 0;
+  padding: 0;
+  height: auto;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.edit-account h2 {
+  font-weight: 400;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.edit-account h3 {
+  font-weight: 400;
+  font-size: 1.5em;
+  margin-bottom: 0;
+}
+
+.edit-account p {
+  font-size: .8em;
+  margin-bottom: 15px;
+}
+
+.edit-account form input[name="cellphone"] {
+  margin-bottom: 40px;
+}

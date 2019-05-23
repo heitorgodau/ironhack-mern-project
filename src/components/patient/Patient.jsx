@@ -104,8 +104,8 @@ export default class Patient extends Component {
           <textarea name="surgicalHistory" placeholder="Histórico de cirurgias" value={this.state.patient.surgicalHistory} onChange={(e) => this.handleChange(e)}/>
           <textarea name="familyHistory" placeholder="Histórico familiar" value={this.state.patient.familyHistory} onChange={(e) => this.handleChange(e)}/>
           <textarea name="allergies" placeholder="Alergias" value={this.state.patient.allergies} onChange={(e) => this.handleChange(e)}/>
-          <Button btnTitle="Enviar" className="btn-white btn-md btn-round" type="submit" />
-          <Button btnTitle="Cancelar" className="btn-primary btn-md btn-round" onClick={() => this.cancelEdit()} />
+          <Button btnTitle="Enviar" className="btn-primary btn-md btn-round" type="submit" />
+          <Button btnTitle="Cancelar" className="mt-0 btn-cancel btn-md btn-round" onClick={() => this.cancelEdit()} />
         </form>
       </section>
       )

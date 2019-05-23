@@ -130,8 +130,8 @@ export default class Consultation extends Component {
             <h3>Conduta:</h3>
             <form onSubmit={(e) => this.handleSubmit(e)}>
               <textarea name="conduct" cols="20" rows="5" placeholder="Conduta médica" value={this.state.consultation.conduct} onChange={(e) => this.handleChange(e)} />
-              <Button btnTitle="Enviar" className="btn-white btn-round btn-md" type="submit" />
-              <Button btnTitle="Cancelar" className="btn-primary btn-round btn-md" onClick={this.cancelEdit} />
+              <Button btnTitle="Enviar" className="btn-primary btn-round btn-md" type="submit" />
+              <Button btnTitle="Cancelar" className="btn-cancel mt-0 btn-round btn-md" onClick={this.cancelEdit} />
             </form>
           </div>
           {
@@ -238,7 +238,7 @@ export default class Consultation extends Component {
                   </div>
               }
               <Link to={`/patient/${this.state.consultation.id_patient._id}`}>
-                <Button btnTitle="Voltar" className="btn-round btn-primary btn-md btn-back" />
+                <Button btnTitle="Voltar" className="mt-0 btn-round btn-cancel btn-md btn-back" />
               </Link>
           </section>
         )

@@ -46,6 +46,7 @@ class Navbar extends Component {
     const styles= 
       {
         container:{
+          padding: '0 20px',
           position: 'fixed',
           top: 0,
           left: 0,
@@ -77,7 +78,12 @@ class Navbar extends Component {
       <div className="navbar">
         <div style={styles.container}>
           <MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='#333'/>
-          <div style={styles.logo}>DoctorApp</div>
+          <figure className="logo" style={styles.logo}>
+            <img src="../../images/logo.png" alt="Doctor Helper in green, an orange circle behind de letters with a stethoscope icon"/>
+          </figure>
+          <div className="user">
+            <h4>Bom dia, <span>{this.props.userInSession.name}</span></h4>
+          </div>
         </div>
         <Menu open={this.state.menuOpen}>
           <Link to='/profile'><MenuItem delay='0s' onClick={()=>{this.handleLinkClick();}}>Pacientes</MenuItem></Link>

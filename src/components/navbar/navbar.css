@@ -3,7 +3,7 @@
 
 .container {
   position: fixed;
-  top: 30px;
+  top: 50px;
   left: 0;
   width: 100vw;
   display: flex;
@@ -17,6 +17,15 @@
 
 .menu-list {
   padding-top: '3rem',
+}
+
+.navbar .user {
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+}
+
+.user span{
+  color: #333;
 }
 
 @keyframes appear {

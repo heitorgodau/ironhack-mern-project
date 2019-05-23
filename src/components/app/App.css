@@ -1,16 +1,12 @@
 .app {
   text-align: center;
-} 
+}
 
-.logo {
-  width: 80%;
+.navbar .logo {
+  width: 150px;
   margin: 30px auto;
-}
 
-.logo img {
-  width: 100%;
 }
-
 
 @media(min-width: 768px ) {
   .patient-view,
@@ -20,11 +16,3 @@
     padding-bottom: 20px; 
   }
 }
-
-/* @media(min-width: 1440px) {
-  .patient-view {
-    width: 60%;
-    margin: 40px auto;
-    padding-bottom: 20px; 
-  }
-} */

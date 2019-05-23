@@ -39,7 +39,7 @@ body {
   font-family: 'Oswald', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #006D4F;
+  background-color: #fff;
 }
 
 .uppercase {
@@ -68,6 +68,7 @@ form > input {
   border-radius: 30px;
   border: none;
   padding: 7px;
+  background-color: rgb(255, 177, 131)
 }
 
 form > input:focus {

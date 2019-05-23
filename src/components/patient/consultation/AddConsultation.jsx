@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../patient.css';
 import '../consultation/consultation.css'
@@ -107,37 +108,42 @@ export default class AddConsultation extends Component {
             <h3>Exame Fisico</h3>
             
             <div className="radio">
-              <label>
-                <input type="radio" name="fisico" onChange={(e) => this.handleChange(e)} value='Normal corado, Hidratado, Acian, Afeb, Eupneico'/>
-                Normal
-              </label> 
-              <br/>
-              <label>
-                <input type="radio" name="fisico" onChange={(e) => this.handleChange(e)} value='Alterado'/>
-                Alterado
-              </label> 
+              <div className="fisico options">
+                <label>
+                  <input type="radio" name="fisico" onChange={(e) => this.handleChange(e)} value='Normal corado, Hidratado, Acian, Afeb, Eupneico'/>
+                  Normal
+                </label> 
+                <br/>
+                <label>
+                  <input type="radio" name="fisico" onChange={(e) => this.handleChange(e)} value='Alterado'/>
+                  Alterado
+                </label> 
+              </div>
             </div> 
 
             <div className="radio">
-              <p>Orofaringe</p>
-              <label>
-                <input type="radio" name="orofaringe" onChange={(e) => this.handleChange(e)} value='Normal'/>
-                Normal
-              </label>
-              <br/> 
-              <label>
-                <input type="radio" name="orofaringe" onChange={(e) => this.handleChange(e)} value='Hiperemia'/>
-                Hiperemia
-              </label>
-              <br/> 
-              <label>
-                <input type="radio" name="orofaringe" onChange={(e) => this.handleChange(e)} value='Purulenta'/>
-                Purulenta
-              </label> 
+                <p>Orofaringe</p>
+              <div className="orofaringe options">
+                <label>
+                  <input type="radio" name="orofaringe" onChange={(e) => this.handleChange(e)} value='Normal'/>
+                  Normal
+                </label>
+                <br/> 
+                <label>
+                  <input type="radio" name="orofaringe" onChange={(e) => this.handleChange(e)} value='Hiperemia'/>
+                  Hiperemia
+                </label>
+                <br/> 
+                <label>
+                  <input type="radio" name="orofaringe" onChange={(e) => this.handleChange(e)} value='Purulenta'/>
+                  Purulenta
+                </label> 
+              </div>
             </div> 
 
             <div className="radio">
               <p>Otoscopia</p>
+              <div className="otoscopia options">
               <label>
                 <input type="radio" name="otoscopia" onChange={(e) => this.handleChange(e)} value='Normal'/>
                 Normal
@@ -152,156 +158,176 @@ export default class AddConsultation extends Component {
                 <input type="radio" name="otoscopia" onChange={(e) => this.handleChange(e)} value='Purulenta'/>
                 Purulenta
               </label> 
+              </div>
             </div>           
 
             <div className="radio">
               <p>SNC</p>
-              <label>
-                <input type="radio" name="SNC" onChange={(e) => this.handleChange(e)} value='Normal Reflexos Positivos'/>
-                Normal Reflexos Positivos
-              </label>   
-              <br/> 
-              <label>
-                <input type="radio" name="SNC" onChange={(e) => this.handleChange(e)} value='Alterado'/>
-                Alterado
-              </label>          
+              <div className="snc options">
+                <label>
+                  <input type="radio" name="SNC" onChange={(e) => this.handleChange(e)} value='Normal Reflexos Positivos'/>
+                  Normal Reflexos Positivos
+                </label>   
+                <br/> 
+                <label>
+                  <input type="radio" name="SNC" onChange={(e) => this.handleChange(e)} value='Alterado'/>
+                  Alterado
+                </label>          
+              </div>
             </div>           
 
             <div className="radio">
               <p>Rigidez da nuca</p>
-              <label>
-                <input type="radio" name="rigidez_da_nuca" onChange={(e) => this.handleChange(e)} value='Negativo'/>
-                Negativo
-              </label>
-              <br/> 
-              <label>
-                <input type="radio" name="rigidez_da_nuca" onChange={(e) => this.handleChange(e)} value='Positivo'/>
-                Positivo
-              </label>
-              <br/> 
-              <label>
-                <input type="radio" name="rigidez_da_nuca" onChange={(e) => this.handleChange(e)} value='Duvidoso'/>
-                Duvidoso
-              </label> 
+              <div className="rigidez-nuca options">
+                <label>
+                  <input type="radio" name="rigidez_da_nuca" onChange={(e) => this.handleChange(e)} value='Negativo'/>
+                  Negativo
+                </label>
+                <br/> 
+                <label>
+                  <input type="radio" name="rigidez_da_nuca" onChange={(e) => this.handleChange(e)} value='Positivo'/>
+                  Positivo
+                </label>
+                <br/> 
+                <label>
+                  <input type="radio" name="rigidez_da_nuca" onChange={(e) => this.handleChange(e)} value='Duvidoso'/>
+                  Duvidoso
+                </label> 
+              </div>
             </div> 
 
             <div className="radio">
               <p>Pupilas</p>
-              <label>
-                <input type="radio" name="pupilas" onChange={(e) => this.handleChange(e)} value='Isocoricas - Normal'/>
-                Isocoricas / Normal
-              </label>
-              <br/> 
-              <label>
-                <input type="radio" name="pupilas" onChange={(e) => this.handleChange(e)} value='Mióticas'/>
-                Mióticas
-              </label>
-              <br/> 
-              <label>
-                <input type="radio" name="pupilas" onChange={(e) => this.handleChange(e)} value='Midriáticas'/>
-                Midriáticas
-              </label> 
-              <label>
-                <input type="radio" name="pupilas" onChange={(e) => this.handleChange(e)} value='Anisocónicas'/>
-                Anisocónicas
-              </label> 
+              <div className="pupilas options">
+                <label>
+                  <input type="radio" name="pupilas" onChange={(e) => this.handleChange(e)} value='Isocoricas - Normal'/>
+                  Isocoricas / Normal
+                </label>
+                <br/> 
+                <label>
+                  <input type="radio" name="pupilas" onChange={(e) => this.handleChange(e)} value='Mióticas'/>
+                  Mióticas
+                </label>
+                <br/> 
+                <label>
+                  <input type="radio" name="pupilas" onChange={(e) => this.handleChange(e)} value='Midriáticas'/>
+                  Midriáticas
+                </label> 
+                <br/>
+                <label>
+                  <input type="radio" name="pupilas" onChange={(e) => this.handleChange(e)} value='Anisocónicas'/>
+                  Anisocónicas
+                </label> 
+              </div>
             </div> 
 
             <div className="radio">
-              <p>Glasgow</p>              
+              <p>Glasgow</p>
+              <div className="glasgow options">
                 <input type="number" name="glasgow" value={this.state.glasgow} placeholder="Escala de glasgow" onChange={(e) => this.handleChange(e)}/>        
+              </div>            
             </div> 
 
             <div className="radio">
               <p>Cardiovascular</p>
-              <label>
-                <input type="radio" name="cardiovascular" onChange={(e) => this.handleChange(e)} value='Normal- RCR em 2T BNF S S'/>
-                Normal
-              </label>
-              <br/> 
-              <div className="block">  
+              <div className="cardiovascular options">
                 <label>
-                  <input type="radio" name="cardiovascular" onChange={(e) => this.handleChange(e)} value=''/>
-                  Alterado:
-                </label>   
-                <input type="text" name="cardiovascular" placeholder="" onChange={(e) => this.handleChange(e)}/> 
-              </div>     
+                  <input type="radio" name="cardiovascular" onChange={(e) => this.handleChange(e)} value='Normal- RCR em 2T BNF S S'/>
+                  Normal
+                </label>
+                <br/> 
+                <div className="block">  
+                  <label>
+                    <input type="radio" name="cardiovascular" onChange={(e) => this.handleChange(e)} value=''/>
+                    Alterado:
+                  </label>   
+                  <input type="text" name="cardiovascular" placeholder="" onChange={(e) => this.handleChange(e)}/> 
+                </div>     
+              </div>
             </div>          
 
             <div className="radio">
               <p>Pele e Fâneros</p>
-              <label>
-                <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Normal'/>
-                Normal
-              </label>
-              <br/>               
-              <label>
-                <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Petequias'/>
-                Petequias
-              </label>   
-              <br/>             
-              <label>
-                <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Pústulas'/>
-                Pústulas
-              </label>              
-              <br/> 
-              <label>
-                <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Placas hiperémicas'/>
-                Placas hiperémicas
-              </label> 
-              <br/> 
-              <label>
-                <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Vesículas'/>
-                Vesículas
-              </label> 
+              <div className="pele-faneros options">
+                <label>
+                  <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Normal'/>
+                  Normal
+                </label>
+                <br/>               
+                <label>
+                  <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Petequias'/>
+                  Petequias
+                </label>   
+                <br/>             
+                <label>
+                  <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Pústulas'/>
+                  Pústulas
+                </label>              
+                <br/> 
+                <label>
+                  <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Placas hiperémicas'/>
+                  Placas hiperémicas
+                </label> 
+                <br/> 
+                <label>
+                  <input type="radio" name="pele_e_faneros" onChange={(e) => this.handleChange(e)} value='Vesículas'/>
+                  Vesículas
+                </label> 
+              </div>
             </div> 
 
             <div className="radio">
               <p>Aparato Respiratorio</p>
-              <label>
-                <input type="radio" name="ap_respiratorio" onChange={(e) => this.handleChange(e)} value='Normal / MV + S R.Adv'/>
-                Normal / MV + S R.Adv
-              </label>   
-              <br/> 
-              <div className="block">  
+              <div className="respiratorio options">
                 <label>
-                  <input type="radio" name="ap_respiratorio" onChange={(e) => this.handleChange(e)} value=''/>
-                  Alterado
-                </label> 
-                <input type="text" name="ap_respiratorio" placeholder="" onChange={(e) => this.handleChange(e)}/>
-              </div>                   
+                  <input type="radio" name="ap_respiratorio" onChange={(e) => this.handleChange(e)} value='Normal / MV + S R.Adv'/>
+                  Normal / MV + S R.Adv
+                </label>   
+                <br/> 
+                <div className="block">  
+                  <label>
+                    <input type="radio" name="ap_respiratorio" onChange={(e) => this.handleChange(e)} value=''/>
+                    Alterado
+                  </label> 
+                  <input type="text" name="ap_respiratorio" placeholder="" onChange={(e) => this.handleChange(e)}/>
+                </div>                   
+              </div>
             </div>
 
             <div className="radio">
               <p>Abdome</p>
-              <label>
-                <input type="radio" name="abdome" onChange={(e) => this.handleChange(e)} value='Normal / Ruidos hidroaereos positivos sem dor a palpitação'/>
-                Normal
-              </label>
-              <br/>
-              <div className="block">  
+              <div className="abdome options">
                 <label>
-                  <input type="radio" name="abdome" onChange={(e) => this.handleChange(e)} value=''/>
-                  Alterado
-                </label>   
-                <input type="text" name="abdome" placeholder="" onChange={(e) => this.handleChange(e)}/> 
-              </div>     
+                  <input type="radio" name="abdome" onChange={(e) => this.handleChange(e)} value='Normal / Ruidos hidroaereos positivos sem dor a palpitação'/>
+                  Normal
+                </label>
+                <br/>
+                <div className="block">  
+                  <label>
+                    <input type="radio" name="abdome" onChange={(e) => this.handleChange(e)} value=''/>
+                    Alterado
+                  </label>   
+                  <input type="text" name="abdome" placeholder="" onChange={(e) => this.handleChange(e)}/> 
+                </div>     
+              </div>
             </div> 
 
             <div className="radio">
               <p>Osteo Articular</p>
-              <label>
-                <input type="radio" name="osteo_articular" onChange={(e) => this.handleChange(e)} value='Normal'/>
-                Normal
-              </label>
-              <br/>   
-              <div className="block">  
+              <div className="osteo options">
                 <label>
-                  <input type="radio" name="osteo_articular" onChange={(e) => this.handleChange(e)} value=''/>
-                  Alterado
-                </label> 
-                <input type="text" name="osteo_articular" placeholder="" onChange={(e) => this.handleChange(e)}/>                         
-              </div>  
+                  <input type="radio" name="osteo_articular" onChange={(e) => this.handleChange(e)} value='Normal'/>
+                  Normal
+                </label>
+                <br/>   
+                <div className="block">  
+                  <label>
+                    <input type="radio" name="osteo_articular" onChange={(e) => this.handleChange(e)} value=''/>
+                    Alterado
+                  </label> 
+                  <input type="text" name="osteo_articular" placeholder="" onChange={(e) => this.handleChange(e)}/>                         
+                </div>  
+              </div>
             </div> 
           </div>          
           
@@ -318,7 +344,10 @@ export default class AddConsultation extends Component {
           
           <input type="file" name="exam" onChange={(e) => this.handleFileUpload(e)} multiple/>
           
-          <Button btnTitle="Adicionar" className="btn-primary btn-md btn-round" linkTo="/profile" type="submit" />
+          <Button btnTitle="Adicionar" className="btn-primary btn-md btn-round" type="submit" />
+          <Link to={`/patient/${this.props.match.params.patientId}`}>
+            <Button btnTitle="Cancelar" className="btn-cancel mt-0 btn-md btn-round" />
+          </Link>
         </form>
       </section>
     )
