@@ -35,7 +35,7 @@ class Account extends Component {
         <h2>Prefixo: {this.state.doctor.prefix}</h2>
         <h2>Especialidade: {this.state.doctor.specialty}</h2>
         <h2>Email: {this.state.doctor.email}</h2>
-        <h2>Data de nascimento: {this.state.doctor.birthdate}</h2>
+        <h2>Data de nascimento: {this.state.doctor.birthdate.slice(0, 10).split('-').reverse().join('-')}</h2>
         <h2>Telefone residêncial: {this.state.doctor.telResidencial}</h2>
         <h2>Celular: {this.state.doctor.cellphone}</h2>      
         <Link to={`/account/${this.props.userInSession._id}`}>            

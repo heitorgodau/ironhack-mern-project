@@ -15,7 +15,7 @@ class EditAccount extends Component {
       cellphone: this.props.userInSession.cellphone,   
       username: this.props.userInSession.username,
       password: this.props.userInSession.password
-    };
+    };    
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeCrm = this.handleChangeCrm.bind(this);
@@ -130,7 +130,7 @@ class EditAccount extends Component {
           <label>E-mail: </label>
           <input type="text" name="email" value={this.state.email} onChange={e => this.handleChangeEmail(e)}/>
           <label>Data de nascimento: </label>
-          <input type="text" name="birthdate" value={this.state.birthdate} onChange={e => this.handleChangeBirthDate(e)}/>
+          <input type="date" name="birthdate" value={this.state.birthdate.slice(0, 10)} onChange={e => this.handleChangeBirthDate(e)}/>
           <label>Telefone Residêncial: </label>
           <input type="text" name="telResidencial" value={this.state.telResidencial} onChange={e => this.handleChangeTelResidencial(e)}/>
           <label>Celular: </label>

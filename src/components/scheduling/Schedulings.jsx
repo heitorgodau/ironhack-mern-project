@@ -104,12 +104,7 @@ class Schedulings extends Component {
               </tbody>
             ))}
           </table>
-          <br />
-          <div>
-            <a target="_blanck" href="https://doutorarebeca.mybluemix.net/">
-              <button>CHATBOT</button>
-            </a>
-          </div>
+          <br />         
         </div>
       </section>
     );
