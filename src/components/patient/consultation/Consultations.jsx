@@ -34,7 +34,7 @@ export default class Consultations extends Component {
         <div className="consultation-list">
           {
             this.state.consultations.map((consult, idx) => {
-              if (consult.id_patient === this.props.patientId) {
+              if (consult.id_patient === this.props.patientId && consult.id_doctor) {
                 const date = consult.created_at.slice(0,10).split('-').reverse().join('/');
                 const prefix = consult.id_doctor.prefix || 'Dr(a).'
                 const name = consult.id_doctor.name || consult.id_doctor.username

@@ -115,7 +115,10 @@ export default class Patient extends Component {
         <section className="patient-view">
           <div className="patient-data">
             <h2>Prontuário: {this.state.patient._id}</h2>    
-            <h2>Plano de Saude: {this.state.patient.healthInsurance}</h2>        
+            <div className="patient-row health-insurance">
+              <h3>Plano de Saude:</h3>
+              <h4>{this.state.patient.healthInsurance}</h4>
+            </div>       
             <div className="basic-info">
               <h3>{this.state.patient.name}</h3>
               <div className="age-gender">
@@ -186,7 +189,10 @@ export default class Patient extends Component {
         <section className="patient-view">
           <div className="patient-data">
             <h2>Prontuário: {this.state.patient._id}</h2>
-            <h2>Plano de Saude: {this.state.patient.healthInsurance}</h2>
+            <div className="patient-row health-insurance">
+              <h3>Plano de Saude:</h3>
+              <h4>{this.state.patient.healthInsurance}</h4>
+            </div>
             <div className="basic-info">
               <h3>{this.state.patient.name}</h3>
               <div className="age-gender">
