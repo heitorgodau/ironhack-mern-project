@@ -59,12 +59,12 @@ class EditAccount extends Component {
         <h2>Edite seus dados</h2>
         <form onSubmit={this.handleFormSubmit}>
 
-          <input type="text" name="name" value={this.state.name} placeholder="Seu nome" onChange={e => this.handleChange(e)} required/>
+          <input type="text" name="name" value={this.state.name} placeholder="Seu nome" onChange={ e => this.handleChange(e)} required/>
           <input name="crm" value={this.state.crm} placeholder="Seu CRM" onChange={e => this.handleChange(e)} required/>
           <input name="prefix" value={this.state.prefix} placeholder="Dr.? Dra.?" onChange={e => this.handleChange(e)}/>
           <input type="text" name="specialty" value={this.state.specialty} placeholder="Qual sua especialidade?" onChange={e => this.handleChange(e)}/>
           <input type="text" name="email" value={this.state.email} placeholder="Seu email" onChange={e => this.handleChange(e)}/>
-          <input type="text" name="birthdate" value={this.state.birthdate} placeholder="Data de nascimento" onChange={e => this.handleChange(e)}/>
+          <input type="text" name="birthdate" value={this.state.birthdate} placeholder="Data de nascimento" onChange={(e) => this.handleChange(e)}/>
           <input type="text" name="telResidencial" value={this.state.telResidencial} placeholder="Nº do telefone" onChange={e => this.handleChange(e)}/>
           <input type="text" name="cellphone" value={this.state.cellphone} placeholder="Nº do celular" onChange={e => this.handleChange(e)}/>
 
