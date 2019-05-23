@@ -38,7 +38,7 @@ class Account extends Component {
           <h3>Prefixo: <span>{this.state.doctor.prefix}</span></h3>
           <h3>Especialidade: <span>{this.state.doctor.specialty}</span></h3>
           <h3>Email: <span>{this.state.doctor.email}</span></h3>
-          <h3>Data de nascimento: <span>{this.state.doctor.birthdate}</span></h3>
+          <h3>Data de nascimento: <span>{this.state.doctor.birthdate.slice(0, 10).split('-').reverse().join('-')}</span></h3>
           <h3>Telefone residencial: <span>{this.state.doctor.telResidencial}</span></h3>
           <h3>Celular: <span>{this.state.doctor.cellphone}</span></h3>
         </div>

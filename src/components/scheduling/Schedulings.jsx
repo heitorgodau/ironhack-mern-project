@@ -22,7 +22,7 @@ class Schedulings extends Component {
 
   // Get all schedulings
   getAllSchedulings() {
-    axios.get(" http://localhost:5000/api/schedulings").then(response => {
+    axios.get(" http://localhost:5000/api/schedulings", {withCredentials:true}).then(response => {
       this.setState({
         schedulings: response.data
       });
@@ -104,12 +104,7 @@ class Schedulings extends Component {
               </tbody>
             ))}
           </table>
-          <br />
-          <div>
-            <a target="_blanck" href="https://doutorarebeca.mybluemix.net/">
-              <button>CHATBOT</button>
-            </a>
-          </div>
+          <br />         
         </div>
       </section>
     );

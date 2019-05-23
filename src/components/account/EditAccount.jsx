@@ -18,7 +18,7 @@ class EditAccount extends Component {
       cellphone: this.props.userInSession.cellphone,   
       username: this.props.userInSession.username,
       password: this.props.userInSession.password
-    };
+    };    
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -39,7 +39,7 @@ class EditAccount extends Component {
     } = this.state;
     axios
       .put(
-        `http://localhost:5000/api/doctor/${this.props.userInSession._id}`, { name, crm, specialty, prefix, email, birthdate, telResidencial, cellphone, username, password })
+        `http://localhost:5000/api/doctor/${this.props.userInSession._id}`, { name, crm, specialty, prefix, email, birthdate, telResidencial, cellphone, username, password }, {withCredentials:true})
       .then(() => {
         this.props.history.push("/account");
       })
@@ -64,7 +64,7 @@ class EditAccount extends Component {
           <input name="prefix" value={this.state.prefix} placeholder="Dr.? Dra.?" onChange={e => this.handleChange(e)}/>
           <input type="text" name="specialty" value={this.state.specialty} placeholder="Qual sua especialidade?" onChange={e => this.handleChange(e)}/>
           <input type="text" name="email" value={this.state.email} placeholder="Seu email" onChange={e => this.handleChange(e)}/>
-          <input type="text" name="birthdate" value={this.state.birthdate} placeholder="Data de nascimento" onChange={(e) => this.handleChange(e)}/>
+          <input type="date" name="birthdate" value={this.state.birthdate.slice(0, 10)} onChange={e => this.handleChange(e)}/>
           <input type="text" name="telResidencial" value={this.state.telResidencial} placeholder="Nº do telefone" onChange={e => this.handleChange(e)}/>
           <input type="text" name="cellphone" value={this.state.cellphone} placeholder="Nº do celular" onChange={e => this.handleChange(e)}/>
 
@@ -73,7 +73,7 @@ class EditAccount extends Component {
 
           <input placeholder="Informe um novo usuário" type="text" name="username"  onChange={e => this.handleChange(e)}/>
           <input placeholder="Informe uma nova senha" type="text" name="password"  onChange={e => this.handleChange(e)}/> 
-
+          
           <Button type="submit" className="btn-round btn-primary btn-md" btnTitle="Enviar" />
           <Link to='/account' >
             <Button className="btn-round btn-cancel mt-0 btn-md" btnTitle="Cancelar"/>

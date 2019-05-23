@@ -56,7 +56,7 @@ export default class AddConsultation extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('http://localhost:5000/api/consultation/new', {...this.state})
+    axios.post('http://localhost:5000/api/consultation/new', {...this.state}, {withCredentials:true})
       .then((result) => {
         console.log('Paciente adicionado', result)
         this.setState({
@@ -223,9 +223,9 @@ export default class AddConsultation extends Component {
 
             <div className="radio">
               <p>Glasgow</p>
-              <div className="glasgow options">
-                <input type="number" name="glasgow" value={this.state.glasgow} placeholder="Escala de glasgow" onChange={(e) => this.handleChange(e)}/>        
-              </div>            
+              <div className="textinput glasgow options">                
+                <input min ="3" max="15" type="number" name="glasgow" value={this.state.glasgow} placeholder="Escala de glasgow" onChange={(e) => this.handleChange(e)}/>        
+              </div>              
             </div> 
 
             <div className="radio">
