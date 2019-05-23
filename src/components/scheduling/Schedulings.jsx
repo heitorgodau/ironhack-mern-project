@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import "./schedulings.css";
 import axios from "axios";
+
+import "./schedulings.css";
+
 import DateToday from "./DateToday";
 import AddScheduling from "./AddScheduling";
 import EditScheduling from "./EditScheduling";
+import Button from '../button/Button';
+
 
 class Schedulings extends Component {
   constructor() {
@@ -59,53 +63,35 @@ class Schedulings extends Component {
   render() {
     return (
       <section className="scheduling">
-        <div className="scheduling">
-          <header>
-            <DateToday />
-            <br />
-          </header>
-          <AddScheduling getAllSchedulings={() => this.getAllSchedulings()} />
-          <table>
-            <thead>
-              <tr>
-                <th>NOME </th>
-                <th>MOTIVO </th>
-                <th>DATA </th>
-                <th>HORA </th>
-              </tr>
-            </thead>
+        <DateToday />
+        <AddScheduling getAllSchedulings={() => this.getAllSchedulings()} />
+        <table>
+          <thead>
+            <tr>
+              <th>NOME </th>
+              <th>MOTIVO </th>
+              <th>DATA </th>
+              <th>HORA </th>
+            </tr>
+          </thead>
+          <tbody>
             {this.state.schedulings.map((schedules, idx) => (
-              <tbody key={idx}>
-                <tr>
-                  <td>{schedules.patientName}</td>
-                  <td>{schedules.reason}</td>
-                  <td>
-                    {schedules.date
-                      .slice(0, 10)
-                      .split("-")
-                      .reverse()
-                      .join("-")}
-                  </td>
-                  <td>{schedules.hour}</td>
-                  <td>
-                    <button onClick={() => this.deleteScheduling(schedules._id)}>
-                      Delete
-                    </button>
-                  </td>
-                  
-                  <td>
-                    <EditScheduling
-                      theScheduling={this.state.schedulings[idx]}
-                      getAllSchedulings={() => this.getAllSchedulings()}
-                      {...this.props}
-                    />
-                  </td>
-                </tr>
-              </tbody>
+              <tr key={idx}>
+                <td>{schedules.patientName}</td>
+                <td>{schedules.reason}</td>
+                {
+                  (schedules.date) ?
+                  <td>{schedules.date.slice(0, 10).split("-").reverse().join("/")}</td>
+                  :
+                  <td>{schedules.date}</td>
+                }
+                <td>{schedules.hour}</td>
+                <td><Button btnTitle="Deletar" className="btn-round btn-delete btn-md" onClick={() => this.deleteScheduling(schedules._id)}/></td>
+                <td><EditScheduling theScheduling={this.state.schedulings[idx]} getAllSchedulings={() => this.getAllSchedulings()}{...this.props}/></td>
+              </tr>
             ))}
-          </table>
-          <br />         
-        </div>
+          </tbody>
+        </table>
       </section>
     );
   }

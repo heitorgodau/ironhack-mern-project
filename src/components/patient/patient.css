@@ -226,8 +226,12 @@
 }
 
 .add-consultation .radio input {
-  margin-bottom: 5px;
+  border: none;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #00A779;
 }
+
+.add-consultation
 
 .add-consultation .options {
   width: fit-content;

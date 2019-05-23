@@ -70,6 +70,17 @@
   color: #333;
 }
 
+.btn-delete {
+  background-color: #dc143c;
+  color: #fff;
+  transition: .2s ease-in-out;
+}
+
+.btn-delete:hover {
+  background-color: #333;
+  color: #dc143c
+}
+
 .btn-transparent {
   background-color: transparent;
   color:#FF8540;
