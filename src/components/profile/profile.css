@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin-top: 80px;
 }
 
 .profile form {
@@ -15,7 +16,7 @@
 .profile form i {
   position: absolute;
   right: 40px;
-  color: #8492A6;
+  color: #006D4F;
 }
 
 .profile .patients-list {

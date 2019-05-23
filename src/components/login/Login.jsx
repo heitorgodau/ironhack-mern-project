@@ -40,14 +40,16 @@ class Login extends Component {
     return(
       <section className="login">
         <figure className="logo">
-          <img src="../../images/wireheart-logo-02.png" alt=""/>
+        <img src="../../images/logo.png" alt="Doctor Helper in green, an orange circle behind de letters with a stethoscope icon"/>
         </figure>
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input type="text" name="username" placeholder="Your username here" onChange={(e) => this.handleChange(e)}/>
           <input type="password" name="password" placeholder="**********" onChange={(e) => this.handleChange(e)}/>
           <Button btnTitle="Login" className="btn-primary btn-md btn-round" linkTo="/profile" type="submit" />
         </form>
-        <Link to='/' className="back">Voltar</Link>
+        <Link to={'/'}>
+          <Button btnTitle="Voltar" className="btn-back btn-round btn-primary btn-md" />
+        </Link>
       </section>
     )
   }

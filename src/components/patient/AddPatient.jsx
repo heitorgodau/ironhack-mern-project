@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../button/Button';
 
@@ -34,7 +35,7 @@ class AddPatient extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('http://localhost:5000/api/patient/new', {...this.state})
+    axios.post('http://localhost:5000/api/patient/new', {...this.state}, {withCredentials:true})
       .then((result) => {
         this.props.history.push('/profile')
         console.log('Paciente adicionado', result)
@@ -79,6 +80,9 @@ class AddPatient extends Component {
           <textarea name="allergies" placeholder="Alergias" value={this.state.allergies} onChange={(e) => this.handleChange(e)}/>
           <Button btnTitle="Adicionar" className="btn-primary btn-md btn-round" linkTo="/profile" type="submit" />
         </form>
+        <Link to="/" >
+          <Button btnTitle="Cancelar" className="mt-0 btn-round btn-cancel btn-md" />
+        </Link>
       </section>
     )
   }

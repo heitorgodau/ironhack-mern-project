@@ -7,7 +7,7 @@ const Home = () => {
   return(
     <section className="home">
       <figure className="logo">
-        <img src="../../images/wireheart-logo-02.png" alt=""/>
+        <img src="../../images/logo.png" alt="Doctor Helper in green, an orange circle behind de letters with a stethoscope icon"/>
       </figure>
       <div className="buttons">
         <Link to='/login'>

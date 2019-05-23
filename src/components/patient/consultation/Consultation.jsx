@@ -26,7 +26,7 @@ export default class Consultation extends Component {
   }
   
   getOneConsultation() {
-    axios.get(`http://localhost:5000/api/consultation/${this.props.match.params.id}`)
+    axios.get(`http://localhost:5000/api/consultation/${this.props.match.params.id}`, {withCredentials:true})
     .then((result) => {
       this.setState({
         consultation: result.data,
@@ -104,21 +104,20 @@ export default class Consultation extends Component {
             </div>
           </div>
           <ConsultationRow className="patient" title="Paciente" display={this.state.consultation.id_patient.name} />
-          <ConsultationRow className="reason" title="Motivo" display={this.state.consultation.reason} />
-          <ConsultationRow className="fisico" title="Fisico" display={this.state.consultation.fisico} />
-          <ConsultationRow className="orofaringe" title="Orofaringe" display={this.state.consultation.orofaringe} />
-          <ConsultationRow className="otoscopia" title="Otoscopia" display={this.state.consultation.otoscopia} />
-          <ConsultationRow className="SNC" title="SNC" display={this.state.consultation.SNC} />
-          <ConsultationRow className="rigidez-da-nuca" title="Rigidez da nuca" display={this.state.consultation.rigidez_da_nuca} />
-          <ConsultationRow className="cardiovascular" title="Cardiovascular" display={this.state.consultation.cardiovascular} />
-          <ConsultationRow className="rcr-2t-bnf-s-s" title="RCR 2T BNF S S" display={this.state.consultation.RCR_2T_BNF_S_S} />
-          <ConsultationRow className="pele-e-faneros" title="Pele e faneros" display={this.state.consultation.pele_e_faneros} />
-          <ConsultationRow className="ap-respiratorio" title="Aparato respiratório" display={this.state.consultation.ap_respiratorio} />
-          <ConsultationRow className="r-adv" title="R Adv" display={this.state.consultation.R_Adv} />
-          <ConsultationRow className="abdome" title="Abdome" display={this.state.consultation.abdome} />
-          <ConsultationRow className="osteo-articular" title="Osteo articular" display={this.state.consultation.osteo_articular} />
-          <ConsultationRow className="pa" title="PA" display={this.state.consultation.PA} />
-          <ConsultationRow className="symptoms" title="Anaminesi" display={this.state.consultation.symptoms} />
+            <ConsultationRow className="reason" title="Motivo" display={this.state.consultation.reason} />
+            <ConsultationRow className="symptoms" title="Anaminesi" display={this.state.consultation.symptoms} />          
+            <ConsultationRow className="fisico" title="Exame Fisico" display={this.state.consultation.fisico} />
+            <ConsultationRow className="orofaringe" title="Orofaringe" display={this.state.consultation.orofaringe} />
+            <ConsultationRow className="otoscopia" title="Otoscopia" display={this.state.consultation.otoscopia} />
+            <ConsultationRow className="SNC" title="SNC" display={this.state.consultation.SNC} />
+            <ConsultationRow className="rigidez-da-nuca" title="Rigidez da nuca" display={this.state.consultation.rigidez_da_nuca} />
+            <ConsultationRow className="pupilas" title="Pupilas" display={this.state.consultation.pupilas} />
+            <ConsultationRow className="glasgow" title="Glasgow" display={this.state.consultation.glasgow} />
+            <ConsultationRow className="cardiovascular" title="Cardiovascular" display={this.state.consultation.cardiovascular} />            
+            <ConsultationRow className="pele-e-faneros" title="Pele e faneros" display={this.state.consultation.pele_e_faneros} />
+            <ConsultationRow className="ap-respiratorio" title="Aparato respiratório" display={this.state.consultation.ap_respiratorio} />            
+            <ConsultationRow className="abdome" title="Abdome" display={this.state.consultation.abdome} />
+            <ConsultationRow className="osteo-articular" title="Osteo articular" display={this.state.consultation.osteo_articular} />  
           <div className="consult-row cid">
             <h3>CID:</h3>
             <div>
@@ -130,8 +129,8 @@ export default class Consultation extends Component {
             <h3>Conduta:</h3>
             <form onSubmit={(e) => this.handleSubmit(e)}>
               <textarea name="conduct" cols="20" rows="5" placeholder="Conduta médica" value={this.state.consultation.conduct} onChange={(e) => this.handleChange(e)} />
-              <Button btnTitle="Enviar" className="btn-white btn-round btn-md" type="submit" />
-              <Button btnTitle="Cancelar" className="btn-primary btn-round btn-md" onClick={this.cancelEdit} />
+              <Button btnTitle="Enviar" className="btn-primary btn-round btn-md" type="submit" />
+              <Button btnTitle="Cancelar" className="btn-cancel mt-0 btn-round btn-md" onClick={this.cancelEdit} />
             </form>
           </div>
           {
@@ -162,6 +161,9 @@ export default class Consultation extends Component {
       } else {
         return(
           <section className="consultation-view">
+            <Link to={`/patient/${this.state.consultation.id_patient._id}`}>
+              <Button btnTitle="Voltar" className="btn-round btn-primary btn-md btn-back" />
+            </Link>
             <div className=" consult-row date">
               <h3>{date}</h3>
               <div className="doctor-info">
@@ -171,7 +173,7 @@ export default class Consultation extends Component {
             </div>
             <ConsultationRow className="patient" title="Paciente" display={this.state.consultation.id_patient.name} />
             <ConsultationRow className="reason" title="Motivo" display={this.state.consultation.reason} />
-            <ConsultationRow className="symptoms" title="Anaminesi" display={this.state.consultation.symptoms} />            
+            <ConsultationRow className="symptoms" title="Anaminesi" display={this.state.consultation.symptoms} />          
             <ConsultationRow className="fisico" title="Exame Fisico" display={this.state.consultation.fisico} />
             <ConsultationRow className="orofaringe" title="Orofaringe" display={this.state.consultation.orofaringe} />
             <ConsultationRow className="otoscopia" title="Otoscopia" display={this.state.consultation.otoscopia} />
@@ -183,8 +185,7 @@ export default class Consultation extends Component {
             <ConsultationRow className="pele-e-faneros" title="Pele e faneros" display={this.state.consultation.pele_e_faneros} />
             <ConsultationRow className="ap-respiratorio" title="Aparato respiratório" display={this.state.consultation.ap_respiratorio} />            
             <ConsultationRow className="abdome" title="Abdome" display={this.state.consultation.abdome} />
-            <ConsultationRow className="osteo-articular" title="Osteo articular" display={this.state.consultation.osteo_articular} />
-                       
+            <ConsultationRow className="osteo-articular" title="Osteo articular" display={this.state.consultation.osteo_articular} />                       
             <div className="consult-row cid">
               <h3>CID:</h3>
               <div>
@@ -197,10 +198,15 @@ export default class Consultation extends Component {
                 <h3>Conduta:</h3>
                 <h4>{this.state.consultation.conduct}</h4>
               </div>
-              <Button btnTitle="Editar" className="btn-primary btn-round btn-md" onClick={this.edit} />
+              {
+                (this.state.consultation.id_doctor._id === this.props.userInSession._id) ?
+                  <Button btnTitle="Editar" className="btn-primary btn-round btn-md" onClick={this.edit} />
+                  :
+                  null
+              }
             </div>
               {
-                (!this.state.consultation.imageUrl) ?
+                (!this.state.consultation.imageUrl && this.state.consultation.id_doctor._id === this.props.userInSession._id) ?
                   <div className="consult-row exams">
                     <div className="title">
                       <h3>Arquivos:</h3>
@@ -210,7 +216,7 @@ export default class Consultation extends Component {
                       </form>
                     </div>
                   </div> 
-                  :
+                  : (this.state.consultation.id_doctor._id === this.props.userInSession._id) ?
                   <div className="consult-row exams">
                     <div className="title">
                       <h3>Arquivos:</h3>
@@ -221,8 +227,17 @@ export default class Consultation extends Component {
                       </figure>
                     </a>
                   </div>
+                  :
+                  <div className="consult-row exams">
+                    <div className="title">
+                      <h3>Arquivos:</h3>
+                    </div>
+                    <h3>Não há arquivos</h3>
+                  </div>
               }
-              <Link to={`/patient/${this.state.consultation.id_patient._id}`}>Voltar</Link>
+              <Link to={`/patient/${this.state.consultation.id_patient._id}`}>
+                <Button btnTitle="Voltar" className="mt-0 btn-round btn-cancel btn-md btn-back" />
+              </Link>
           </section>
         )
       }

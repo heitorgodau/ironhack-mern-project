@@ -3,6 +3,8 @@ import axios from "axios";
 import Button from '../button/Button';
 import { Link } from 'react-router-dom';
 
+import './account.css';
+
 class Account extends Component {
   constructor(props) {
     super(props);
@@ -28,16 +30,18 @@ class Account extends Component {
   render() {
     return (
       <section className='account'>
-        <h1>MINHA CONTA</h1>
-        <h2>Nome: {this.state.doctor.name}</h2>
-        <h2>Username: {this.state.doctor.username}</h2>
-        <h2>CRM: {this.state.doctor.crm}</h2>
-        <h2>Prefixo: {this.state.doctor.prefix}</h2>
-        <h2>Especialidade: {this.state.doctor.specialty}</h2>
-        <h2>Email: {this.state.doctor.email}</h2>
-        <h2>Data de nascimento: {this.state.doctor.birthdate}</h2>
-        <h2>Telefone residêncial: {this.state.doctor.telResidencial}</h2>
-        <h2>Celular: {this.state.doctor.cellphone}</h2>      
+        <h2>Meus dados</h2>
+        <div className="user-data">
+          <h3>Nome: <span>{this.state.doctor.name}</span></h3>
+          <h3>Username: <span>{this.state.doctor.username}</span></h3>
+          <h3>CRM: <span>{this.state.doctor.crm}</span></h3>
+          <h3>Prefixo: <span>{this.state.doctor.prefix}</span></h3>
+          <h3>Especialidade: <span>{this.state.doctor.specialty}</span></h3>
+          <h3>Email: <span>{this.state.doctor.email}</span></h3>
+          <h3>Data de nascimento: <span>{this.state.doctor.birthdate.slice(0, 10).split('-').reverse().join('-')}</span></h3>
+          <h3>Telefone residencial: <span>{this.state.doctor.telResidencial}</span></h3>
+          <h3>Celular: <span>{this.state.doctor.cellphone}</span></h3>
+        </div>
         <Link to={`/account/${this.props.userInSession._id}`}>            
             <Button  btnTitle='Editar' className="btn-primary btn-md btn-round" />
         </Link> 

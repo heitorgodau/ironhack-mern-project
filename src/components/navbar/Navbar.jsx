@@ -10,7 +10,7 @@ class Navbar extends Component {
   constructor(props){
     super(props);
     this.state={
-      menuOpen:false,
+      menuOpen:false      
     }
     this.service = new AuthService();
   }
@@ -46,6 +46,7 @@ class Navbar extends Component {
     const styles= 
       {
         container:{
+          padding: '0 20px',
           position: 'fixed',
           top: 0,
           left: 0,
@@ -53,9 +54,9 @@ class Navbar extends Component {
           opacity: 0.9,
           display:'flex',
           alignItems:'center',
-          background: '#52897B',
+          background: '#35D3A7',
           width: '100%',
-          color: 'white',
+          color: '#333',
           fontFamily:'Lobster',
         },
         logo: {
@@ -72,17 +73,22 @@ class Navbar extends Component {
         },
       }
 
-    return (
-     
-      <div className="navbar">
+    return (     
+      <div className="navbar">       
         <div style={styles.container}>
-          <MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='white'/>
-          <div style={styles.logo}>WireHeart</div>
+          <MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='#333'/>
+          <figure className="logo" style={styles.logo}>
+            <img src="../../images/logo.png" alt="Doctor Helper in green, an orange circle behind de letters with a stethoscope icon"/>
+          </figure>
+          <div className="user">
+            <h4>Bom dia, <span>{this.props.userInSession.name}</span></h4>
+          </div>
         </div>
         <Menu open={this.state.menuOpen}>
           <Link to='/profile'><MenuItem delay='0s' onClick={()=>{this.handleLinkClick();}}>Pacientes</MenuItem></Link>
           <Link to='/account'><MenuItem delay='0.1s' onClick={()=>{this.handleLinkClick();}}>Minha Conta</MenuItem></Link>
           <Link to='/schedulings'><MenuItem delay='0.2s' onClick={()=>{this.handleLinkClick();}}>Agenda</MenuItem></Link>
+          <a rel='noopener noreferrer' target="_blank" href="https://doutorarebeca.mybluemix.net/"><MenuItem delay='0.2s'>Chatbot</MenuItem></a>
           <Link to='/'><MenuItem delay='0.3s' onClick={() => this.logoutUser()}>Logout</MenuItem></Link>
         </Menu>
       </div>
