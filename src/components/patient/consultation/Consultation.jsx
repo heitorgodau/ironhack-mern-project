@@ -26,7 +26,7 @@ export default class Consultation extends Component {
   }
   
   getOneConsultation() {
-    axios.get(`http://localhost:5000/api/consultation/${this.props.match.params.id}`)
+    axios.get(`http://localhost:5000/api/consultation/${this.props.match.params.id}`, {withCredentials:true})
     .then((result) => {
       this.setState({
         consultation: result.data,

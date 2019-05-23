@@ -22,7 +22,7 @@ class Schedulings extends Component {
 
   // Get all schedulings
   getAllSchedulings() {
-    axios.get(" http://localhost:5000/api/schedulings").then(response => {
+    axios.get(" http://localhost:5000/api/schedulings", {withCredentials:true}).then(response => {
       this.setState({
         schedulings: response.data
       });
