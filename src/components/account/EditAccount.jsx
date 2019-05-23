@@ -45,7 +45,7 @@ class EditAccount extends Component {
     } = this.state;
     axios
       .put(
-        `http://localhost:5000/api/doctor/${this.props.userInSession._id}`, { name, crm, specialty, prefix, email, birthdate, telResidencial, cellphone, username, password })
+        `http://localhost:5000/api/doctor/${this.props.userInSession._id}`, { name, crm, specialty, prefix, email, birthdate, telResidencial, cellphone, username, password }, {withCredentials:true})
       .then(() => {
         this.props.history.push("/account");
       })

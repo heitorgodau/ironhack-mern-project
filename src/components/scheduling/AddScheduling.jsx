@@ -26,7 +26,7 @@ class AddScheduling extends Component {
         reason,
         date,
         hour,
-      })
+      }, {withCredentials:true})
       .then(() => {
         this.props.getAllSchedulings();
         this.setState({

@@ -24,7 +24,7 @@ class EditScheduling extends Component {
     event.preventDefault();
     const id = this.props.theScheduling._id;    
     const { patientName, reason, date, hour, } = this.state;
-    axios.put(`http://localhost:5000/api/scheduling/${id}`, { patientName, reason, date, hour})
+    axios.put(`http://localhost:5000/api/scheduling/${id}`, { patientName, reason, date, hour}, {withCredentials:true})
     .then( () => {       
       this.props.getAllSchedulings()
     })

@@ -15,7 +15,7 @@ export default class Consultations extends Component {
   }
 
   getAllConsultations() {
-    axios.get(`http://localhost:5000/api/consultations`)
+    axios.get(`http://localhost:5000/api/consultations`, {withCredentials:true})
     .then((result) => {
       this.setState({
         consultations: result.data,

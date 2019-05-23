@@ -22,7 +22,7 @@ export default class Patient extends Component {
   }
 
   getOnePatient() {
-    axios.get(`http://localhost:5000/api/patient/${this.props.match.params.id}`)
+    axios.get(`http://localhost:5000/api/patient/${this.props.match.params.id}`, {withCredentials:true})
       .then((result) => {
         this.setState({
           patient: result.data,
