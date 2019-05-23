@@ -1,5 +1,8 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+import axios from 'axios';
+
+import Button from '../button/Button'
 
 class EditAccount extends Component {
   constructor(props) {
@@ -17,16 +20,7 @@ class EditAccount extends Component {
       password: this.props.userInSession.password
     };    
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleChangeName = this.handleChangeName.bind(this);
-    this.handleChangeCrm = this.handleChangeCrm.bind(this);
-    this.handleChangePrefix = this.handleChangePrefix.bind(this);
-    this.handleChangeSpecialty = this.handleChangeSpecialty.bind(this);
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangeBirthDate = this.handleChangeBirthDate.bind(this);
-    this.handleChangeTelResidencial = this.handleChangeTelResidencial.bind(this);
-    this.handleChangeCellphone = this.handleChangeCellphone.bind(this);
-    this.handleChangeUsername = this.handleChangeUsername.bind(this);
-    this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleFormSubmit(event) {
@@ -52,96 +46,38 @@ class EditAccount extends Component {
       .catch(error => console.log(error));
   }
 
-  handleChangeName(event) {  
+  handleChange(event) {
+    const { name, value } = event.target    
     this.setState({
-      name: event.target.value
-    })
-  }
-
-  handleChangeCrm(event) {  
-    this.setState({
-      crm: event.target.value
-    })
-  }
-
-  handleChangePrefix(event){
-    this.setState({
-      prefix: event.target.value
-    })
-  }
-
-  handleChangeSpecialty(event) {  
-    this.setState({
-      specialty: event.target.value
-    })
-  }
-
-  handleChangeEmail(event) {  
-    this.setState({
-      email: event.target.value
-    })
-  }
-
-  handleChangeBirthDate(event) {  
-    this.setState({
-      birthdate: event.target.value
-    })
-  }
-
-  handleChangeTelResidencial(event) {  
-    this.setState({
-      telResidencial: event.target.value
-    })
-  }
-
-  handleChangeCellphone(event) {  
-    this.setState({
-      cellphone: event.target.value
-    })
-  }
-
-  handleChangeUsername(event){
-    this.setState({
-      username: event.target.value
-    })
-  }
-
-  handleChangePassword(event){
-    this.setState({
-      password: event.target.value
+      [name]: value,
     })
   }
 
   render() {
     return (
-      <section className="edit-form">
-        <h2>{this.state.name}</h2>
-        <hr/>
-        <strong>Editar informações pessoais</strong>
+      <section className="edit-account">
+        <h2>Edite seus dados</h2>
         <form onSubmit={this.handleFormSubmit}>
-          <label>Nome: </label>
-          <input type="text" name="name" value={this.state.name} onChange={e => this.handleChangeName(e)} required/>
-          <label>CRM: </label>
-          <input name="crm" value={this.state.crm} onChange={e => this.handleChangeCrm(e)} required/>
-          <label>Prefixo: </label>
-          <input name="prefix" value={this.state.prefix} onChange={e => this.handleChangePrefix(e)}/>
-          <label>Especialidade: </label>
-          <input type="text" name="specialty" value={this.state.specialty} onChange={e => this.handleChangeSpecialty(e)}/>
-          <label>E-mail: </label>
-          <input type="text" name="email" value={this.state.email} onChange={e => this.handleChangeEmail(e)}/>
-          <label>Data de nascimento: </label>
-          <input type="date" name="birthdate" value={this.state.birthdate.slice(0, 10)} onChange={e => this.handleChangeBirthDate(e)}/>
-          <label>Telefone Residêncial: </label>
-          <input type="text" name="telResidencial" value={this.state.telResidencial} onChange={e => this.handleChangeTelResidencial(e)}/>
-          <label>Celular: </label>
-          <input type="text" name="cellphone" value={this.state.cellphone} onChange={e => this.handleChangeCellphone(e)}/>
-          <hr/>
-          <strong>Editar informações de acesso</strong>
-          <label>Usuário: </label>
-          <input placeholder="Informe um novo usuário" type="text" name="username"  onChange={e => this.handleChangeUsername(e)}/>
-          <label>Senha: </label>
-          <input placeholder="Informe uma nova senha" type="text" name="password"  onChange={e => this.handleChangePassword(e)}/> 
-          <input type="submit" value="Submit" />
+
+          <input type="text" name="name" value={this.state.name} placeholder="Seu nome" onChange={ e => this.handleChange(e)} required/>
+          <input name="crm" value={this.state.crm} placeholder="Seu CRM" onChange={e => this.handleChange(e)} required/>
+          <input name="prefix" value={this.state.prefix} placeholder="Dr.? Dra.?" onChange={e => this.handleChange(e)}/>
+          <input type="text" name="specialty" value={this.state.specialty} placeholder="Qual sua especialidade?" onChange={e => this.handleChange(e)}/>
+          <input type="text" name="email" value={this.state.email} placeholder="Seu email" onChange={e => this.handleChange(e)}/>
+          <input type="date" name="birthdate" value={this.state.birthdate.slice(0, 10)} onChange={e => this.handleChange(e)}/>
+          <input type="text" name="telResidencial" value={this.state.telResidencial} placeholder="Nº do telefone" onChange={e => this.handleChange(e)}/>
+          <input type="text" name="cellphone" value={this.state.cellphone} placeholder="Nº do celular" onChange={e => this.handleChange(e)}/>
+
+          <h3>Editar seus dados de acesso</h3>
+          <p>*Deixe em branco para não alterar</p>
+
+          <input placeholder="Informe um novo usuário" type="text" name="username"  onChange={e => this.handleChange(e)}/>
+          <input placeholder="Informe uma nova senha" type="text" name="password"  onChange={e => this.handleChange(e)}/> 
+          
+          <Button type="submit" className="btn-round btn-primary btn-md" btnTitle="Enviar" />
+          <Link to='/account' >
+            <Button className="btn-round btn-cancel mt-0 btn-md" btnTitle="Cancelar"/>
+          </Link>
         </form>
       </section>
     );

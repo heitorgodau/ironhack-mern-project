@@ -46,6 +46,7 @@ class Navbar extends Component {
     const styles= 
       {
         container:{
+          padding: '0 20px',
           position: 'fixed',
           top: 0,
           left: 0,
@@ -53,9 +54,9 @@ class Navbar extends Component {
           opacity: 0.9,
           display:'flex',
           alignItems:'center',
-          background: '#52897B',
+          background: '#35D3A7',
           width: '100%',
-          color: 'white',
+          color: '#333',
           fontFamily:'Lobster',
         },
         logo: {
@@ -75,8 +76,13 @@ class Navbar extends Component {
     return (     
       <div className="navbar">       
         <div style={styles.container}>
-          <MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='white'/>
-          <div style={styles.logo}>WireHeart</div>
+          <MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='#333'/>
+          <figure className="logo" style={styles.logo}>
+            <img src="../../images/logo.png" alt="Doctor Helper in green, an orange circle behind de letters with a stethoscope icon"/>
+          </figure>
+          <div className="user">
+            <h4>Bom dia, <span>{this.props.userInSession.name}</span></h4>
+          </div>
         </div>
         <Menu open={this.state.menuOpen}>
           <Link to='/profile'><MenuItem delay='0s' onClick={()=>{this.handleLinkClick();}}>Pacientes</MenuItem></Link>

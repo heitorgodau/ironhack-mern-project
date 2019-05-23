@@ -6,12 +6,27 @@
   cursor: pointer;
 }
 
+.btn.mt-0 {
+  margin-top: 0;
+}
+
+.btn:focus{
+  outline: none;
+}
+
 .btn-md {
   width: fit-content;
   height: 40px;
   padding: 0 40px;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.btn-lg {
+  max-width: 500px;
+  width: 90vw;
+  height: 50px;
+  margin-top: 24px;
 }
 
 .btn-round {
@@ -23,26 +38,54 @@
 }
 
 .btn-primary {
-  background-color: #FF686B;
+  background-color: #FF8540;
+  color: #fff;
+  transition: .2s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #00A779;
+  color: #333;
 }
 
 .btn-white {
   background-color: #fff;
   color: #333;
+  transition: .2s ease-in-out;
 }
 
+.btn-white:hover { 
+  background-color: #FF8540;
+  color: #fff;
+}
+
+.btn-cancel {
+  background-color: #04346C;
+  color: #fff;
+  transition: .2s ease-in-out;
+}
+
+.btn-cancel:hover {
+  background-color: #6899D3;
+  color: #333;
+}
 
 .btn-transparent {
   background-color: transparent;
-  color:#FF686B;
+  color:#FF8540;
+  transition: .2s ease-in-out;
 }
 
-.btn-lg {
-  width: 90vw;
-  height: 50px;
-  margin-top: 24px;
+.btn-transparent:hover {
+  text-decoration: underline;
 }
 
-.btn:hover {
-  background-color: #FF686B;
+.btn-back {
+  position: relative;
+}
+
+.btn-back::before {
+  content: '\2190';
+  font-size: 1.2em;
+  margin-right: 4px;
 }

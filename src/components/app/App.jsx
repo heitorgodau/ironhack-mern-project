@@ -72,16 +72,14 @@ class App extends React.Component {
           <Navbar userInSession={this.state.loggedInUser} getUser= {this.getTheUser}/>
           <Switch>
             <Route exact path='/' render={(props) => <Profile {...props} getAllPatients={this.getAllPatients} allPatients={this.state.allPatients} />} />
-            {/*<Route exact path='/login' component={Login} />
-            <Route exact path='/signup' component={Signup} />  */}
             <Route exact path='/profile' render={(props) => <Profile {...props} getAllPatients={this.getAllPatients} allPatients={this.state.allPatients} userInSession={this.state.loggedInUser} />} />
-            <Route user={this.state.loggedInUser} path='/patient/add-patient' render={(props) => <AddPatient {...props} userInSession={this.state.loggedInUser} />} />
-            <Route user={this.state.loggedInUser} exact path='/patient/:id' render={(props) => <Patient {...props} userInSession={this.state.loggedInUser} />} />
-            <Route user={this.state.loggedInUser} exact path='/consultation/:patientId/new' render={(props) => <AddConsultation {...props} userInSession={this.state.loggedInUser} />} />
-            <Route user={this.state.loggedInUser} exact path='/Schedulings' component={Schedulings} />
-            <Route user={this.state.loggedInUser} exact path='/account' render={(props) => <Account {...props} userInSession={this.state.loggedInUser} />} />
-            <Route user={this.state.loggedInUser} exact path='/account/:id' render={(props) => <EditAccount {...props} userInSession={this.state.loggedInUser} />} />
-            <Route exact path='/consultation/:id' component={Consultation} />
+            <Route exact path='/patient/add-patient' render={(props) => <AddPatient {...props} userInSession={this.state.loggedInUser} />} />
+            <Route exact path='/patient/:id' render={(props) => <Patient {...props} userInSession={this.state.loggedInUser} />} />
+            <Route exact path='/consultation/:id' render={(props) => <Consultation {...props} userInSession={this.state.loggedInUser} />} />
+            <Route exact path='/consultation/:patientId/new' render={(props) => <AddConsultation {...props} userInSession={this.state.loggedInUser} />} />
+            <Route exact path='/Schedulings' component={Schedulings} />
+            <Route exact path='/account' render={(props) => <Account {...props} userInSession={this.state.loggedInUser} />} />
+            <Route exact path='/account/:id' render={(props) => <EditAccount {...props} userInSession={this.state.loggedInUser} />} />
           </Switch>
         </div>
       );
@@ -92,12 +90,14 @@ class App extends React.Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />}/>
             <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser}/>}/>
-            <ProtectedRoute user={this.state.loggedInUser} path='/schedulings' component={Schedulings} />
-            <ProtectedRoute user={this.state.loggedInUser} path='/patient/add-patient' component={AddPatient} />
             <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
             <ProtectedRoute user={this.state.loggedInUser} path='/patient/:id' component={Patient} />
-            <ProtectedRoute user={this.state.loggedInUser} path='/account/:id' component={EditAccount} />
+            <ProtectedRoute user={this.state.loggedInUser} path='/patient/add-patient' component={AddPatient} />
+            <ProtectedRoute user={this.state.loggedInUser} path='/consultation/:id' component={AddPatient} />
+            <ProtectedRoute user={this.state.loggedInUser} path='/consultation/:patientId/new' component={AddPatient} />
+            <ProtectedRoute user={this.state.loggedInUser} path='/schedulings' component={Schedulings} />
             <ProtectedRoute user={this.state.loggedInUser} path='/account' component={Account} />
+            <ProtectedRoute user={this.state.loggedInUser} path='/account/:id' component={EditAccount} />
           </Switch>
         </div>
       );
