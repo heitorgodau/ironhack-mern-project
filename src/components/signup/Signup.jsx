@@ -78,7 +78,9 @@ class Signup extends Component {
           <input type="text" name="name" placeholder="Your name here" onChange={(e) => this.handleChange(e)}/>
           <Button btnTitle="Signup" className="btn-primary btn-md btn-round" linkTo="/profile" type="submit" />
         </form>
-        <Link to='/' className='back'>Voltar</Link>
+        <Link to={'/'}>
+          <Button btnTitle="Voltar" className="btn-back btn-round btn-primary btn-md" />
+        </Link>
       </section>
     )
   }

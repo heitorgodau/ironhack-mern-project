@@ -47,7 +47,9 @@ class Login extends Component {
           <input type="password" name="password" placeholder="**********" onChange={(e) => this.handleChange(e)}/>
           <Button btnTitle="Login" className="btn-primary btn-md btn-round" linkTo="/profile" type="submit" />
         </form>
-        <Link to='/' className="back">Voltar</Link>
+        <Link to={'/'}>
+          <Button btnTitle="Voltar" className="btn-back btn-round btn-primary btn-md" />
+        </Link>
       </section>
     )
   }

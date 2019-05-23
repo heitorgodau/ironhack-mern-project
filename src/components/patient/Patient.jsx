@@ -15,10 +15,11 @@ export default class Patient extends Component {
       edit: false,
     }
         
-    this.getAge = this.getAge.bind(this);
     this.getOnePatient = this.getOnePatient.bind(this);
     this.editPatient = this.editPatient.bind(this);
     this.toggleInfo = this.toggleInfo.bind(this);
+    this.cancelEdit = this.cancelEdit.bind(this);
+    this.getAge = this.getAge.bind(this);
   }
 
   getOnePatient() {
@@ -43,6 +44,11 @@ export default class Patient extends Component {
     this.setState({
       edit: !this.state.edit,
     })
+  }
+
+  cancelEdit() {
+    this.getOnePatient()
+    this.editPatient()
   }
 
   toggleInfo() {
@@ -98,7 +104,8 @@ export default class Patient extends Component {
           <textarea name="surgicalHistory" placeholder="Histórico de cirurgias" value={this.state.patient.surgicalHistory} onChange={(e) => this.handleChange(e)}/>
           <textarea name="familyHistory" placeholder="Histórico familiar" value={this.state.patient.familyHistory} onChange={(e) => this.handleChange(e)}/>
           <textarea name="allergies" placeholder="Alergias" value={this.state.patient.allergies} onChange={(e) => this.handleChange(e)}/>
-          <Button btnTitle="Enviar" className="btn-primary btn-md btn-round" type="submit" />
+          <Button btnTitle="Enviar" className="btn-white btn-md btn-round" type="submit" />
+          <Button btnTitle="Cancelar" className="btn-primary btn-md btn-round" onClick={() => this.cancelEdit()} />
         </form>
       </section>
       )
@@ -170,7 +177,7 @@ export default class Patient extends Component {
             <Button btnTitle="Editar Informações" className="btn-center btn-primary btn-md btn-round" onClick={this.editPatient} />
 
           </div>
-          <Consultations userInSession={this.state.loggedInUser}/>
+          <Consultations patientId={this.props.match.params.id} userInSession={this.state.loggedInUser} />
         </section>
       )
     

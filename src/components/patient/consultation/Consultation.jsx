@@ -162,6 +162,9 @@ export default class Consultation extends Component {
       } else {
         return(
           <section className="consultation-view">
+            <Link to={`/patient/${this.state.consultation.id_patient._id}`}>
+              <Button btnTitle="Voltar" className="btn-round btn-primary btn-md btn-back" />
+            </Link>
             <div className=" consult-row date">
               <h3>{date}</h3>
               <div className="doctor-info">
@@ -197,10 +200,15 @@ export default class Consultation extends Component {
                 <h3>Conduta:</h3>
                 <h4>{this.state.consultation.conduct}</h4>
               </div>
-              <Button btnTitle="Editar" className="btn-primary btn-round btn-md" onClick={this.edit} />
+              {
+                (this.state.consultation.id_doctor._id === this.props.userInSession._id) ?
+                  <Button btnTitle="Editar" className="btn-primary btn-round btn-md" onClick={this.edit} />
+                  :
+                  null
+              }
             </div>
               {
-                (!this.state.consultation.imageUrl) ?
+                (!this.state.consultation.imageUrl && this.state.consultation.id_doctor._id === this.props.userInSession._id) ?
                   <div className="consult-row exams">
                     <div className="title">
                       <h3>Arquivos:</h3>
@@ -210,7 +218,7 @@ export default class Consultation extends Component {
                       </form>
                     </div>
                   </div> 
-                  :
+                  : (this.state.consultation.id_doctor._id === this.props.userInSession._id) ?
                   <div className="consult-row exams">
                     <div className="title">
                       <h3>Arquivos:</h3>
@@ -221,8 +229,17 @@ export default class Consultation extends Component {
                       </figure>
                     </a>
                   </div>
+                  :
+                  <div className="consult-row exams">
+                    <div className="title">
+                      <h3>Arquivos:</h3>
+                    </div>
+                    <h3>Não há arquivos</h3>
+                  </div>
               }
-              <Link to={`/patient/${this.state.consultation.id_patient._id}`}>Voltar</Link>
+              <Link to={`/patient/${this.state.consultation.id_patient._id}`}>
+                <Button btnTitle="Voltar" className="btn-round btn-primary btn-md btn-back" />
+              </Link>
           </section>
         )
       }

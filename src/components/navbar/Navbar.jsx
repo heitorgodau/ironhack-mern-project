@@ -53,9 +53,9 @@ class Navbar extends Component {
           opacity: 0.9,
           display:'flex',
           alignItems:'center',
-          background: '#52897B',
+          background: '#35D3A7',
           width: '100%',
-          color: 'white',
+          color: '#333',
           fontFamily:'Lobster',
         },
         logo: {
@@ -76,8 +76,8 @@ class Navbar extends Component {
      
       <div className="navbar">
         <div style={styles.container}>
-          <MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='white'/>
-          <div style={styles.logo}>WireHeart</div>
+          <MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='#333'/>
+          <div style={styles.logo}>DoctorApp</div>
         </div>
         <Menu open={this.state.menuOpen}>
           <Link to='/profile'><MenuItem delay='0s' onClick={()=>{this.handleLinkClick();}}>Pacientes</MenuItem></Link>

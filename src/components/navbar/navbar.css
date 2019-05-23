@@ -8,9 +8,9 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
-  background: #52897B;
+  background: #35D3A7;
   opacity: 0.95;
-  color: #fafafa;
+  color: #333;
   z-index: 2;
   transition: height 0.3s ease 0s;
 }

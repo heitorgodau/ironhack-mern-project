@@ -11,12 +11,20 @@
   width: 100%;
 }
 
-.back {
-  text-align: center;
-  color: #333;
+
+@media(min-width: 768px ) {
+  .patient-view,
+  .consultation-view{
+    width: 500px;
+    margin: 40px auto;
+    padding-bottom: 20px; 
+  }
 }
 
-.back::before {
-  content: '\2190';
-  margin-right: 3px; 
-}
+/* @media(min-width: 1440px) {
+  .patient-view {
+    width: 60%;
+    margin: 40px auto;
+    padding-bottom: 20px; 
+  }
+} */

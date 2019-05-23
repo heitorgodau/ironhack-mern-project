@@ -64,11 +64,16 @@
 .add-patient form input,
 .edit-patient form input {
   background-color: transparent;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid whitesmoke;
   border-radius: 0;
   padding: 0;
   height: auto;
   margin-bottom: 20px;
+  color: #fff;
+}
+
+::placeholder {
+  color: #fff;
 }
 
 .add-patient textarea,
@@ -76,10 +81,11 @@
   width: 245px;
   height: 80px;
   background-color: transparent;
-  border: 1px solid gray;
+  border: 1px solid whitesmoke;
   margin-bottom: 20px;
   font-size: 12px;
   padding: 5px;
+  color: #fff
 }
 
 /*******CONSULTATIONS*********/
@@ -128,6 +134,8 @@
 
 .consult-form{
   background-color: #52897B;
+  border-radius: 7px;
+  margin-bottom: 15px;
   padding: 20px 0;
   color: #fff;
 }

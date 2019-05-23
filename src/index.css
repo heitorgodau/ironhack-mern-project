@@ -1,4 +1,25 @@
-/* Colors:
+/* Colors {
+  Green {
+    lighter: #5FD3B3
+    Light: #35D3A7
+    Medium: #00A779
+    Darker: #006D4F
+    Dark: #1F7D63
+  }
+  Blue {
+    Lighter: #6899D3
+    Light: #4284D3
+    Medium: #04346C
+    Darker: 274E7D
+  }
+
+  Orange {
+  Medium: #FF5C00
+  Light: #FF8540
+  }
+}
+
+
   white: #fff
   Pearl acqua(darker): #52897B
   Magic mint(lighter): #A5FFD6
@@ -18,7 +39,7 @@ body {
   font-family: 'Oswald', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #A5FFD6;
+  background-color: #006D4F;
 }
 
 .uppercase {
