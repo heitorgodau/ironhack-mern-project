@@ -40,7 +40,19 @@ class Navbar extends Component {
       this.props.getUser(null);  
       console.log("Success logout!!!")
     })
+  } 
+
+  welcome(){
+    let day = new Date(); 
+    let hour = day.getHours();
+    if(hour < 12){
+      return(<h3> Bom dia, <span>{this.props.userInSession.name}</span></h3>); 
+    } else if(hour > 17){
+      return(<h3> Boa noite, <span>{this.props.userInSession.name}</span></h3>);
+    }else
+      return(<h3> Boa tarde, <span>{this.props.userInSession.name}</span></h3>);
   }
+
 
   render(){   
     const styles= 
@@ -71,7 +83,7 @@ class Navbar extends Component {
           filter: this.state.menuOpen ? 'blur(2px)':null,
           transition: 'filter 0.5s ease',
         },
-      }
+      }     
 
     return (     
       <div className="navbar">       
@@ -81,7 +93,7 @@ class Navbar extends Component {
             <img src="../../images/logo.png" alt="Doctor Helper in green, an orange circle behind de letters with a stethoscope icon"/>
           </figure>
           <div className="user">
-            <h4>Bom dia, <span>{this.props.userInSession.name}</span></h4>
+            {this.welcome()} 
           </div>
         </div>
         <Menu open={this.state.menuOpen}>
