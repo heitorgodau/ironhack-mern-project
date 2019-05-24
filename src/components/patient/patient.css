@@ -1,0 +1,249 @@
+.patient-view,
+.add-patient {
+  margin-top: 80px;
+}
+.patient-view .patient-data {
+  background-color: #fff;
+  margin: 0 15px;
+  border-radius: 20px;
+  padding: 30px 10px;
+  display: flex;
+  flex-direction: column;
+  color: #333;
+}
+
+.patient-view h2 {
+  font-size: 1.2em;
+  text-align: left;
+  margin-bottom: 25px; 
+  font-weight: 200;
+}
+
+.patient-view h3,
+.patient-view h4  {
+  font-size: 1em;
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+.patient-view h4 {
+  color: #52897B
+}
+
+.patient-data .basic-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #8492A6;
+}
+
+.patient-data .basic-info .age-gender {
+  display: flex;
+}
+
+.patient-view .patient-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #8492A6;
+  color: #333;
+}
+
+.patient-view .more-info {
+  margin-top: 10px;
+  color: #FF686B;
+}
+
+.profile .btn {
+  margin: 0;
+}
+
+.patient-view .consultation-list .btn-white {
+  height: 40px;
+  margin: 7px 0;
+  width: 100%;
+  padding: 0 30px
+}
+
+.add-patient form input,
+.edit-patient form input,
+.add-consultation form input {
+  background-color: transparent;
+  border-bottom: 1px solid #00A779;
+  border-radius: 0;
+  padding: 0;
+  height: auto;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+::placeholder {
+  color: #333;
+}
+
+.add-patient textarea,
+.edit-patient textarea,
+.add-consultation textarea {
+  width: 245px;
+  height: 80px;
+  background-color: transparent;
+  border: 1px solid #00A779;
+  margin-bottom: 20px;
+  font-size: 12px;
+  padding: 5px;
+  color: #333
+}
+
+/*******CONSULTATIONS*********/
+.consultation-view {
+  padding: 0 10px 20px;
+}
+
+.consultation-view .consult-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #8492A6;
+  color: #333;
+  background-color: #fff;
+  padding: 5px 10px;
+}
+
+.consult-row h3 {
+  font-weight: 400
+}
+
+.consult-row h4 {
+  color: #52897B;
+  letter-spacing: 1px;
+}
+
+.consult-row.conduct {
+  flex-direction: column;
+}
+
+.consult-row.conduct .text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.consult-row.conduct .btn-md {
+  margin: 25px 0 10px;
+  height: 30px;
+  width: 80px;
+  padding: 0;
+}
+
+.consult-row.conduct h4 {
+ text-align: right;
+}
+
+.consult-form{
+  background-color: #52897B;
+  border-radius: 7px;
+  margin-bottom: 15px;
+  padding: 20px 0;
+  color: #fff;
+}
+
+.consult-form textarea {
+  background-color: transparent;
+  border: #ccc solid 1px;
+  width: 80%;
+  color: #fff;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.exams {
+  display: flex;
+  flex-direction: column;
+}
+.exams .title {
+  display: flex;
+  flex-direction: column;
+}
+
+.exams .title h3 {
+  text-align: left;
+}
+
+.exams .title .exams-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.exams .title .exams-form input {
+ margin: 10px 0;
+}
+
+.exams .exams-form .btn-add-exam {
+  margin: 10px 0;
+  padding: 7px;
+  height: fit-content; 
+}
+
+.exams .exam-img {
+  width: 150px;
+}
+
+.exams .exam-img img {
+  width: 100%;
+}
+
+/*******ADD CONSULTATIONS*********/
+.add-consultation .fisic-exam {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 80px auto 20px;
+}
+
+.add-consultation .radio {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  padding: 20px 4px;
+  border: 1px solid #00A779;
+  max-width: 400px;
+  width: 70vw; 
+}
+
+.add-consultation .radio p {
+  align-self: center;
+}
+
+.add-consultation .radio label {
+  color: #52897B;
+  font-weight: 400;
+  width: 30%;
+}
+
+.add-consultation .radio input {
+  border: none;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #00A779;
+}
+
+.add-consultation
+
+.add-consultation .options {
+  width: fit-content;
+  text-align: left;
+  margin-top: 12px;
+}
+
+.add-consultation textarea.cid-name {
+  height: 40px;
+}
+
+.add-consultation input[type="text"] {
+  border: none;
+  border-bottom: 1px solid #00A779
+}

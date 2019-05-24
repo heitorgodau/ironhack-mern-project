@@ -1,3 +1,18 @@
-.App {
+.app {
   text-align: center;
+}
+
+.navbar .logo {
+  width: 150px;
+  margin: 30px auto;
+
+}
+
+@media(min-width: 768px ) {
+  .patient-view,
+  .consultation-view{
+    width: 500px;
+    margin: 40px auto;
+    padding-bottom: 20px; 
+  }
 }

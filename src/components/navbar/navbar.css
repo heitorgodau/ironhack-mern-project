@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.container {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: #35D3A7;
+  opacity: 0.95;
+  color: #333;
+  z-index: 2;
+  transition: height 0.3s ease 0s;
+}
+
+.menu-list {
+  padding-top: '3rem',
+}
+
+.navbar .user {
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+}
+
+.user span{
+  color: #333;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-2%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes shrink {
+  0% {
+    width: 95%;
+  }
+  100% {
+    width: 90%;
+  }
+}

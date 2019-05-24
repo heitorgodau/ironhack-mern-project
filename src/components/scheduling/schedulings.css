@@ -1,0 +1,54 @@
+.scheduling {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x:auto;
+}
+
+.scheduling .date-today h2 {
+  font-size: 2em;
+  font-weight: 400;
+}
+
+.scheduling .date-today p {
+  letter-spacing: 2px;
+}
+
+.scheduling .date-today p span {
+  color: #52897B;
+  font-weight: 600;
+  font-size: 1.5em;
+}
+
+.scheduling table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+.scheduling th, td {
+  font-size: 1.5em;
+  padding: 5px 10px;
+  color: #333;
+  text-align: center;
+  padding: 8px;
+}
+
+.scheduling td {
+    color: #52897B;
+}
+
+.scheduling tr:nth-child(even) {
+  background-color: rgb(255, 232, 219)
+}
+
+.scheduling td .btn {
+  width: 75px;
+  height: 35px;
+  padding: 0;
+}
+
+.scheduling .add-scheduling {
+  margin-top: 20px;
+}
