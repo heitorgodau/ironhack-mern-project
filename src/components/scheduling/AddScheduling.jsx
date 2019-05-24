@@ -20,7 +20,7 @@ class AddScheduling extends Component {
   handleFormSubmit(event) {
     event.preventDefault();   
     const { patientName, reason, date, hour } = this.state;
-    axios.post("http://localhost:5000/api/scheduling/new", {   
+    axios.post(`${process.env.REACT_APP_API_URL}/scheduling/new`, {   
         patientName,    
         reason,
         date,

@@ -35,7 +35,7 @@ class AddPatient extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('http://localhost:5000/api/patient/new', {...this.state}, {withCredentials:true})
+    axios.post(`${process.env.REACT_APP_API_URL}/patient/new`, {...this.state}, {withCredentials:true})
       .then((result) => {
         this.props.history.push('/profile')
         console.log('Paciente adicionado', result)

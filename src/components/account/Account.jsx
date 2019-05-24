@@ -19,7 +19,7 @@ class Account extends Component {
   }  
 
   getSingleDoctor() {
-    axios.get(`http://localhost:5000/api/doctor/${this.props.userInSession._id}`, {withCredentials:true})
+    axios.get(`${process.env.REACT_APP_API_URL}/doctor/${this.props.userInSession._id}`, {withCredentials:true})
     .then((result) => {           
       this.setState({
         doctor: result.data,

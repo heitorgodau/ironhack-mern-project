@@ -17,7 +17,7 @@ class EditAccount extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    axios.put(`http://localhost:5000/api/doctor/${this.props.userInSession._id}`, {...this.state.user}, {withCredentials:true})
+    axios.put(`${process.env.REACT_APP_API_URL}/doctor/${this.props.userInSession._id}`, {...this.state.user}, {withCredentials:true})
       .then(() => {
         this.getTheUser();
         this.props.history.push("/account");
@@ -35,7 +35,7 @@ class EditAccount extends Component {
   }
 
   getTheUser() {
-    axios.get(`http://localhost:5000/api/doctor/${this.props.userInSession._id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/doctor/${this.props.userInSession._id}`)
       .then((result) => {
         console.log(result.data.password);
         this.setState({

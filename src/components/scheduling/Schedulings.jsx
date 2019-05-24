@@ -26,7 +26,7 @@ class Schedulings extends Component {
 
   // Get all schedulings
   getAllSchedulings() {
-    axios.get(" http://localhost:5000/api/schedulings", {withCredentials:true}).then(response => {
+    axios.get(`${process.env.REACT_APP_API_URL}/schedulings`, {withCredentials:true}).then(response => {
       this.setState({
         schedulings: response.data
       });
@@ -51,7 +51,7 @@ class Schedulings extends Component {
   // DELETE scheduling
   deleteScheduling(scheduleId) {
     axios
-      .delete(`http://localhost:5000/api/scheduling/${scheduleId}`)
+      .delete(`${process.env.REACT_APP_API_URL}/scheduling/${scheduleId}`)
       .then(() => {
         this.getAllSchedulings();
       })

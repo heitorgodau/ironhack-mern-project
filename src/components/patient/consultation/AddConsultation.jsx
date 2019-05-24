@@ -56,7 +56,7 @@ export default class AddConsultation extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('http://localhost:5000/api/consultation/new', {...this.state}, {withCredentials:true})
+    axios.post(`${process.env.REACT_APP_API_URL}/consultation/new`, {...this.state}, {withCredentials:true})
       .then((result) => {
         console.log('Paciente adicionado', result)
         this.setState({

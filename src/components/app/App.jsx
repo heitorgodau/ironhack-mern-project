@@ -52,7 +52,7 @@ class App extends React.Component {
   }
   
   getAllPatients(callback) {
-    axios.get('http://localhost:5000/api/patients', {withCredentials:true})
+    axios.get(`${process.env.REACT_APP_API_URL}/patients`, {withCredentials:true})
     .then((response => {
       this.setState({
         allPatients: response.data,

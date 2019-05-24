@@ -26,7 +26,7 @@ export default class Consultation extends Component {
   }
   
   getOneConsultation() {
-    axios.get(`http://localhost:5000/api/consultation/${this.props.match.params.id}`, {withCredentials:true})
+    axios.get(`${process.env.REACT_APP_API_URL}/consultation/${this.props.match.params.id}`, {withCredentials:true})
     .then((result) => {
       this.setState({
         consultation: result.data,
@@ -68,7 +68,7 @@ export default class Consultation extends Component {
 
   handleSubmitFile(event) {
     event.preventDefault();
-    axios.put(`http://localhost:5000/api/consultation/${this.props.match.params.id}`, {imageUrl: this.state.imageUrl})
+    axios.put(`${process.env.REACT_APP_API_URL}/consultation/${this.props.match.params.id}`, {imageUrl: this.state.imageUrl})
       .then(() => {
         this.setState({
           imageUrl: '',
@@ -79,7 +79,7 @@ export default class Consultation extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.put(`http://localhost:5000/api/consultation/${this.props.match.params.id}`, {...this.state.consultation})
+    axios.put(`${process.env.REACT_APP_API_URL}/consultation/${this.props.match.params.id}`, {...this.state.consultation})
       .then(() => {
         this.edit();
       });
