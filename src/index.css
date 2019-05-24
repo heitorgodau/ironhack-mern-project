@@ -87,3 +87,13 @@ form > select {
 form > select:focus {
   outline: none;
 }
+
+input[type="file"] {
+  height: 30px;
+  width: 400px;
+  background-color: transparent;
+}
+
+input[type="file"] button {
+  background-color: red;
+}
